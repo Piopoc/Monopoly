@@ -1,0 +1,3 @@
+/home/piopo/Documenti/C++/progetto_finale/build/CMakeFiles/exe.dir
+/home/piopo/Documenti/C++/progetto_finale/build/CMakeFiles/edit_cache.dir
+/home/piopo/Documenti/C++/progetto_finale/build/CMakeFiles/rebuild_cache.dir
