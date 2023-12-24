@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/piopo/Documenti/C++/progetto_finale
+CMAKE_SOURCE_DIR = /home/piopo/Documenti/C++/monopoli
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/piopo/Documenti/C++/progetto_finale/build
+CMAKE_BINARY_DIR = /home/piopo/Documenti/C++/monopoli/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/piopo/Documenti/C++/progetto_finale/build/CMakeFiles /home/piopo/Documenti/C++/progetto_finale/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/piopo/Documenti/C++/monopoli/build/CMakeFiles /home/piopo/Documenti/C++/monopoli/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/piopo/Documenti/C++/progetto_finale/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/piopo/Documenti/C++/monopoli/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,6 +129,54 @@ exe/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/build
 .PHONY : exe/fast
 
+src/CPU.o: src/CPU.cpp.o
+.PHONY : src/CPU.o
+
+# target to build an object file
+src/CPU.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/src/CPU.cpp.o
+.PHONY : src/CPU.cpp.o
+
+src/CPU.i: src/CPU.cpp.i
+.PHONY : src/CPU.i
+
+# target to preprocess a source file
+src/CPU.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/src/CPU.cpp.i
+.PHONY : src/CPU.cpp.i
+
+src/CPU.s: src/CPU.cpp.s
+.PHONY : src/CPU.s
+
+# target to generate assembly for a file
+src/CPU.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/src/CPU.cpp.s
+.PHONY : src/CPU.cpp.s
+
+src/humanPlayer.o: src/humanPlayer.cpp.o
+.PHONY : src/humanPlayer.o
+
+# target to build an object file
+src/humanPlayer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/src/humanPlayer.cpp.o
+.PHONY : src/humanPlayer.cpp.o
+
+src/humanPlayer.i: src/humanPlayer.cpp.i
+.PHONY : src/humanPlayer.i
+
+# target to preprocess a source file
+src/humanPlayer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/src/humanPlayer.cpp.i
+.PHONY : src/humanPlayer.cpp.i
+
+src/humanPlayer.s: src/humanPlayer.cpp.s
+.PHONY : src/humanPlayer.s
+
+# target to generate assembly for a file
+src/humanPlayer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/src/humanPlayer.cpp.s
+.PHONY : src/humanPlayer.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -153,6 +201,54 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/player.o: src/player.cpp.o
+.PHONY : src/player.o
+
+# target to build an object file
+src/player.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/src/player.cpp.o
+.PHONY : src/player.cpp.o
+
+src/player.i: src/player.cpp.i
+.PHONY : src/player.i
+
+# target to preprocess a source file
+src/player.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/src/player.cpp.i
+.PHONY : src/player.cpp.i
+
+src/player.s: src/player.cpp.s
+.PHONY : src/player.s
+
+# target to generate assembly for a file
+src/player.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/src/player.cpp.s
+.PHONY : src/player.cpp.s
+
+src/tabellone.o: src/tabellone.cpp.o
+.PHONY : src/tabellone.o
+
+# target to build an object file
+src/tabellone.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/src/tabellone.cpp.o
+.PHONY : src/tabellone.cpp.o
+
+src/tabellone.i: src/tabellone.cpp.i
+.PHONY : src/tabellone.i
+
+# target to preprocess a source file
+src/tabellone.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/src/tabellone.cpp.i
+.PHONY : src/tabellone.cpp.i
+
+src/tabellone.s: src/tabellone.cpp.s
+.PHONY : src/tabellone.s
+
+# target to generate assembly for a file
+src/tabellone.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/src/tabellone.cpp.s
+.PHONY : src/tabellone.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,9 +258,21 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... exe"
+	@echo "... src/CPU.o"
+	@echo "... src/CPU.i"
+	@echo "... src/CPU.s"
+	@echo "... src/humanPlayer.o"
+	@echo "... src/humanPlayer.i"
+	@echo "... src/humanPlayer.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/player.o"
+	@echo "... src/player.i"
+	@echo "... src/player.s"
+	@echo "... src/tabellone.o"
+	@echo "... src/tabellone.i"
+	@echo "... src/tabellone.s"
 .PHONY : help
 
 

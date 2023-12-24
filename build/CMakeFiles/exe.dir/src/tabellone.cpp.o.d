@@ -1,5 +1,5 @@
-CMakeFiles/exe.dir/src/main.cpp.o: \
- /home/piopo/Documenti/C++/monopoli/src/main.cpp \
+CMakeFiles/exe.dir/src/tabellone.cpp.o: \
+ /home/piopo/Documenti/C++/monopoli/src/tabellone.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/13.2.1/iostream \
  /usr/include/c++/13.2.1/bits/requires_hosted.h \
  /usr/include/c++/13.2.1/x86_64-pc-linux-gnu/bits/c++config.h \

@@ -8,7 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/piopo/Documenti/C++/progetto_finale/src/main.cpp" "CMakeFiles/exe.dir/src/main.cpp.o" "gcc" "CMakeFiles/exe.dir/src/main.cpp.o.d"
+  "/home/piopo/Documenti/C++/monopoli/src/CPU.cpp" "CMakeFiles/exe.dir/src/CPU.cpp.o" "gcc" "CMakeFiles/exe.dir/src/CPU.cpp.o.d"
+  "/home/piopo/Documenti/C++/monopoli/src/humanPlayer.cpp" "CMakeFiles/exe.dir/src/humanPlayer.cpp.o" "gcc" "CMakeFiles/exe.dir/src/humanPlayer.cpp.o.d"
+  "/home/piopo/Documenti/C++/monopoli/src/main.cpp" "CMakeFiles/exe.dir/src/main.cpp.o" "gcc" "CMakeFiles/exe.dir/src/main.cpp.o.d"
+  "/home/piopo/Documenti/C++/monopoli/src/player.cpp" "CMakeFiles/exe.dir/src/player.cpp.o" "gcc" "CMakeFiles/exe.dir/src/player.cpp.o.d"
+  "/home/piopo/Documenti/C++/monopoli/src/tabellone.cpp" "CMakeFiles/exe.dir/src/tabellone.cpp.o" "gcc" "CMakeFiles/exe.dir/src/tabellone.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

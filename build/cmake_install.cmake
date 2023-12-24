@@ -1,4 +1,4 @@
-# Install script for directory: /home/piopo/Documenti/C++/progetto_finale
+# Install script for directory: /home/piopo/Documenti/C++/monopoli
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/piopo/Documenti/C++/progetto_finale/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/piopo/Documenti/C++/monopoli/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
