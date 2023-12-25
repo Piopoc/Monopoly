@@ -314,6 +314,7 @@ CMakeFiles/exe.dir/src/tabellone.cpp.o: /home/piopo/Documenti/C++/monopoli/src/t
   /usr/include/c++/13.2.1/clocale \
   /usr/include/c++/13.2.1/cstdio \
   /usr/include/c++/13.2.1/cstdlib \
+  /usr/include/c++/13.2.1/ctime \
   /usr/include/c++/13.2.1/cwchar \
   /usr/include/c++/13.2.1/cwctype \
   /usr/include/c++/13.2.1/debug/assertions.h \
@@ -372,6 +373,8 @@ CMakeFiles/exe.dir/src/tabellone.cpp.o: /home/piopo/Documenti/C++/monopoli/src/t
   /usr/lib/gcc/x86_64-pc-linux-gnu/13.2.1/include/stdarg.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/13.2.1/include/stddef.h
 
+
+/usr/include/c++/13.2.1/ctime:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/13.2.1/include/stddef.h:
 
