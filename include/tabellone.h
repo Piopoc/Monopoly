@@ -6,8 +6,8 @@
 class tabellone{
     public:
         tabellone();
-        int getR();
-        int getC();
+        const int getR();
+        const int getC();
         void stampa();
     private:
         static const int righe=9;
