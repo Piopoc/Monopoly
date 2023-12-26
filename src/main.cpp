@@ -11,6 +11,9 @@ int main(int argc, char* argv[]){
     }
     string modalitaGioco = argv[1];
     srand(static_cast<unsigned int>(time(0)));
+    int conta_player=4;
+    // se player non ha soldi viene eliminato --> diminuisco il conta_player (se è uguale a 1, il player rimanente ha vinto)
+    
 
     if (modalitaGioco == "computer") {
         //giocaComputer();
