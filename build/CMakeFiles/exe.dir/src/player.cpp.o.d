@@ -1,3 +1,3 @@
 CMakeFiles/exe.dir/src/player.cpp.o: \
- /home/piopo/Documenti/C++/monopoli/src/player.cpp \
+ /mnt/c/Users/leval/Documents/Monopoly/src/player.cpp \
  /usr/include/stdc-predef.h
