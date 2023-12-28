@@ -2,7 +2,7 @@
 #ifndef CELL
 #define CELL
 #include <iostream>
-//Si usa per le celle laterali e definisce contiene i vari prezzi associati al tipo di terreno
+//Si usa per le celle laterali e ne definisce il tipo: contiene i vari prezzi associati al tipo di terreno
 struct Type
 {
     const int purchase_terrain;
