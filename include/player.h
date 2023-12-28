@@ -15,5 +15,5 @@ class player{
         bool belongTo; // ??
 
 };
-
+int dadi();
 #endif

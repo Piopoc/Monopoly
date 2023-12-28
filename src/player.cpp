@@ -20,3 +20,8 @@ void player::preleva(int x)
     if(cash-x<0) throw std::exception();
     cash -= x;
 }
+int dadi()
+{
+    srand (time(NULL));
+    return rand() % 6 + 1;
+}
