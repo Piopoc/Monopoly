@@ -18,5 +18,4 @@ add_executable(${PROJECT_NAME}
     ../src/humanPlayer.cpp
     ../src/CPU.cpp
     ../src/player.cpp
-    ../src/bankAccount.cpp
 )
