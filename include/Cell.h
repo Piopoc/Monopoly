@@ -1,6 +1,6 @@
 //Pier Francesco Uliana, matricola 2066593
-#ifndef CELL
-#define CELL
+#ifndef CELL_H
+#define CELL_H
 #include <iostream>
 //Si usa per le celle laterali e ne definisce il tipo: contiene i vari prezzi associati al tipo di terreno
 struct Type
