@@ -5,7 +5,7 @@
 
 class player{
     public:
-        player();
+        player(int ID);
         bool hasMoney();
         int saldo();
         void versa(int x);

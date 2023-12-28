@@ -3,9 +3,9 @@
 #include <iostream>
 #include "../include/player.h"
 
-player::player()
+player::player(int ID)
+    : cash = 100, playerID = x; 
 {
-    cash = 100;
 }
 bool player::hasMoney()
 {
@@ -28,4 +28,8 @@ int dadi()
 {
     srand (time(NULL));
     return (rand() % 6 + 1)+(rand() % 6 + 1);
+}
+int getID()
+{
+    return playerID;
 }
