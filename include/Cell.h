@@ -34,7 +34,7 @@ class Cell
         Cell(const Cell&) = delete;
         Cell& operator=(const Cell&) = delete;
 
-        std::string get_coordinates() {return coordinates;};
+        std::string get_coordinates() const {return coordinates;};
 
         virtual std::string to_string() const = 0;
 
@@ -62,9 +62,9 @@ class SideCell : public Cell
 
         void upgrade_property();
 
-        Type get_type() {return type;};
-        Player get_owner();
-        char get_property() {return property;};
+        Type get_type() const {return type;};
+        Player get_owner() const;
+        char get_property() const {return property;};
 
         std::string to_string() const;
 };
@@ -77,7 +77,7 @@ class EdgeCell : public Cell
     public:
         EdgeCell(bool s, const std::string& c);
 
-        bool is_start() {return is_start_cell;};
+        bool is_start() const {return is_start_cell;};
 
         std::string to_string() const;
 };
