@@ -47,6 +47,7 @@ class Cell
 
 std::ostream& operator<<(std::ostream& o, const Cell& c);
 
+//Sottoclasse che rappresenta una cella laterale
 class SideCell : public Cell
 {
     Type type;
@@ -68,6 +69,7 @@ class SideCell : public Cell
         std::string to_string() const;
 };
 
+//Sottoclasse che rappresenta una cella angolare
 class EdgeCell : public Cell
 {
     bool is_start_cell;
