@@ -1,6 +1,5 @@
 # Monopoly
--Per sviluppare il tabellone del monopoli abbiamo deciso di utilizzare una matrice nonostante non sia la struttura la più efficiente a livello di spazio occupato in memoria
-
+-Per sviluppare il tabellone del monopoli abbiamo deciso di utilizzare un vector e caricarlo poi su una matrice per avere la giusta formattazione e al tempo stesso la migliore gestione dello spostamento delle pedine durante il gioco.
 
 N.B.
 -Bisogna creare i file nella cartella build tramite il programma CMake o su linea di comando all'interno della directory "build" (cmake -S .. -B .), poi è sufficiente lanciare il comando "make" e poi eseguire il file
