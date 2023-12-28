@@ -23,5 +23,5 @@ void player::preleva(int x)
 int dadi()
 {
     srand (time(NULL));
-    return rand() % 6 + 1;
+    return (rand() % 6 + 1)+(rand() % 6 + 1);
 }
