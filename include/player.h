@@ -3,9 +3,9 @@
 
 #include <iostream>
 
-class player{
+class Player{
     public:
-        player(int ID);
+        Player(int ID);
         bool hasMoney();
         int saldo();
         void versa(int x);

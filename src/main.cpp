@@ -1,6 +1,6 @@
 #include <iostream>
 #include "../include/tabellone.h"
-#include "../include/player.h"
+#include "../include/Player.h"
 
 using namespace std;
 
@@ -15,10 +15,10 @@ int main(int argc, char* argv[]){
     int conta_player=4;
     // se player non ha soldi viene eliminato --> diminuisco il conta_player (se è uguale a 1, il player rimanente ha vinto)
     tabellone t;
-    player p1;
-    player p2;
-    player p3;
-    player p4;
+    Player p1;
+    Player p2;
+    Player p3;
+    Player p4;
     
     if (modalitaGioco == "computer") {
         

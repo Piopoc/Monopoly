@@ -1,35 +1,35 @@
 // @author Alberto Levorato, matricola: 2066600
 
 #include <iostream>
-#include "../include/player.h"
+#include "../include/Player.h"
 
-player::player(int ID)
+Player::Player(int ID)
     : cash = 100, playerID = x; 
 {
 }
-bool player::hasMoney()
+bool Player::hasMoney()
 {
     return cash == 0;
 }
-int player::saldo()
+int Player::saldo()
 {
     return cash;
 }
-void player::versa(int x)
+void Player::versa(int x)
 {
     cash += x;
 }
-void player::preleva(int x)
+void Player::preleva(int x)
 {
     if(cash-x<0) throw std::exception();
     cash -= x;
+}
+int Player::getID()
+{
+    return playerID;
 }
 int dadi()
 {
     srand (time(NULL));
     return (rand() % 6 + 1)+(rand() % 6 + 1);
-}
-int getID()
-{
-    return playerID;
 }
