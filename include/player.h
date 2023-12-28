@@ -10,9 +10,12 @@ class player{
         int saldo();
         void versa(int x);
         void preleva(int x);
+        void setID(int x);
+        int getID();
     private:
         int cash;
         bool belongTo; // ??
+        int playerID;
 
 };
 int dadi();
