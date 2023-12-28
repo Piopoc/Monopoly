@@ -2,17 +2,14 @@
 #define TABELLONE_H
 
 #include <iostream>
+#include <vector>
 
 class tabellone{
     public:
         tabellone();
-        const int getR();
-        const int getC();
         void stampa();
     private:
-        static const int righe=9;
-        static const int colon=9;
-        std::string tabs[righe][colon];
+        std::vector<std::string> tabs;
 };
 
 #endif

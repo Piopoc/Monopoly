@@ -1,1 +1,1 @@
-/usr/bin/c++  -O2 CMakeFiles/exe.dir/src/main.cpp.o CMakeFiles/exe.dir/src/tabellone.cpp.o CMakeFiles/exe.dir/src/humanPlayer.cpp.o CMakeFiles/exe.dir/src/player.cpp.o -o exe 
+/usr/bin/c++  -O2 CMakeFiles/exe.dir/src/main.cpp.o CMakeFiles/exe.dir/src/tabellone.cpp.o CMakeFiles/exe.dir/src/player.cpp.o -o exe 
