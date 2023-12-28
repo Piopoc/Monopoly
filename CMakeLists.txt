@@ -15,6 +15,6 @@ include_directories(../include)
 add_executable(${PROJECT_NAME} 
     ../src/main.cpp
     ../src/tabellone.cpp
-    ../src/Player.cpp
+    ../src/player.cpp
     ../src/Cell.cpp
 )

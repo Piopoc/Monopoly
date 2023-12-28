@@ -9,11 +9,11 @@
 tabellone::tabellone(){
     srand(time(NULL));
 
-    int dim=64;
-    int corner_box1=36;
-    int corner_box2=43;
-    int corner_box3=50;
-    int corner_box4=57;
+    int dim=28;
+    int corner_box1=0;
+    int corner_box2=7;
+    int corner_box3=14;
+    int corner_box4=21;
 
     int p=rand()%4+1;
     int e=8;
@@ -24,18 +24,6 @@ tabellone::tabellone(){
     int fcolomn=65;
 
     for(int i=0;i<dim;i++){
-        if(i==0){
-            tabs.push_back("");
-        }
-        if(i>0 && i<9){
-            tabs.push_back("    "+std::to_string(fraw++)+"    ");
-        }
-        if(i>8 && i<28){
-            tabs.push_back("   ");
-        }
-        if(i>27 && i<36){
-            tabs.push_back(std::string(1, static_cast<char>(fcolomn++)));
-        } 
         if(i==corner_box1 || i==corner_box2 || i==corner_box3 || i==corner_box4){
             tabs.push_back("  |   |  ");
         }
@@ -84,53 +72,62 @@ tabellone::tabellone(){
 void tabellone::stampa(){
     static const int dim=10;
     std::string matrix[dim][dim];
+    int fraw=1;
+    int fcolomn=65;
 
     int a=0; 
-    int b=27;
-    int c=36;
-    int d=44;
-    int e=50;
-    int f=58;
+    int b=8;
+    int c=14;
+    int d=27;
 
     // carica della matrice traimte vector
     for(int i=0;i<dim;i++){
         for(int j=0;j<dim;j++){
-            if(j==0){
-                if(b<37){
-                    matrix[i][j]=tabs[b++];
+            if(i==0 && j==0){
+                matrix[i][j]="   ";
+            }
+            else if(j==0 && i<dim-1){
+                if(i==dim-1){
+                    matrix[i][j]="\n";
+                }
+                else{
+                    matrix[i][j]=std::string(1, static_cast<char>(fcolomn++));
                 }
             }
-            else if(i==0){
-                if(a<9){
-                    matrix[i][j]=tabs[a++];
-                }
+            else if(i==0 && j<dim-1){
+                matrix[i][j]="    "+std::to_string(fraw++)+"    ";
             }
             else if(i==1){
-                if(c<44){
-                    if(c==36){
-                        matrix[i][j]="  "+tabs[c++];
+                if(a<8){
+                    if(a==0){
+                        matrix[i][j]="  "+tabs[a++];
                     }
                     else{
-                        matrix[i][j]=tabs[c++];
+                        matrix[i][j]=tabs[a++];
                     }
                 }
             }
             else if(j==dim-2){
-                if(d<50){
-                    matrix[i][j]="                                                      "+tabs[d++];
+                if(b<15){
+                    if(b==14){
+                        matrix[i][j]=tabs[b++];
+                    }
+                    else{
+                        matrix[i][j]="                                                      "+tabs[b++];
+                    }
                 }
             }
             else if(i==dim-2){
-                if(e==50){
-                    matrix[i][j]="  "+tabs[e++];
+                if(c==14){
+                    matrix[i][j]="  "+tabs[c++];
                 }
-                else if(e<58){
-                    matrix[i][j]=tabs[e++];
+                else if(c<21){
+                    matrix[i][j]=tabs[c++];
                 }
             }
             else if(j==1){
-                if(f<64){
-                    matrix[i][j]="  "+tabs[f++];
+                if(d>=21){
+                    matrix[i][j]="  "+tabs[d--];
                 }
             }
         }
@@ -142,4 +139,5 @@ void tabellone::stampa(){
         }
         std::cout<<std::endl;
     }
+    std::cout<<std::endl;
 }

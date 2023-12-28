@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include "../include/Cell.h"
 
 class tabellone{
     public:
