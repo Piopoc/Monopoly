@@ -1,11 +1,11 @@
 #include <iostream>
 #include "../include/tabellone.h"
 #include "../include/Player.h"
+#include "../include/Cell.h"
 
 using namespace std;
 
 int main(int argc, char* argv[]){
-
     if (argc != 2) {
         cout << "Utilizzo: " << argv[0] << " <computer/human>" << endl;
         return -1; // restituisco 1 per indicare un errore

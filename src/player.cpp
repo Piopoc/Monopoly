@@ -4,10 +4,16 @@
 #include "../include/Player.h"
 
 Player::Player(int ID)
-    : cash = 100, playerID = x; 
+    : cash{100}, playerID{ID} 
 {
 }
-bool Player::hasMoney()
+Player& Player::operator=(Player& p)
+{
+    cash = p.cash;
+    playerID = p.playerID;
+    return *this;
+}
+bool Player::hasMoney() const
 {
     return cash == 0;
 }
@@ -24,7 +30,7 @@ void Player::preleva(int x)
     if(cash-x<0) throw std::exception();
     cash -= x;
 }
-int Player::getID()
+int Player::getID() const
 {
     return playerID;
 }

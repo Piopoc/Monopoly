@@ -4,11 +4,11 @@
 
 //Type
 Type::Type(int a, int b, int c, int d, int e, char i)
-    : purchase_terrain{a}, upgrade_to_house{b}, upgrade_to_hotel{c}, house_stay{d}, hotel_stay{e}, identifier{i}
+    : purchase_land{a}, upgrade_to_house{b}, upgrade_to_hotel{c}, house_stay{d}, hotel_stay{e}, identifier{i}
 {}
 
 Type::Type(const Type& t)
-    : purchase_terrain{t.purchase_terrain}, upgrade_to_house{t.upgrade_to_house}, upgrade_to_hotel{t.upgrade_to_hotel}, house_stay{t.house_stay}, hotel_stay{t.hotel_stay}, identifier{t.identifier}
+    : purchase_land{t.purchase_land}, upgrade_to_house{t.upgrade_to_house}, upgrade_to_hotel{t.upgrade_to_hotel}, house_stay{t.house_stay}, hotel_stay{t.hotel_stay}, identifier{t.identifier}
 {}
 
 //Types
@@ -29,11 +29,11 @@ Type types::luxury()
 
 //Cell
 //Aggiunge alla lista dei giocatori che occupano la casella, FALLISCE SILENZIOSAMENTE SE GIA' PRESENTE
-void Cell::add_occupant(char p)
+void Cell::add_occupant(Player p)
 {
     for(int i = 0; i < number_of_occupants; i++)
     {
-        if(occupying[i] == p)
+        if(occupying[i].getID() == p.getID())
         {
             return;
         }
@@ -43,11 +43,11 @@ void Cell::add_occupant(char p)
 }
 
 //Rimuove dalla lista dei giocatori che occupano la casella, FALLISCE SILENZIOSAMENTE SE NON PRESENTE
-void Cell::remove_occupant(char p)
+void Cell::remove_occupant(Player p)
 {
     for(int i = 0; i < number_of_occupants; i++)
     {
-        if(occupying[i] == p)
+        if(occupying[i].getID() == p.getID())
         {
             for(int j = i; j < number_of_occupants - 1; j++)
             {
@@ -71,9 +71,9 @@ SideCell::SideCell(const Type& t, const std::string& c)
 {coordinates = c;}
 
 //FALLISCE SILENZIONSAMENTE SE E' GIA' PRESENTE UN PROPRIETARIO
-void SideCell::add_owner(char p)
+void SideCell::add_owner(Player p)
 {
-    if(!owner)
+    if(!owner.getID())
     {
         owner = p;
     }
@@ -82,9 +82,10 @@ void SideCell::add_owner(char p)
 //FALLISCE SILENZIOSAMENTE SE NON E' PRESENTE UN PROPRIETARIO
 void SideCell::remove_owner()
 {
-    if(owner)
+    if(owner.getID())
     {
-        owner = 0;
+        Player o {};
+        owner = o;
         property = 0;
     }
 }
@@ -92,7 +93,7 @@ void SideCell::remove_owner()
 //FALLISCE SILENZIOSAMENTE SE NON HA PROPRIETARIO O SE E' GIA' PRESENTE UN HOTEL
 void SideCell::upgrade_property()
 {
-    if(owner)
+    if(owner.getID())
     {
         switch(property)
         {
@@ -117,7 +118,7 @@ std::string SideCell::to_string() const
     {
         for(int i = 0; i < number_of_occupants; i++)
         {
-            s += occupying[i];
+            s += (occupying[i].getID() + 48);  //Conversione da int a char
             s += " ";
         }
     }
@@ -154,7 +155,7 @@ std::string EdgeCell::to_string() const
     {
         for(int i = 0; i < number_of_occupants; i++)
         {
-            s += occupying[i];
+            s += occupying[i].getID();
             s += " ";
         }
     }

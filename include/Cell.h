@@ -6,7 +6,7 @@
 //Si usa per le celle laterali e ne definisce il tipo: contiene i vari prezzi associati al tipo di terreno
 struct Type
 {
-    const int purchase_terrain;
+    const int purchase_land;
     const int upgrade_to_house;
     const int upgrade_to_hotel;
     const int house_stay;
@@ -28,8 +28,8 @@ namespace types
 class Cell
 {        
     public:
-        void add_occupant(player p);
-        void remove_occupant(player p);
+        void add_occupant(Player p);
+        void remove_occupant(Player p);
 
         Cell(const Cell&) = delete;
         Cell& operator=(const Cell&) = delete;
@@ -39,7 +39,7 @@ class Cell
         virtual std::string to_string() const = 0;
 
     protected:
-        player occupying[4];
+        Player occupying[4];
         int number_of_occupants = 0;
         std::string coordinates;
         Cell() {};    
@@ -51,19 +51,19 @@ std::ostream& operator<<(std::ostream& o, const Cell& c);
 class SideCell : public Cell
 {
     Type type;
-    player owner;
+    Player owner;
     char property;
 
     public:
         SideCell(const Type& t, const std::string& c);
 
-        void add_owner(player p);
+        void add_owner(Player p);
         void remove_owner();
 
         void upgrade_property();
 
         Type get_type() {return type;};
-        player get_owner() {return owner;};
+        Player get_owner();
         char get_property() {return property;};
 
         std::string to_string() const;
