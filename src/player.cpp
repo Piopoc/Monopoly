@@ -1,3 +1,5 @@
+// @author Alberto Levorato, matricola: 2066600
+
 #include <iostream>
 #include "../include/player.h"
 
@@ -15,6 +17,6 @@ void player::versa(int x)
 }
 void player::preleva(int x)
 {
-    if(deposito-x<0) throw std::exception();
+    if(cash-x<0) throw std::exception();
     cash -= x;
 }

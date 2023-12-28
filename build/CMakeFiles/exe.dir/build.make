@@ -111,24 +111,10 @@ CMakeFiles/exe.dir/src/humanPlayer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exe.dir/src/humanPlayer.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/leval/Documents/Monopoly/src/humanPlayer.cpp -o CMakeFiles/exe.dir/src/humanPlayer.cpp.s
 
-CMakeFiles/exe.dir/src/CPU.cpp.o: CMakeFiles/exe.dir/flags.make
-CMakeFiles/exe.dir/src/CPU.cpp.o: ../src/CPU.cpp
-CMakeFiles/exe.dir/src/CPU.cpp.o: CMakeFiles/exe.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/leval/Documents/Monopoly/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/exe.dir/src/CPU.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exe.dir/src/CPU.cpp.o -MF CMakeFiles/exe.dir/src/CPU.cpp.o.d -o CMakeFiles/exe.dir/src/CPU.cpp.o -c /mnt/c/Users/leval/Documents/Monopoly/src/CPU.cpp
-
-CMakeFiles/exe.dir/src/CPU.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exe.dir/src/CPU.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/leval/Documents/Monopoly/src/CPU.cpp > CMakeFiles/exe.dir/src/CPU.cpp.i
-
-CMakeFiles/exe.dir/src/CPU.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exe.dir/src/CPU.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/leval/Documents/Monopoly/src/CPU.cpp -o CMakeFiles/exe.dir/src/CPU.cpp.s
-
 CMakeFiles/exe.dir/src/player.cpp.o: CMakeFiles/exe.dir/flags.make
 CMakeFiles/exe.dir/src/player.cpp.o: ../src/player.cpp
 CMakeFiles/exe.dir/src/player.cpp.o: CMakeFiles/exe.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/leval/Documents/Monopoly/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/exe.dir/src/player.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/leval/Documents/Monopoly/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/exe.dir/src/player.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exe.dir/src/player.cpp.o -MF CMakeFiles/exe.dir/src/player.cpp.o.d -o CMakeFiles/exe.dir/src/player.cpp.o -c /mnt/c/Users/leval/Documents/Monopoly/src/player.cpp
 
 CMakeFiles/exe.dir/src/player.cpp.i: cmake_force
@@ -139,28 +125,12 @@ CMakeFiles/exe.dir/src/player.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exe.dir/src/player.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/leval/Documents/Monopoly/src/player.cpp -o CMakeFiles/exe.dir/src/player.cpp.s
 
-CMakeFiles/exe.dir/src/bankAccount.cpp.o: CMakeFiles/exe.dir/flags.make
-CMakeFiles/exe.dir/src/bankAccount.cpp.o: ../src/bankAccount.cpp
-CMakeFiles/exe.dir/src/bankAccount.cpp.o: CMakeFiles/exe.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/leval/Documents/Monopoly/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/exe.dir/src/bankAccount.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exe.dir/src/bankAccount.cpp.o -MF CMakeFiles/exe.dir/src/bankAccount.cpp.o.d -o CMakeFiles/exe.dir/src/bankAccount.cpp.o -c /mnt/c/Users/leval/Documents/Monopoly/src/bankAccount.cpp
-
-CMakeFiles/exe.dir/src/bankAccount.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exe.dir/src/bankAccount.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/leval/Documents/Monopoly/src/bankAccount.cpp > CMakeFiles/exe.dir/src/bankAccount.cpp.i
-
-CMakeFiles/exe.dir/src/bankAccount.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exe.dir/src/bankAccount.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/leval/Documents/Monopoly/src/bankAccount.cpp -o CMakeFiles/exe.dir/src/bankAccount.cpp.s
-
 # Object files for target exe
 exe_OBJECTS = \
 "CMakeFiles/exe.dir/src/main.cpp.o" \
 "CMakeFiles/exe.dir/src/tabellone.cpp.o" \
 "CMakeFiles/exe.dir/src/humanPlayer.cpp.o" \
-"CMakeFiles/exe.dir/src/CPU.cpp.o" \
-"CMakeFiles/exe.dir/src/player.cpp.o" \
-"CMakeFiles/exe.dir/src/bankAccount.cpp.o"
+"CMakeFiles/exe.dir/src/player.cpp.o"
 
 # External object files for target exe
 exe_EXTERNAL_OBJECTS =
@@ -168,12 +138,10 @@ exe_EXTERNAL_OBJECTS =
 exe: CMakeFiles/exe.dir/src/main.cpp.o
 exe: CMakeFiles/exe.dir/src/tabellone.cpp.o
 exe: CMakeFiles/exe.dir/src/humanPlayer.cpp.o
-exe: CMakeFiles/exe.dir/src/CPU.cpp.o
 exe: CMakeFiles/exe.dir/src/player.cpp.o
-exe: CMakeFiles/exe.dir/src/bankAccount.cpp.o
 exe: CMakeFiles/exe.dir/build.make
 exe: CMakeFiles/exe.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/leval/Documents/Monopoly/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/leval/Documents/Monopoly/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/exe.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -129,54 +129,6 @@ exe/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/build
 .PHONY : exe/fast
 
-src/CPU.o: src/CPU.cpp.o
-.PHONY : src/CPU.o
-
-# target to build an object file
-src/CPU.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/src/CPU.cpp.o
-.PHONY : src/CPU.cpp.o
-
-src/CPU.i: src/CPU.cpp.i
-.PHONY : src/CPU.i
-
-# target to preprocess a source file
-src/CPU.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/src/CPU.cpp.i
-.PHONY : src/CPU.cpp.i
-
-src/CPU.s: src/CPU.cpp.s
-.PHONY : src/CPU.s
-
-# target to generate assembly for a file
-src/CPU.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/src/CPU.cpp.s
-.PHONY : src/CPU.cpp.s
-
-src/bankAccount.o: src/bankAccount.cpp.o
-.PHONY : src/bankAccount.o
-
-# target to build an object file
-src/bankAccount.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/src/bankAccount.cpp.o
-.PHONY : src/bankAccount.cpp.o
-
-src/bankAccount.i: src/bankAccount.cpp.i
-.PHONY : src/bankAccount.i
-
-# target to preprocess a source file
-src/bankAccount.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/src/bankAccount.cpp.i
-.PHONY : src/bankAccount.cpp.i
-
-src/bankAccount.s: src/bankAccount.cpp.s
-.PHONY : src/bankAccount.s
-
-# target to generate assembly for a file
-src/bankAccount.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/src/bankAccount.cpp.s
-.PHONY : src/bankAccount.cpp.s
-
 src/humanPlayer.o: src/humanPlayer.cpp.o
 .PHONY : src/humanPlayer.o
 
@@ -282,12 +234,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... exe"
-	@echo "... src/CPU.o"
-	@echo "... src/CPU.i"
-	@echo "... src/CPU.s"
-	@echo "... src/bankAccount.o"
-	@echo "... src/bankAccount.i"
-	@echo "... src/bankAccount.s"
 	@echo "... src/humanPlayer.o"
 	@echo "... src/humanPlayer.i"
 	@echo "... src/humanPlayer.s"
