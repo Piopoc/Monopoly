@@ -5,7 +5,7 @@
 
 class player{
     public:
-        void move(int passi); // funzione di spostamento nel tabellone
+        player();
         bool hasMoney();
         int saldo();
         void versa(int x);

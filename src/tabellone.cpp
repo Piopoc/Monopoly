@@ -5,6 +5,7 @@
 #include <ctime>
 #include "../include/tabellone.h"
 
+
 tabellone::tabellone(){
     srand(time(NULL));
     // random per casella di partenza

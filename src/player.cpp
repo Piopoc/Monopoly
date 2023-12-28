@@ -3,6 +3,10 @@
 #include <iostream>
 #include "../include/player.h"
 
+player::player()
+{
+    cash = 100;
+}
 bool player::hasMoney()
 {
     return cash == 0;

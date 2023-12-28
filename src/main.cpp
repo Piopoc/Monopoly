@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../include/tabellone.h"
+#include "../include/player.h"
 
 using namespace std;
 
@@ -13,10 +14,14 @@ int main(int argc, char* argv[]){
     srand(static_cast<unsigned int>(time(0)));
     int conta_player=4;
     // se player non ha soldi viene eliminato --> diminuisco il conta_player (se è uguale a 1, il player rimanente ha vinto)
+    tabellone t;
+    player() p1;
+    player() p2;
+    player() p3;
+    player() p4;
     
-
     if (modalitaGioco == "computer") {
-        //giocaComputer();
+        
     } else if (modalitaGioco == "human") {
         //giocaUmano();
     } else {
@@ -24,7 +29,7 @@ int main(int argc, char* argv[]){
         return 1;
     }
 
-    tabellone t;
+    
     cout<<"  .___  ___.   ______   .__   __.   ______   .______     ______    __       __     .______   ____    ____     __           ___      .___  ___. .______    _______       ___      "<<endl;
     cout<<"  |   \\/   |  /  __  \\  |  \\ |  |  /  __  \\  |   _  \\   /  __  \\  |  |     |  |    |   _  \\  \\   \\  /   /    |  |         /   \\     |   \\/   | |   _  \\  |       \\     /   \\     "<<endl;
     cout<<"  |  \\  /  | |  |  |  | |   \\|  | |  |  |  | |  |_)  | |  |  |  | |  |     |  |    |  |_)  |  \\   \\/   /     |  |        /  ^  \\    |  \\  /  | |  |_)  | |  .--.  |   /  ^  \\    "<<endl;
