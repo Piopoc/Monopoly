@@ -129,4 +129,4 @@ CMakeFiles/exe.dir/src/Cell.cpp.o: \
  /usr/include/c++/13.2.1/bits/ostream.tcc /usr/include/c++/13.2.1/istream \
  /usr/include/c++/13.2.1/bits/istream.tcc \
  /home/piopo/Documenti/C++/monopoli/src/../include/Cell.h \
- /home/piopo/Documenti/C++/monopoli/src/../include/player.h
+ /home/piopo/Documenti/C++/monopoli/src/../include/../include/Player.h

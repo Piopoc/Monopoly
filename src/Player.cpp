@@ -1,7 +1,7 @@
 // @author Alberto Levorato, matricola: 2066600
 
 #include <iostream>
-#include "../include/player.h"
+#include "../include/Player.h"
 
 Player::Player(int ID)
     : cash{100}, playerID{ID} 

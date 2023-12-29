@@ -1,6 +1,6 @@
 #include <iostream>
 #include "../include/tabellone.h"
-#include "../include/player.h"
+#include "../include/Player.h"
 #include "../include/Cell.h"
 
 using namespace std;

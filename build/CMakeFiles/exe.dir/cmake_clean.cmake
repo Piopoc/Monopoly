@@ -1,10 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/exe.dir/src/Cell.cpp.o"
   "CMakeFiles/exe.dir/src/Cell.cpp.o.d"
+  "CMakeFiles/exe.dir/src/Player.cpp.o"
+  "CMakeFiles/exe.dir/src/Player.cpp.o.d"
   "CMakeFiles/exe.dir/src/main.cpp.o"
   "CMakeFiles/exe.dir/src/main.cpp.o.d"
-  "CMakeFiles/exe.dir/src/player.cpp.o"
-  "CMakeFiles/exe.dir/src/player.cpp.o.d"
   "CMakeFiles/exe.dir/src/tabellone.cpp.o"
   "CMakeFiles/exe.dir/src/tabellone.cpp.o.d"
   "exe"

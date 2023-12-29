@@ -97,19 +97,19 @@ CMakeFiles/exe.dir/src/tabellone.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/exe.dir/src/tabellone.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piopo/Documenti/C++/monopoli/src/tabellone.cpp -o CMakeFiles/exe.dir/src/tabellone.cpp.s
 
-CMakeFiles/exe.dir/src/player.cpp.o: CMakeFiles/exe.dir/flags.make
-CMakeFiles/exe.dir/src/player.cpp.o: /home/piopo/Documenti/C++/monopoli/src/player.cpp
-CMakeFiles/exe.dir/src/player.cpp.o: CMakeFiles/exe.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/piopo/Documenti/C++/monopoli/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/exe.dir/src/player.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exe.dir/src/player.cpp.o -MF CMakeFiles/exe.dir/src/player.cpp.o.d -o CMakeFiles/exe.dir/src/player.cpp.o -c /home/piopo/Documenti/C++/monopoli/src/player.cpp
+CMakeFiles/exe.dir/src/Player.cpp.o: CMakeFiles/exe.dir/flags.make
+CMakeFiles/exe.dir/src/Player.cpp.o: /home/piopo/Documenti/C++/monopoli/src/Player.cpp
+CMakeFiles/exe.dir/src/Player.cpp.o: CMakeFiles/exe.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/piopo/Documenti/C++/monopoli/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/exe.dir/src/Player.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exe.dir/src/Player.cpp.o -MF CMakeFiles/exe.dir/src/Player.cpp.o.d -o CMakeFiles/exe.dir/src/Player.cpp.o -c /home/piopo/Documenti/C++/monopoli/src/Player.cpp
 
-CMakeFiles/exe.dir/src/player.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/exe.dir/src/player.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piopo/Documenti/C++/monopoli/src/player.cpp > CMakeFiles/exe.dir/src/player.cpp.i
+CMakeFiles/exe.dir/src/Player.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/exe.dir/src/Player.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piopo/Documenti/C++/monopoli/src/Player.cpp > CMakeFiles/exe.dir/src/Player.cpp.i
 
-CMakeFiles/exe.dir/src/player.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/exe.dir/src/player.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piopo/Documenti/C++/monopoli/src/player.cpp -o CMakeFiles/exe.dir/src/player.cpp.s
+CMakeFiles/exe.dir/src/Player.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/exe.dir/src/Player.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piopo/Documenti/C++/monopoli/src/Player.cpp -o CMakeFiles/exe.dir/src/Player.cpp.s
 
 CMakeFiles/exe.dir/src/Cell.cpp.o: CMakeFiles/exe.dir/flags.make
 CMakeFiles/exe.dir/src/Cell.cpp.o: /home/piopo/Documenti/C++/monopoli/src/Cell.cpp
@@ -129,7 +129,7 @@ CMakeFiles/exe.dir/src/Cell.cpp.s: cmake_force
 exe_OBJECTS = \
 "CMakeFiles/exe.dir/src/main.cpp.o" \
 "CMakeFiles/exe.dir/src/tabellone.cpp.o" \
-"CMakeFiles/exe.dir/src/player.cpp.o" \
+"CMakeFiles/exe.dir/src/Player.cpp.o" \
 "CMakeFiles/exe.dir/src/Cell.cpp.o"
 
 # External object files for target exe
@@ -137,7 +137,7 @@ exe_EXTERNAL_OBJECTS =
 
 exe: CMakeFiles/exe.dir/src/main.cpp.o
 exe: CMakeFiles/exe.dir/src/tabellone.cpp.o
-exe: CMakeFiles/exe.dir/src/player.cpp.o
+exe: CMakeFiles/exe.dir/src/Player.cpp.o
 exe: CMakeFiles/exe.dir/src/Cell.cpp.o
 exe: CMakeFiles/exe.dir/build.make
 exe: CMakeFiles/exe.dir/link.txt

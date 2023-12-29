@@ -1,5 +1,5 @@
-CMakeFiles/exe.dir/src/player.cpp.o: \
- /home/piopo/Documenti/C++/monopoli/src/player.cpp \
+CMakeFiles/exe.dir/src/Player.cpp.o: \
+ /home/piopo/Documenti/C++/monopoli/src/Player.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/13.2.1/iostream \
  /usr/include/c++/13.2.1/bits/requires_hosted.h \
  /usr/include/c++/13.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -128,4 +128,4 @@ CMakeFiles/exe.dir/src/player.cpp.o: \
  /usr/include/c++/13.2.1/bits/basic_ios.tcc \
  /usr/include/c++/13.2.1/bits/ostream.tcc /usr/include/c++/13.2.1/istream \
  /usr/include/c++/13.2.1/bits/istream.tcc \
- /home/piopo/Documenti/C++/monopoli/src/../include/player.h
+ /home/piopo/Documenti/C++/monopoli/src/../include/Player.h

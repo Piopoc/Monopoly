@@ -1,8 +1,6 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <iostream>
-
 class Player{
     public:
     //costruttore con id player
@@ -28,4 +26,5 @@ class Player{
 };
 //lancia 2 dadi e ottieni somma
 int dadi();
+
 #endif
