@@ -33,7 +33,7 @@ int main(int argc, char* argv[]){
     pList.push(p4);
     
     if (modalitaGioco == "computer") {
-        while(pList.size()!=1){
+        /* while(pList.size()!=1){
             Player& pt = pList.front(); //player del turno
             pList.pop();
             int dadi = dadi();
@@ -63,19 +63,19 @@ int main(int argc, char* argv[]){
                         //cout<<Giocatore N è stato eliminato
                         //NON ESEGUO IL PUSH, eliminato
                         //tutte le sue proprietà vengono rese libere
-        }
+        } */
         Player& winner = pList.front();
         //cout<<Giocatore N ha vinto la partita
     } else if (modalitaGioco == "human") {
         //giocaUmano();
-        //t.stampa(); ogni volta che viene richiesto
+        t.stampa(); //ogni volta che viene richiesto
     } else {
         cout << "Modalità non valida. Utilizzo: " << argv[0] << " <computer/human>" << endl;
         return 1;
     }
 
     
-    cout<<" ___ ___   ___   ____    ___   ____    ___   _      ____      ____   __ __      _       ____  ___ ___  ____   ___     ____ "<<endl;
+    /* cout<<" ___ ___   ___   ____    ___   ____    ___   _      ____      ____   __ __      _       ____  ___ ___  ____   ___     ____ "<<endl;
     cout<<"|   |   | /   \\ |    \\  /   \\ |    \\  /   \\ | |    |    |    |    \\ |  |  |    | |     /    ||   |   ||    \\ |   \\   /    |"<<endl;
     cout<<"| _   _ ||     ||  _  ||     ||  o  )|     || |     |  |     |  o  )|  |  |    | |    |  o  || _   _ ||  o  )|    \\ |  o  |"<<endl;
     cout<<"|  \\_/  ||  O  ||  |  ||  O  ||   _/ |  O  || |___  |  |     |     ||  ~  |    | |___ |     ||  \\_/  ||     ||  D  ||     |"<<endl;
@@ -83,7 +83,7 @@ int main(int argc, char* argv[]){
     cout<<"|   |   ||     ||  |  ||     ||  |   |     ||     | |  |     |     ||     |    |     ||  |  ||   |   ||     ||     ||  |  |"<<endl;
     cout<<"|___|___| \\___/ |__|__| \\___/ |__|    \\___/ |_____||____|    |_____||____/     |_____||__|__||___|___||_____||_____||__|__|"<<endl;
     cout<<"---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<<endl;
-
+ */
 
     return 0;
 }

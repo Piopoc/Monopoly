@@ -10,7 +10,7 @@ class tabellone{
         tabellone();
         void stampa();
     private:
-        std::vector<std::string> tabs;
+        std::vector<Cell> tabs;
 };
 
 #endif

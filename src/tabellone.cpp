@@ -24,32 +24,38 @@ tabellone::tabellone(){
     int fraw=1;
     int fcolomn=65;
 
+    EdgeCell empty(false,"");
+    EdgeCell start(true,"");
+    SideCell eco(types::economic(),"");
+    SideCell stand(types::standard(),"");
+    SideCell lux(types::luxury(),"");
+
     for(int i=0;i<dim;i++){
         if(i==corner_box1 || i==corner_box2 || i==corner_box3 || i==corner_box4){
-            tabs.push_back("  |   |  ");
+            tabs.push_back("  "+empty+"  ");
         }
         if(i>corner_box1 && i!=corner_box2 && i!=corner_box3 && i!=corner_box4){
             if (e > 0 || s > 0 || l > 0) {
                 int temp = rand() % 3 + 1;
                 if (e > 0 && temp == 1) {
-                        tabs.push_back("  | E |  ");
+                        tabs.push_back("  "+eco+"  ");
                         e--;
                     } else if (s > 0 && temp == 2) {
-                        tabs.push_back("  | S |  ");
+                        tabs.push_back("  "+stand+"  ");
                         s--;
                     } else if (l > 0 && temp == 3) {
-                        tabs.push_back("  | L |  ");
+                        tabs.push_back("  "+lux+"  ");
                         l--;
                     } else {
                         // Trova la proprietà ancora disponibile
                         if (e > 0) {
-                            tabs.push_back("  | E |  ");
+                            tabs.push_back("  "+eco.to_string()+"  ");
                             e--;
                         } else if (s > 0) {
-                            tabs.push_back("  | S |  ");
+                            tabs.push_back("  "+stand.to_string()+"  ");
                             s--;
                         } else if (l > 0) {
-                            tabs.push_back("  | L |  ");
+                            tabs.push_back("  "+lux.to_string()+"  ");
                             l--;
                         }
                     }
@@ -57,16 +63,16 @@ tabellone::tabellone(){
         }
     }
     if(p==1){
-        tabs[corner_box1]="  | P |  ";
+        tabs[corner_box1]="  "+start.to_string()+"  ";
     }
     else if(p==2){
-        tabs[corner_box2]="  | P |  ";
+        tabs[corner_box2]="  "+start.to_string()+"  ";
     }
     else if(p==3){
-        tabs[corner_box3]="  | P |  ";
+        tabs[corner_box3]="  "+start.to_string()+"  ";
     }
     else{
-        tabs[corner_box4]="  | P |  ";
+        tabs[corner_box4]="  "+start.to_string()+"  ";
     }
 }
 
@@ -77,8 +83,8 @@ void tabellone::stampa(){
     int fcolomn=65;
 
     int a=0; 
-    int b=8;
-    int c=21;
+    int b=7;
+    int c=20;
     int d=27;
 
     // carica della matrice traimte vector
@@ -98,8 +104,18 @@ void tabellone::stampa(){
             else if(i==0 && j<dim-1){
                 matrix[i][j]="    "+std::to_string(fraw++)+"    ";
             }
+            else if(j==dim-2){
+                if(b<14){
+                    if(b==7){
+                        matrix[i][j]=tabs[b++];
+                    }
+                    else{
+                        matrix[i][j]="                                                      "+tabs[b++];
+                    }
+                }
+            }
             else if(i==1){
-                if(a<8){
+                if(a<7){
                     if(a==0){
                         matrix[i][j]="  "+tabs[a++];
                     }
@@ -108,24 +124,17 @@ void tabellone::stampa(){
                     }
                 }
             }
-            else if(j==dim-2){
-                if(b<14){
-                    matrix[i][j]="                                                      "+tabs[b++];
-                }
-            }
-            else if(i==dim-2){
-                if(c==21){
-                    matrix[i][j]="  "+tabs[c--];
-                }
-                else if(c>=14){
-                    matrix[i][j]=tabs[c--];
-                }
-            }
             else if(j==1){
                 if(d>=21){
                     matrix[i][j]="  "+tabs[d--];
                 }
             }
+            else if(i==dim-2){
+                 if(c>=14){
+                    matrix[i][j]=tabs[c--];
+                }
+            }
+            
         }
     }
     // stampa della matrice
@@ -136,12 +145,4 @@ void tabellone::stampa(){
         std::cout<<std::endl;
     }
     std::cout<<std::endl;
-// prova delle funzioni del mago --> chiedere a mago cosa scrivere nel parametro stringa
-    EdgeCell pq(false,"abc");
-    EdgeCell pq1(true,"abc");
-    std::cout<<pq<<std::endl;
-        //std::cout<<pq.to_string()<<std::endl;
-    std::cout<<pq1<<std::endl;
-    SideCell au(types::luxury(),"qr");
-    std::cout<<au<<std::endl;
 }
