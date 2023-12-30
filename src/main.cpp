@@ -71,7 +71,7 @@ int main(int argc, char* argv[]){
                         //tutte le sue proprietà vengono rese libere
         }
         Player& winner = pList.front();
-        //ofs<<Giocatore N ha vinto la partita
+        //ofs<<"Giocatore "<<playerID<<" ha vinto la partita"<<endl;
 
         ofs.close();
     } else if (modalitaGioco == "human") {
