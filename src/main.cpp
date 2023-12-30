@@ -33,37 +33,39 @@ int main(int argc, char* argv[]){
     pList.push(p4);
     
     if (modalitaGioco == "computer") {
-        /* while(pList.size()!=1){
+        while(pList.size()!=1){
             Player& pt = pList.front(); //player del turno
             pList.pop();
-            int dadi = dadi();
+            int lancio = dadi();
             int playerID = pt.getID();
-            cout<<"Giocatore "<<playerID<<" ha tirato i dadi ottenendo un valore di "<<dadi<<endl;
-            //che sarà in realta un cin nel file
-            //muovi pedina
+            cout<<"Giocatore "<<playerID<<" ha tirato i dadi ottenendo un valore di "<<lancio<<endl;
+            //cin nel file
+            //t.move(pt,lancio);
+            //Cell currCell = get_pos();
                 //if(passaggio per il via)
-                    //cout<<Giocatore N è passato dal via e ha ritirato 20 fiorini
-            //cout<<Giocatore N è arrivato alla casella Y
+                    cout<<"Giocatore "<<playerID<<" è passato dal via e ha ritirato 20 fiorini"<<endl;
+            cout<<"Giocatore "<<playerID<<" è arrivato alla casella "<<currCell; //cosa stampa il << di cell?
                 //if(casella angolare)
                 //else if (Casella laterale non appartenente nessuno dei giocatori)
                     //if(ha soldi && compra)
                         //cout<<Giocatore N ha acquistato il terreno Y
                 //else if (Casella laterale di proprietà giocatore, senza casa/albergo)
                     //if(ha soldi && costruisce casa)
-                        //cout<<Giocatore N ha costruito una casa sul terreno Y
+                        cout<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<currCell<<endl; //stampa info terreno?
                 //else if (Casella laterale con casa proprietà)
                     //if(ha soldi && migliora in albergo)
-                        //cout<<Giocatore N ha migliorato una casa in albergo sul terreno Y
+                        cout<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<currCell<<endl; //stampa info terreno?
                 //else (Casella laterale con casa proprietà)
-                    //if(ha soldi)
-                        //paga
-                        //cout<<Giocatore N ha pagato Z fiorini a giocatore M per pernottamento nella casella Y
+                    //int valore = currCell.get_value();
+                    //if(pt.saldo()>=valore)
+                        //currCell.getProprietario().versa(pt.preleva(valore));
+                        //jcout<<<<"Giocatore "<<playerID<<" ha pagato "<<valore<<" fiorini a giocatore "<<currCell.getProprietario().getID()<<" per pernottamento nella casella "<<currCell<<endl; //info su cell
                         pList.push(pt);
-                    //else(non ha soldi)
-                        //cout<<Giocatore N è stato eliminato
+                    //else //non ha abbastanza soldi
+                        cout<<<<"Giocatore "<<playerID<<"è stato eliminato"<<endl;
                         //NON ESEGUO IL PUSH, eliminato
                         //tutte le sue proprietà vengono rese libere
-        } */
+        }
         Player& winner = pList.front();
         //cout<<Giocatore N ha vinto la partita
     } else if (modalitaGioco == "human") {
