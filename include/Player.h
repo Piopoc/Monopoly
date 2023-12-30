@@ -1,3 +1,5 @@
+// @author Alberto Levorato, matricola: 2066600
+
 #ifndef PLAYER_H
 #define PLAYER_H
 
