@@ -14,14 +14,33 @@ int main(int argc, char* argv[]){
     srand(static_cast<unsigned int>(time(0)));
     int conta_player=4;
     // se player non ha soldi viene eliminato --> diminuisco il conta_player (se è uguale a 1, il player rimanente ha vinto)
+    
+    //creazione tabellone di gioco
     tabellone t;
+    //creazione giocatori con 100 fiorini di budget
     Player p1;
     Player p2;
     Player p3;
     Player p4;
+
+    //tirare i dadi per stabilire chi sarà il primo a partire
+
+    //determinazione ordine di gioco
+    //idea mettiamo i 4 player in unarray circolare e lo scorriamo
+    //all'infinito per girare i turni finche non termina la partita
     
     if (modalitaGioco == "computer") {
-        
+        //ciclo
+            //giocatore del turno tira i dadi
+            //muovi pedina
+                //if(passaggio per il via)
+
+                //if(casella angolare)
+                //else if (Casella laterale non appartenente nessuno dei giocatori)
+                //else if (Casella laterale di proprietà giocatore, senza casa/albergo)
+                //else if (Casella laterale con casa proprietà)
+                //else (Casella laterale con casa proprietà)
+
     } else if (modalitaGioco == "human") {
         //giocaUmano();
     } else {
