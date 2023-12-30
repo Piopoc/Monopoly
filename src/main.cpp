@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <ifstream>
 #include "../include/tabellone.h"
 #include "../include/Player.h"
 #include "../include/Cell.h"
@@ -33,6 +34,9 @@ int main(int argc, char* argv[]){
     pList.push(p4);
     
     if (modalitaGioco == "computer") {
+        std::ifstream fs("computer.log");
+        if(!fs.good()) throw std::exception();
+
         while(pList.size()!=1){
             Player& pt = pList.front(); //player del turno
             pList.pop();
