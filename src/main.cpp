@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 #include "../include/tabellone.h"
 #include "../include/Player.h"
 #include "../include/Cell.h"
@@ -25,7 +26,7 @@ int main(int argc, char* argv[]){
     //determinazione ordine di gioco inserendo i giocatori in
     //una coda e la scorriamo man mano per ogni turno
     //finche non termina la partita quando la coda ha solo 1 giocatore
-    queue<Player> pList;
+    queue<Player> pList; //da valutare se mettere nel free store
     pList.push(p1);
     pList.push(p2);
     pList.push(p3);
@@ -33,9 +34,12 @@ int main(int argc, char* argv[]){
     
     if (modalitaGioco == "computer") {
         while(pList.size()!=1){
-            Player& pt = pList.pop(); //player del turno
-            //giocatore del turno tira i dadi
-            //cout<<Giocatore N ha tirato i dadi ottenendo un valore di X
+            Player& pt = pList.front(); //player del turno
+            pList.pop();
+            int dadi = dadi();
+            int playerID = pt.getID();
+            cout<<"Giocatore "<<playerID<<" ha tirato i dadi ottenendo un valore di "<<dadi<<endl;
+            //che sarà in realta un cin nel file
             //muovi pedina
                 //if(passaggio per il via)
                     //cout<<Giocatore N è passato dal via e ha ritirato 20 fiorini
@@ -60,10 +64,11 @@ int main(int argc, char* argv[]){
                         //NON ESEGUO IL PUSH, eliminato
                         //tutte le sue proprietà vengono rese libere
         }
-        Player& winner = pList.pop();
+        Player& winner = pList.front();
         //cout<<Giocatore N ha vinto la partita
     } else if (modalitaGioco == "human") {
         //giocaUmano();
+        //t.stampa(); ogni volta che viene richiesto
     } else {
         cout << "Modalità non valida. Utilizzo: " << argv[0] << " <computer/human>" << endl;
         return 1;
@@ -78,7 +83,6 @@ int main(int argc, char* argv[]){
     cout<<"|   |   ||     ||  |  ||     ||  |   |     ||     | |  |     |     ||     |    |     ||  |  ||   |   ||     ||     ||  |  |"<<endl;
     cout<<"|___|___| \\___/ |__|__| \\___/ |__|    \\___/ |_____||____|    |_____||____/     |_____||__|__||___|___||_____||_____||__|__|"<<endl;
     cout<<"---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<<endl;
-    t.stampa();
 
 
     return 0;

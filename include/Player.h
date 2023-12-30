@@ -24,7 +24,6 @@ class Player{
         int playerID;
 
 };
-//lancia 2 dadi e ottieni somma
 int dadi();
 
 #endif
