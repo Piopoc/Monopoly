@@ -21,23 +21,48 @@ int main(int argc, char* argv[]){
     Player p2;
     Player p3;
     Player p4;
-
-    //tirare i dadi per stabilire chi sarà il primo a partire
+    //apertura file log in scrittura
+    std::ofstream ofs("partita.log",ofstream::out);
+    if(!ofs.good()) throw std::exception();
 
     //determinazione ordine di gioco inserendo i giocatori in
     //una coda e la scorriamo man mano per ogni turno
     //finche non termina la partita quando la coda ha solo 1 giocatore
-    queue<Player> pList; //da valutare se mettere nel free store
-    pList.push(p1);
-    pList.push(p2);
-    pList.push(p3);
-    pList.push(p4);
+    queue<Player&> pList; //da valutare se mettere nel free store
+    //tirare i dadi per stabilire chi sarà il primo a partire
+    vector<int> lanciDadi;
+    vector<Player&> corrispettivi;
+    lanciDadi.push(dadi());
+    corrispettivi.push(p1);
+    ofs<<"p1 tira dadi"<<"ottiene tot";
+    cout<<"p1 tira dadi";
+    lanciDadi.push(dadi());
+    corrispettivi.push(p2);
+    ofs<<"p2 tira dadi"<<"ottiene tot";
+    cout<<"p2 tira dadi";
+    lanciDadi.push(dadi());
+    corrispettivi.push(p3);
+    ofs<<"p3 tira dadi"<<"ottiene tot";
+    cout<<"p3 tira dadi";
+    lanciDadi.push(dadi());
+    corrispettivi.push(p4);
+    ofs<<"p4 tira dadi"<<"ottiene tot";
+    cout<<"p4 tira dadi";
+
+    int full = 0;
+    while(full!=4){
+    if(noMaxRipetuti())
+        int posMax = getPosMax(lanciDadi);
+        lanciDadi[posMax] = 0;
+        pList.push(corrispettivi[posMax]);
+        full++;
+    else{
+        rilanciaMaxRipetuti();
+    }
+    }
     
     if (modalitaGioco == "computer") {
-        std::ofstream ofs("partita.log",ofstream::out);
-        if(!ofs.good()) throw std::exception();
-
-        while(pList.size()!=1){
+    while(pList.size()!=1){
             Player& pt = pList.front(); //player del turno
             pList.pop();
             int lancio = dadi();
@@ -79,11 +104,8 @@ int main(int argc, char* argv[]){
         }
         Player& winner = pList.front();
         //ofs<<"Giocatore "<<playerID<<" ha vinto la partita"<<endl;
-
         ofs.close();
     } else if (modalitaGioco == "human") {
-        std::ofstream ofs("partita.log",ofstream::out);
-        if(!ofs.good()) throw std::exception();
     //t.stampa(); //ogni volta che viene richiesto
         while(pList.size()!=1){
             Player& pt = pList.front(); //player del turno
@@ -105,12 +127,16 @@ int main(int argc, char* argv[]){
                         //ofs<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<currCell<<endl; //-...........
                     
                 //else if (currCell.isLaterale() &&  currCell.Proprietario()==pt && currCell.noEdifici())
-                    //if(pt.computerCompra(currCell.get_value()))
+                    //if(pt.hasThisMoney(currCell.get_value()))
+                        //cout<<"desisera comprare la proprietà? y/n"
+                        //char ans;
+                        //cin>>ans;
+                        //if--------------------------
                         //valutare il prezzo in base al terreno
                         //pt.preleva(prezzo);
                         //ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<currCell<<endl; //stampa info terreno?
                 //else if (currCell.isLaterale() &&  currCell.Proprietario()==pt && currCell.c'èCasa())
-                    //if(pt.computerCompra(currCell.get_value()))
+                    //if(pt.hasThisMoney(currCell.get_value()))
                         //valutare il prezzo in base al terreno
                         //pt.preleva(prezzo);
                         //ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<currCell<<endl; //stampa info terreno?
@@ -124,18 +150,26 @@ int main(int argc, char* argv[]){
                         ofs<<"Giocatore "<<playerID<<"è stato eliminato"<<endl;
                         //NON ESEGUO IL PUSH, eliminato
                         //tutte le sue proprietà vengono rese libere
+
+
+                arrivo su una casella non ancora venduta (chiede all’utente se desidera comprarla);
+● arrivo su una casella di proprietà senza una casa (chiede all’utente se desidera costruire
+una casa);
+● arrivo su una casella di proprietà con una casa (chiede all’utente se desidera migliorare
+la casa in albergo).
         }
         Player& winner = pList.front();
         //ofs<<"Giocatore "<<playerID<<" ha vinto la partita"<<endl;
-
         ofs.close();
     } else {
         cout << "Modalità non valida. Utilizzo: " << argv[0] << " <computer/human>" << endl;
+        ofs << "Modalità non valida. Utilizzo: " << argv[0] << " <computer/human>" << endl;
+        ofs.close();
         return 1;
     }
 
     
-    /* cout<<" ___ ___   ___   ____    ___   ____    ___   _      ____      ____   __ __      _       ____  ___ ___  ____   ___     ____ "<<endl;
+    cout<<" ___ ___   ___   ____    ___   ____    ___   _      ____      ____   __ __      _       ____  ___ ___  ____   ___     ____ "<<endl;
     cout<<"|   |   | /   \\ |    \\  /   \\ |    \\  /   \\ | |    |    |    |    \\ |  |  |    | |     /    ||   |   ||    \\ |   \\   /    |"<<endl;
     cout<<"| _   _ ||     ||  _  ||     ||  o  )|     || |     |  |     |  o  )|  |  |    | |    |  o  || _   _ ||  o  )|    \\ |  o  |"<<endl;
     cout<<"|  \\_/  ||  O  ||  |  ||  O  ||   _/ |  O  || |___  |  |     |     ||  ~  |    | |___ |     ||  \\_/  ||     ||  D  ||     |"<<endl;
@@ -143,7 +177,5 @@ int main(int argc, char* argv[]){
     cout<<"|   |   ||     ||  |  ||     ||  |   |     ||     | |  |     |     ||     |    |     ||  |  ||   |   ||     ||     ||  |  |"<<endl;
     cout<<"|___|___| \\___/ |__|__| \\___/ |__|    \\___/ |_____||____|    |_____||____/     |_____||__|__||___|___||_____||_____||__|__|"<<endl;
     cout<<"---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<<endl;
- */
-
     return 0;
 }
