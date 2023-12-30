@@ -30,17 +30,31 @@ int main(int argc, char* argv[]){
     //all'infinito per girare i turni finche non termina la partita
     
     if (modalitaGioco == "computer") {
-        //ciclo
+        //while(larray circolare ha pi' di un elemento)
             //giocatore del turno tira i dadi
+            //cout<<Giocatore N ha tirato i dadi ottenendo un valore di X
             //muovi pedina
                 //if(passaggio per il via)
-
+                    //cout<<Giocatore N è passato dal via e ha ritirato 20 fiorini
+            //cout<<Giocatore N è arrivato alla casella Y
                 //if(casella angolare)
                 //else if (Casella laterale non appartenente nessuno dei giocatori)
+                    //if(compra)
+                        //cout<<Giocatore N ha acquistato il terreno Y
                 //else if (Casella laterale di proprietà giocatore, senza casa/albergo)
+                    //if(costruisce casa)
+                        //cout<<Giocatore N ha costruito una casa sul terreno Y
                 //else if (Casella laterale con casa proprietà)
+                    //if(migliora in albergo)
+                        //cout<<Giocatore N ha migliorato una casa in albergo sul terreno Y
                 //else (Casella laterale con casa proprietà)
-
+                    //if(paga)
+                        //cout<<Giocatore N ha pagato Z fiorini a giocatore M per pernottamento nella casella Y
+                    //else(non ha soldi)
+                        //cout<<Giocatore N è stato eliminato
+                        //eliminato (tolgo da array e ridimensiono)
+                        //tutte le sue proprietà vengono rese libere
+            //cout<<Giocatore N ha vinto la partita
     } else if (modalitaGioco == "human") {
         //giocaUmano();
     } else {
