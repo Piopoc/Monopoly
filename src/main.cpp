@@ -69,8 +69,9 @@ int main(int argc, char* argv[]){
             int lancio = dadi();
             int playerID = pt.getID();
             ofs<<"Giocatore "<<playerID<<" ha tirato i dadi ottenendo un valore di "<<lancio<<endl;
-            //t.move(pt,lancio);
+            //Cell fromCell = t.whereIs(pt);
             //Cell currCell = t.whereIs(pt);
+            //t.move(pt,lancio);
                 //if(passaggio per il via)
                     ofs<<"Giocatore "<<playerID<<" è passato dal via e ha ritirato 20 fiorini"<<endl;
             //ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<currCell; //cosa stampa il << di cell?

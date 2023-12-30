@@ -16,6 +16,6 @@ bool hasAlbergo()
 int getIDofOwner()
 
 a piopo
-void move(player,fromCell,toCell)
+void move(player,fromCell,numeroSalti)
 bool passAcrossStart(player,fromCell,toCell)
 Cell whereIs(player)
