@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <memory>
 #include "../include/tabellone.h"
 #include "../include/Cell.h"
 
@@ -174,62 +175,53 @@ void tabellone::stampa(){
     std::cout<<std::endl;
 }
 
-int tabellone::parametrizzazione_bordo_x(int t)
-{
-    //NON E' GESTITO IL CASO DI t NEGATIVO
-    t %= tabs.size();
+int tabellone::parametrizzazione_bordo_x(int t) {
+    if (!tabs.empty()) {
+        t %= tabs.size();
 
-    if(t <= 6)
-    {
-        return (1 + t);
-    }
-
-    else if(t <= 13)
-    {
-        return 8;
-    }
-
-    else if(t <= 20)
-    {
-        return (22 - t);
-    }
-
-    else
-    {
-        return 1;
+        if (t <= 6) {
+            return (1 + t);
+        } else if (t <= 13) {
+            return 8;
+        } else if (t <= 20) {
+            return (22 - t);
+        } else {
+            return 1;
+        }
+    } else {
+        return -1;
     }
 }
 
+
 int tabellone::parametrizzazione_bordo_y(int t)
 {
-    //NON E' GESTITO IL CASO DI t NEGATIVO
-    t %= tabs.size();
+    if(!tabs.empty()){
+        t %= tabs.size();
 
-    if(t <= 6)
-    {
-        return 1;
+        if(t <= 6){
+            return 1;
+        }
+        else if(t <= 13){
+            return (t - 6);
+        }
+        else if(t <= 20){
+            return 8;
+        }
+        else{
+            return (29 - t);
+        }
     }
-
-    else if(t <= 13)
-    {
-        return (t - 6);
+    else{
+        return -1;
     }
-
-    else if(t <= 20)
-    {
-        return 8;
-    }
-
-    else
-    {
-        return (29 - t);
-    }
+    
 }
 
 std::string tabellone::create_coordinates(int t)
 {
     char x = parametrizzazione_bordo_x(t) + 49;
     char y = parametrizzazione_bordo_y(t) + 65;
-    std::string s = y + x;
+    std::string s = std::to_string(y + x);
     return s;
 }

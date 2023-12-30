@@ -9,6 +9,7 @@ class tabellone{
     public:
         tabellone();
         void stampa();
+        ~tabellone(){};
     private:
         std::vector<Cell*> tabs;
         int parametrizzazione_bordo_x(int t);

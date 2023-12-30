@@ -23,14 +23,14 @@ int main(int argc, char* argv[]){
     Player p2;
     Player p3;
     Player p4;
-    //apertura file log in scrittura
-    std::ofstream ofs("partita.log",ofstream::out);
+     //apertura file log in scrittura
+    /* std::ofstream ofs("partita.log",ofstream::out);
     if(!ofs.good()) throw std::exception();
     //determinazione ordine di gioco inserendo i giocatori in una coda
     queue<Player&> pList; //da valutare se mettere nel free store
     //vettore con lanci di dadi e corrispettivi giocatori
     vector<int> lanciDadi;
-    vector<Player&> corrispettivi;
+    vector<Player> corrispettivi;
     lanciDadi.push(dadi());
     corrispettivi.push(p1);
     lanciDadi.push(dadi());
@@ -63,7 +63,7 @@ int main(int argc, char* argv[]){
         ordine = ordine + "p" +id+ endl;
     }
     cout<<risultatiDadi;
-    ofs<<risultatiDadi;
+    ofs<<risultatiDadi; */
     //inserisci i giocatori nella cella del via
     //t.insertStart(p1);
     //t.insertStart(p2);
@@ -71,7 +71,7 @@ int main(int argc, char* argv[]){
     //t.insertStart(p4);
     
     if (modalitaGioco == "computer") {
-    while(pList.size()!=1){
+    /*while(pList.size()!=1){
             Player& pt = pList.front(); //player del turno
             pList.pop();
             int lancio = dadi();
@@ -115,8 +115,8 @@ int main(int argc, char* argv[]){
         Player& winner = pList.front();
         //ofs<<"Giocatore "<<playerID<<" ha vinto la partita"<<endl;
         ofs.close();
-    } else if (modalitaGioco == "human") {
-        //t.stampa(); //ogni volta che viene richiesto
+     */} else if (modalitaGioco == "human") {
+        t.stampa(); //ogni volta che viene richiesto
                     
         /*interazioni con humanPlayer
         arrivo su una casella non ancora venduta (chiede all’utente se desidera comprarla);
@@ -124,11 +124,11 @@ int main(int argc, char* argv[]){
         arrivo su una casella di proprietà con una casa (chiede all’utente se desidera migliorare la casa in albergo).
         */
 
-        ofs.close();
+        //ofs.close();
     } else {
         cout << "Modalità non valida. Utilizzo: " << argv[0] << " <computer/human>" << endl;
-        ofs << "Modalità non valida. Utilizzo: " << argv[0] << " <computer/human>" << endl;
-        ofs.close();
+        //ofs << "Modalità non valida. Utilizzo: " << argv[0] << " <computer/human>" << endl;
+        //ofs.close();
         return 1;
     }
 

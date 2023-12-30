@@ -37,6 +37,7 @@ class Cell
         std::string get_coordinates() const {return coordinates;};
 
         virtual std::string to_string() const = 0;
+        virtual ~Cell() = default;
 
     protected:
         Player occupying[4];
@@ -66,7 +67,7 @@ class SideCell : public Cell
         Player get_owner() const;
         char get_property() const {return property;};
 
-        std::string to_string() const;
+        std::string to_string() const override;
 };
 
 //Sottoclasse che rappresenta una cella angolare
@@ -79,6 +80,6 @@ class EdgeCell : public Cell
 
         bool is_start() const {return is_start_cell;};
 
-        std::string to_string() const;
+        std::string to_string() const override;
 };
 #endif
