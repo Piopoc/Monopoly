@@ -39,7 +39,7 @@ class Cell
         virtual std::string to_string() const = 0;
 
     protected:
-        Player occupying[4];
+        Player* occupying[4];
         int number_of_occupants = 0;
         std::string coordinates;
         Cell() {};    
@@ -51,7 +51,7 @@ std::ostream& operator<<(std::ostream& o, const Cell& c);
 class SideCell : public Cell
 {
     Type type;
-    Player owner;
+    Player* owner;
     char property;
 
     public:
@@ -63,8 +63,12 @@ class SideCell : public Cell
         void upgrade_property();
 
         Type get_type() const {return type;};
-        Player get_owner() const;
+        Player get_owner() const {return *owner;};
         char get_property() const {return property;};
+
+        bool has_owner() const {return owner;};
+        bool has_house() const {return (property == '*');};
+        bool has_hotel() const {return (property == '^');};
 
         std::string to_string() const;
 };

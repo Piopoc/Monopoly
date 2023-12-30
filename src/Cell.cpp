@@ -33,13 +33,13 @@ void Cell::add_occupant(Player p)
 {
     for(int i = 0; i < number_of_occupants; i++)
     {
-        if(occupying[i].getID() == p.getID())
+        if(occupying[i]->getID() == p.getID())
         {
             return;
         }
     }
 
-    occupying[number_of_occupants++] = p;
+    occupying[number_of_occupants++] = &p;
 }
 
 //Rimuove dalla lista dei giocatori che occupano la casella, FALLISCE SILENZIOSAMENTE SE NON PRESENTE
@@ -47,7 +47,7 @@ void Cell::remove_occupant(Player p)
 {
     for(int i = 0; i < number_of_occupants; i++)
     {
-        if(occupying[i].getID() == p.getID())
+        if(occupying[i]->getID() == p.getID())
         {
             for(int j = i; j < number_of_occupants - 1; j++)
             {
@@ -67,25 +67,24 @@ std::ostream& operator<<(std::ostream& o, const Cell& c)
 
 //SideCell
 SideCell::SideCell(const Type& t, const std::string& c)
-    : type{t}, property{0}
+    : type{t}
 {coordinates = c;}
 
 //FALLISCE SILENZIONSAMENTE SE E' GIA' PRESENTE UN PROPRIETARIO
 void SideCell::add_owner(Player p)
 {
-    if(!owner.getID())
+    if(!owner)
     {
-        owner = p;
+        owner = &p;
     }
 }  
 
 //FALLISCE SILENZIOSAMENTE SE NON E' PRESENTE UN PROPRIETARIO
 void SideCell::remove_owner()
 {
-    if(owner.getID())
+    if(owner)
     {
-        Player o {};
-        owner = o;
+        owner = nullptr;
         property = 0;
     }
 }
@@ -93,7 +92,7 @@ void SideCell::remove_owner()
 //FALLISCE SILENZIOSAMENTE SE NON HA PROPRIETARIO O SE E' GIA' PRESENTE UN HOTEL
 void SideCell::upgrade_property()
 {
-    if(owner.getID())
+    if(owner)
     {
         switch(property)
         {
@@ -118,7 +117,7 @@ std::string SideCell::to_string() const
     {
         for(int i = 0; i < number_of_occupants; i++)
         {
-            s += (occupying[i].getID() + 48);  //Conversione da int a char
+            s += (occupying[i]->getID() + 48);  //Conversione da int a char
             s += " ";
         }
     }
@@ -129,6 +128,22 @@ std::string SideCell::to_string() const
     }
 
     s += "|";
+
+    int diff = 13 - s.size();
+
+    if(diff)
+    {
+        for(int a = 0; a < diff / 2; a++)
+        {
+            s = " " + s;
+        }
+
+        for(int b = 0; b < diff - (diff / 2); b++)
+        {
+            s += " ";
+        }
+    }
+    
     return s;
 }
 
@@ -155,7 +170,7 @@ std::string EdgeCell::to_string() const
     {
         for(int i = 0; i < number_of_occupants; i++)
         {
-            s += occupying[i].getID();
+            s += occupying[i]->getID();
             s += " ";
         }
     }
@@ -166,5 +181,22 @@ std::string EdgeCell::to_string() const
     }
 
     s += "|";
+
+    int diff = 13 - s.size();
+
+    if(diff)
+    {
+        for(int a = 0; a < diff / 2; a++)
+        {
+            s = " " + s;
+        }
+
+        for(int b = 0; b < diff - (diff / 2); b++)
+        {
+            s += " ";
+        }
+    }
+
     return s;
 }
+
