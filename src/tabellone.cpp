@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <ctime>
 #include "../include/tabellone.h"
+#include "../include/Cell.h"
 
 
 tabellone::tabellone(){
@@ -77,7 +78,7 @@ void tabellone::stampa(){
 
     int a=0; 
     int b=8;
-    int c=14;
+    int c=21;
     int d=27;
 
     // carica della matrice traimte vector
@@ -108,21 +109,16 @@ void tabellone::stampa(){
                 }
             }
             else if(j==dim-2){
-                if(b<15){
-                    if(b==14){
-                        matrix[i][j]=tabs[b++];
-                    }
-                    else{
-                        matrix[i][j]="                                                      "+tabs[b++];
-                    }
+                if(b<14){
+                    matrix[i][j]="                                                      "+tabs[b++];
                 }
             }
             else if(i==dim-2){
-                if(c==14){
-                    matrix[i][j]="  "+tabs[c++];
+                if(c==21){
+                    matrix[i][j]="  "+tabs[c--];
                 }
-                else if(c<21){
-                    matrix[i][j]=tabs[c++];
+                else if(c>=14){
+                    matrix[i][j]=tabs[c--];
                 }
             }
             else if(j==1){
@@ -140,4 +136,12 @@ void tabellone::stampa(){
         std::cout<<std::endl;
     }
     std::cout<<std::endl;
+// prova delle funzioni del mago --> chiedere a mago cosa scrivere nel parametro stringa
+    EdgeCell pq(false,"abc");
+    EdgeCell pq1(true,"abc");
+    std::cout<<pq<<std::endl;
+        //std::cout<<pq.to_string()<<std::endl;
+    std::cout<<pq1<<std::endl;
+    SideCell au(types::luxury(),"qr");
+    std::cout<<au<<std::endl;
 }

@@ -135,4 +135,5 @@ CMakeFiles/exe.dir/src/tabellone.cpp.o: \
  /usr/include/c++/13.2.1/bits/stl_bvector.h \
  /usr/include/c++/13.2.1/bits/vector.tcc \
  /home/piopo/Documenti/C++/monopoli/src/../include/../include/Cell.h \
- /home/piopo/Documenti/C++/monopoli/src/../include/../include/../include/Player.h
+ /home/piopo/Documenti/C++/monopoli/src/../include/../include/../include/Player.h \
+ /home/piopo/Documenti/C++/monopoli/src/../include/Cell.h
