@@ -83,15 +83,3 @@ void rilanciaMaxRipetuti(vector<int> a){
         }
     }
 }
-string ordineDiGioco(queue<player> list){
-    String ordine;
-    ordine<<"ordine di gioco:"<<endl;
-    for(int i = 0; i<4; i++){
-        Player& p = list.front();
-        int id = p.getID();
-        list.pop();
-        list.push(p);
-        ordine = ordine + "p" + id + endl;
-    }
-    return ordine;
-}
