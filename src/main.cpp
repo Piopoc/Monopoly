@@ -56,6 +56,11 @@ int main(int argc, char* argv[]){
     //stampa output e log risultati dei lanci e ordine di gioco
     cout<<risultatiDadi;
     ofs<<risultatiDadi;
+    //inserisci i giocatori nella cella del via
+    //t.insertStart(p1);
+    //t.insertStart(p2);
+    //t.insertStart(p3);
+    //t.insertStart(p4);
     
     if (modalitaGioco == "computer") {
     while(pList.size()!=1){
@@ -65,24 +70,24 @@ int main(int argc, char* argv[]){
             int playerID = pt.getID();
             ofs<<"Giocatore "<<playerID<<" ha tirato i dadi ottenendo un valore di "<<lancio<<endl;
             //t.move(pt,lancio);
-            //Cell currCell = get_pos();
+            //Cell currCell = t.whereIs(pt);
                 //if(passaggio per il via)
                     ofs<<"Giocatore "<<playerID<<" è passato dal via e ha ritirato 20 fiorini"<<endl;
             //ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<currCell; //cosa stampa il << di cell?
-                //if(currCell.isCasellaAngolare())
-                    //pList.push(pt);
-                //else if (currCell.isLaterale() && currCell.noProprietario())
+                if(dynamic_cast<EdgeCell*> (currCell))
+                    pList.push(pt);
+                //else if(currCell.noProprietario())
                     //if(pt.computerCompra(currCell.get_value()))
                         //pt.preleva(currCell.get_value());
                         //currCell.setProp(pt);
                         //ofs<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<currCell<<endl; //-...........
                     
-                //else if (currCell.isLaterale() &&  currCell.Proprietario()==pt && currCell.noEdifici())
+                //else if(currCell.Proprietario()==pt && currCell.noEdifici())
                     //if(pt.computerCompra(currCell.get_value()))
                         //valutare il prezzo in base al terreno
                         //pt.preleva(prezzo);
                         //ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<currCell<<endl; //stampa info terreno?
-                //else if (currCell.isLaterale() &&  currCell.Proprietario()==pt && currCell.c'èCasa())
+                //else if (currCell.Proprietario()==pt && currCell.c'èCasa() && (!currCell.c'èAlbergo()))
                     //if(pt.computerCompra(currCell.get_value()))
                         //valutare il prezzo in base al terreno
                         //pt.preleva(prezzo);
