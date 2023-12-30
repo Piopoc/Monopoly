@@ -228,8 +228,8 @@ int tabellone::parametrizzazione_bordo_y(int t)
 
 std::string tabellone::create_coordinates(int t)
 {
-    char x = t + 49;
-    char y = t + 65;
+    char x = parametrizzazione_bordo_x(t) + 49;
+    char y = parametrizzazione_bordo_y(t) + 65;
     std::string s = y + x;
     return s;
 }
