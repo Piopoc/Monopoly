@@ -34,32 +34,30 @@ int main(int argc, char* argv[]){
     vector<Player&> corrispettivi;
     lanciDadi.push(dadi());
     corrispettivi.push(p1);
-    ofs<<"p1 tira dadi"<<"ottiene tot";
-    cout<<"p1 tira dadi";
     lanciDadi.push(dadi());
     corrispettivi.push(p2);
-    ofs<<"p2 tira dadi"<<"ottiene tot";
-    cout<<"p2 tira dadi";
     lanciDadi.push(dadi());
     corrispettivi.push(p3);
-    ofs<<"p3 tira dadi"<<"ottiene tot";
-    cout<<"p3 tira dadi";
     lanciDadi.push(dadi());
     corrispettivi.push(p4);
-    ofs<<"p4 tira dadi"<<"ottiene tot";
-    cout<<"p4 tira dadi";
+
+    string risultatiDadi;
 
     int full = 0;
     while(full!=4){
-    if(noMaxRipetuti())
-        int posMax = getPosMax(lanciDadi);
-        lanciDadi[posMax] = 0;
-        pList.push(corrispettivi[posMax]);
-        full++;
-    else{
-        rilanciaMaxRipetuti();
+        if(noMaxRipetuti(lanciDadi))
+            int posMax = getPosMax(lanciDadi);
+            risultatiDadi<<"p"<<(posMax+1)<<" ottiene "<<lanciDadi[posMax]<<endl;
+            lanciDadi[posMax] = 0;
+            pList.push(corrispettivi[posMax]);
+            full++;
+        else{
+            rilanciaMaxRipetuti(lanciDadi);
+        }
     }
-    }
+
+    cout<<risultatiDadi;
+    ofs<<risultatiDadi;
     
     if (modalitaGioco == "computer") {
     while(pList.size()!=1){

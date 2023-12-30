@@ -52,3 +52,33 @@ int dadi() //va messo il seed???????????????????????????????? se vuoi che ogni v
     srand (time(NULL));
     return (rand() % 6 + 1)+(rand() % 6 + 1);
 }
+bool noMaxRipetuti(vector<int> a){
+        int max = 0;
+        bool done = false
+        for(int i = 0; i<4; i++){
+            if(a[i]>max){
+                max = a[i];
+            }
+            if(max!=0 && a[i]==max){
+                a[i] = -1;
+                done = true;
+            }
+        }
+        return done;
+    }
+int getPosMax(vector<int> a){
+    int max = 0;
+    for(int i = 1; i<4; i++){
+        if(a[i]>a[max]){
+            max = i;
+        }
+    }
+    return max;
+}
+void rilanciaMaxRipetuti(vector<int> a){
+    for(int i = 0; i<4; i++){
+        if(a[i]==-1){
+            a[i] = dadi();
+        }
+    }
+}
