@@ -11,10 +11,7 @@ int main(int argc, char* argv[]){
         return -1; // restituisco 1 per indicare un errore
     }
     string modalitaGioco = argv[1];
-    srand(static_cast<unsigned int>(time(0)));
-    int conta_player=4;
-    // se player non ha soldi viene eliminato --> diminuisco il conta_player (se è uguale a 1, il player rimanente ha vinto)
-    
+    srand(static_cast<unsigned int>(time(0)));    
     //creazione tabellone di gioco
     tabellone t;
     //creazione giocatori con 100 fiorini di budget
@@ -28,9 +25,15 @@ int main(int argc, char* argv[]){
     //determinazione ordine di gioco inserendo i giocatori in
     //una coda e la scorriamo man mano per ogni turno
     //finche non termina la partita quando la coda ha solo 1 giocatore
+    queue<Player> pList;
+    pList.push(p1);
+    pList.push(p2);
+    pList.push(p3);
+    pList.push(p4);
     
     if (modalitaGioco == "computer") {
-        //while(larray circolare ha pi' di un elemento)
+        while(pList.size()!=1){
+            Player& pt = pList.pop(); //player del turno
             //giocatore del turno tira i dadi
             //cout<<Giocatore N ha tirato i dadi ottenendo un valore di X
             //muovi pedina
@@ -51,11 +54,14 @@ int main(int argc, char* argv[]){
                     //if(ha soldi)
                         //paga
                         //cout<<Giocatore N ha pagato Z fiorini a giocatore M per pernottamento nella casella Y
+                        pList.push(pt);
                     //else(non ha soldi)
                         //cout<<Giocatore N è stato eliminato
-                        //eliminato (tolgo da array e ridimensiono)
+                        //NON ESEGUO IL PUSH, eliminato
                         //tutte le sue proprietà vengono rese libere
-            //cout<<Giocatore N ha vinto la partita
+        }
+        Player& winner = pList.pop();
+        //cout<<Giocatore N ha vinto la partita
     } else if (modalitaGioco == "human") {
         //giocaUmano();
     } else {
