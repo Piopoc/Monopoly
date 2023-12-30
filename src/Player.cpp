@@ -1,6 +1,7 @@
 // @author Alberto Levorato, matricola: 2066600
 
 #include <iostream>
+#include <queue>
 #include "../include/Player.h"
 
 Player::Player(int ID)
@@ -81,4 +82,16 @@ void rilanciaMaxRipetuti(vector<int> a){
             a[i] = dadi();
         }
     }
+}
+string ordineDiGioco(queue<player> list){
+    String ordine;
+    ordine<<"ordine di gioco:"<<endl;
+    for(int i = 0; i<4; i++){
+        Player& p = list.front();
+        int id = p.getID();
+        list.pop();
+        list.push(p);
+        ordine = ordine + "p" + id + endl;
+    }
+    return ordine;
 }

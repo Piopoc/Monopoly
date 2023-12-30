@@ -24,12 +24,9 @@ int main(int argc, char* argv[]){
     //apertura file log in scrittura
     std::ofstream ofs("partita.log",ofstream::out);
     if(!ofs.good()) throw std::exception();
-
-    //determinazione ordine di gioco inserendo i giocatori in
-    //una coda e la scorriamo man mano per ogni turno
-    //finche non termina la partita quando la coda ha solo 1 giocatore
+    //determinazione ordine di gioco inserendo i giocatori in una coda
     queue<Player&> pList; //da valutare se mettere nel free store
-    //tirare i dadi per stabilire chi sarà il primo a partire
+    //vettore con lanci di dadi e corrispettivi giocatori
     vector<int> lanciDadi;
     vector<Player&> corrispettivi;
     lanciDadi.push(dadi());
@@ -40,14 +37,14 @@ int main(int argc, char* argv[]){
     corrispettivi.push(p3);
     lanciDadi.push(dadi());
     corrispettivi.push(p4);
-
+    //stringa con risultati dei lanci di dadi finali senza risultati uguali
     string risultatiDadi;
-
+    //gestione ordine di partenza
     int full = 0;
     while(full!=4){
         if(noMaxRipetuti(lanciDadi))
             int posMax = getPosMax(lanciDadi);
-            risultatiDadi<<"p"<<(posMax+1)<<" ottiene "<<lanciDadi[posMax]<<endl;
+            risultatiDadi=risultatiDadi+"p"+(posMax+1)+" ottiene "+lanciDadi[posMax]+endl;
             lanciDadi[posMax] = 0;
             pList.push(corrispettivi[posMax]);
             full++;
@@ -55,7 +52,8 @@ int main(int argc, char* argv[]){
             rilanciaMaxRipetuti(lanciDadi);
         }
     }
-
+    risultatiDadi<<ordineDiGioco(pList);
+    //stampa output e log risultati dei lanci e ordine di gioco
     cout<<risultatiDadi;
     ofs<<risultatiDadi;
     
