@@ -32,47 +32,47 @@ tabellone::tabellone(){
 
     for(int i=0;i<dim;i++){
         if(i==corner_box1 || i==corner_box2 || i==corner_box3 || i==corner_box4){
-            tabs.push_back("  "+empty+"  ");
+            tabs.push_back(empty);
         }
         if(i>corner_box1 && i!=corner_box2 && i!=corner_box3 && i!=corner_box4){
             if (e > 0 || s > 0 || l > 0) {
                 int temp = rand() % 3 + 1;
                 if (e > 0 && temp == 1) {
-                        tabs.push_back("  "+eco+"  ");
+                        tabs.push_back(eco);
                         e--;
                     } else if (s > 0 && temp == 2) {
-                        tabs.push_back("  "+stand+"  ");
+                        tabs.push_back(stand);
                         s--;
                     } else if (l > 0 && temp == 3) {
-                        tabs.push_back("  "+lux+"  ");
+                        tabs.push_back(lux);
                         l--;
                     } else {
                         // Trova la proprietà ancora disponibile
                         if (e > 0) {
-                            tabs.push_back("  "+eco.to_string()+"  ");
+                            tabs.push_back(eco);
                             e--;
                         } else if (s > 0) {
-                            tabs.push_back("  "+stand.to_string()+"  ");
+                            tabs.push_back(stand);
                             s--;
                         } else if (l > 0) {
-                            tabs.push_back("  "+lux.to_string()+"  ");
+                            tabs.push_back(lux);
                             l--;
                         }
                     }
             }
         }
-    }
-    if(p==1){
-        tabs[corner_box1]="  "+start.to_string()+"  ";
-    }
-    else if(p==2){
-        tabs[corner_box2]="  "+start.to_string()+"  ";
-    }
-    else if(p==3){
-        tabs[corner_box3]="  "+start.to_string()+"  ";
-    }
-    else{
-        tabs[corner_box4]="  "+start.to_string()+"  ";
+        if(p==1 && i==corner_box1){
+            tabs.push_back(start);
+        }
+        else if(p==2 && i==corner_box2){
+            tabs.push_back(start);
+        }
+        else if(p==3 && i==corner_box3){
+            tabs.push_back(start);
+        }
+        else{
+            tabs.push_back(start);
+        }
     }
 }
 
@@ -107,31 +107,31 @@ void tabellone::stampa(){
             else if(j==dim-2){
                 if(b<14){
                     if(b==7){
-                        matrix[i][j]=tabs[b++];
+                        matrix[i][j]=tabs[b++].to_string();
                     }
                     else{
-                        matrix[i][j]="                                                      "+tabs[b++];
+                        matrix[i][j]="                                                      "+tabs[b++].to_string();
                     }
                 }
             }
             else if(i==1){
                 if(a<7){
                     if(a==0){
-                        matrix[i][j]="  "+tabs[a++];
+                        matrix[i][j]="  "+tabs[a++].to_string();
                     }
                     else{
-                        matrix[i][j]=tabs[a++];
+                        matrix[i][j]=tabs[a++].to_string();
                     }
                 }
             }
             else if(j==1){
                 if(d>=21){
-                    matrix[i][j]="  "+tabs[d--];
+                    matrix[i][j]="  "+tabs[d--].to_string();
                 }
             }
             else if(i==dim-2){
                  if(c>=14){
-                    matrix[i][j]=tabs[c--];
+                    matrix[i][j]=tabs[c--].to_string();
                 }
             }
             
