@@ -30,8 +30,8 @@ class Player{
         int playerID;
 };
 int dadi();
-bool noMaxRipetuti(vector<int> a);
-int getPosMax(vector<int> a);
-void rilanciaMaxRipetuti(vector<int> a);
+bool noMaxRipetuti(std::vector<int> a);
+int getPosMax(std::vector<int> a);
+void rilanciaMaxRipetuti(std::vector<int> a);
 
 #endif

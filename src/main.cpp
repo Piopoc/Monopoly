@@ -39,8 +39,7 @@ int main(int argc, char* argv[]){
     corrispettivi.push(p3);
     lanciDadi.push(dadi());
     corrispettivi.push(p4);
-    //stringa con risultati dei lanci di dadi finali senza risultati uguali
-    string risultatiDadi = "ordine di gioco:"+endl;;
+    
     //gestione ordine di partenza
     int full = 0;
     while(full!=4){
@@ -54,16 +53,15 @@ int main(int argc, char* argv[]){
             rilanciaMaxRipetuti(lanciDadi);
         }
     }
-
-
+    //ordine di gioco
+    string ordine = "ordine di gioco:"+endl;;
     for(int i =0; i<4; it+){
         Player& P = pList.front();
         int id = p.getID();
-        pList.p();
+        pList.pop();
         pList.push(p);
-        risultatiDadi = risultatiDadi + "p" +id+ endl;
+        ordine = ordine + "p" +id+ endl;
     }
-    //stampa output e log risultati dei lanci e ordine di gioco
     cout<<risultatiDadi;
     ofs<<risultatiDadi;
     //inserisci i giocatori nella cella del via
@@ -144,4 +142,5 @@ int main(int argc, char* argv[]){
     cout<<"|___|___| \\___/ |__|__| \\___/ |__|    \\___/ |_____||____|    |_____||____/     |_____||__|__||___|___||_____||_____||__|__|"<<endl;
     cout<<"---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<<endl;
     return 0;
+
 }
