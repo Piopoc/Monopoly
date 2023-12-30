@@ -25,9 +25,9 @@ int main(int argc, char* argv[]){
 
     //tirare i dadi per stabilire chi sarà il primo a partire
 
-    //determinazione ordine di gioco
-    //idea mettiamo i 4 player in unarray circolare e lo scorriamo
-    //all'infinito per girare i turni finche non termina la partita
+    //determinazione ordine di gioco inserendo i giocatori in
+    //una coda e la scorriamo man mano per ogni turno
+    //finche non termina la partita quando la coda ha solo 1 giocatore
     
     if (modalitaGioco == "computer") {
         //while(larray circolare ha pi' di un elemento)
@@ -39,16 +39,17 @@ int main(int argc, char* argv[]){
             //cout<<Giocatore N è arrivato alla casella Y
                 //if(casella angolare)
                 //else if (Casella laterale non appartenente nessuno dei giocatori)
-                    //if(compra)
+                    //if(ha soldi && compra)
                         //cout<<Giocatore N ha acquistato il terreno Y
                 //else if (Casella laterale di proprietà giocatore, senza casa/albergo)
-                    //if(costruisce casa)
+                    //if(ha soldi && costruisce casa)
                         //cout<<Giocatore N ha costruito una casa sul terreno Y
                 //else if (Casella laterale con casa proprietà)
-                    //if(migliora in albergo)
+                    //if(ha soldi && migliora in albergo)
                         //cout<<Giocatore N ha migliorato una casa in albergo sul terreno Y
                 //else (Casella laterale con casa proprietà)
-                    //if(paga)
+                    //if(ha soldi)
+                        //paga
                         //cout<<Giocatore N ha pagato Z fiorini a giocatore M per pernottamento nella casella Y
                     //else(non ha soldi)
                         //cout<<Giocatore N è stato eliminato
