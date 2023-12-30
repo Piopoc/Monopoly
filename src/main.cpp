@@ -71,8 +71,9 @@ int main(int argc, char* argv[]){
             ofs<<"Giocatore "<<playerID<<" ha tirato i dadi ottenendo un valore di "<<lancio<<endl;
             //Cell fromCell = t.whereIs(pt);
             //Cell currCell = t.whereIs(pt);
-            //t.move(pt,lancio);
-                //if(passaggio per il via)
+            //t.move(pt,fromCell,lancio);
+                //if(passAcrossStart(player,fromCell,currCell))
+                    pt.versa(20);
                     ofs<<"Giocatore "<<playerID<<" è passato dal via e ha ritirato 20 fiorini"<<endl;
             //ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<currCell; //cosa stampa il << di cell?
                 if(dynamic_cast<EdgeCell*> (currCell))
@@ -82,7 +83,6 @@ int main(int argc, char* argv[]){
                         //pt.preleva(currCell.get_value());
                         //currCell.setProp(pt);
                         //ofs<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<currCell<<endl; //-...........
-                    
                 //else if(currCell.Proprietario()==pt && currCell.noEdifici())
                     //if(pt.computerCompra(currCell.get_value()))
                         //valutare il prezzo in base al terreno
@@ -108,60 +108,14 @@ int main(int argc, char* argv[]){
         //ofs<<"Giocatore "<<playerID<<" ha vinto la partita"<<endl;
         ofs.close();
     } else if (modalitaGioco == "human") {
-    //t.stampa(); //ogni volta che viene richiesto
-        while(pList.size()!=1){
-            Player& pt = pList.front(); //player del turno
-            pList.pop();
-            int lancio = dadi();
-            int playerID = pt.getID();
-            ofs<<"Giocatore "<<playerID<<" ha tirato i dadi ottenendo un valore di "<<lancio<<endl;
-            //t.move(pt,lancio);
-            //Cell currCell = get_pos();
-                //if(passaggio per il via)
-                    ofs<<"Giocatore "<<playerID<<" è passato dal via e ha ritirato 20 fiorini"<<endl;
-            //ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<currCell; //cosa stampa il << di cell?
-                //if(currCell.isCasellaAngolare())
-                    //pList.push(pt);
-                //else if (currCell.isLaterale() && currCell.noProprietario())
-                    //if(pt.computerCompra(currCell.get_value()))
-                        //pt.preleva(currCell.get_value());
-                        //currCell.setProp(pt);
-                        //ofs<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<currCell<<endl; //-...........
+        //t.stampa(); //ogni volta che viene richiesto
                     
-                //else if (currCell.isLaterale() &&  currCell.Proprietario()==pt && currCell.noEdifici())
-                    //if(pt.hasThisMoney(currCell.get_value()))
-                        //cout<<"desisera comprare la proprietà? y/n"
-                        //char ans;
-                        //cin>>ans;
-                        //if--------------------------
-                        //valutare il prezzo in base al terreno
-                        //pt.preleva(prezzo);
-                        //ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<currCell<<endl; //stampa info terreno?
-                //else if (currCell.isLaterale() &&  currCell.Proprietario()==pt && currCell.c'èCasa())
-                    //if(pt.hasThisMoney(currCell.get_value()))
-                        //valutare il prezzo in base al terreno
-                        //pt.preleva(prezzo);
-                        //ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<currCell<<endl; //stampa info terreno?
-                //else //Casella laterale con casa/albergo proprietà altrui
-                    //int valoreProp = currCell.get_value();
-                    //if(pt.hasThisMoney(valoreProp))
-                        //currCell.getProprietario().versa(pt.preleva(valoreProp));
-                        //ofs<<<<"Giocatore "<<playerID<<" ha pagato "<<valoreProp<<" fiorini a giocatore "<<currCell.getProprietario().getID()<<" per pernottamento nella casella "<<currCell<<endl; //info su cell
-                        pList.push(pt);
-                    //else //non ha abbastanza soldi
-                        ofs<<"Giocatore "<<playerID<<"è stato eliminato"<<endl;
-                        //NON ESEGUO IL PUSH, eliminato
-                        //tutte le sue proprietà vengono rese libere
+        /*interazioni con humanPlayer
+        arrivo su una casella non ancora venduta (chiede all’utente se desidera comprarla);
+        arrivo su una casella di proprietà senza una casa (chiede all’utente se desidera costruire una casa);
+        arrivo su una casella di proprietà con una casa (chiede all’utente se desidera migliorare la casa in albergo).
+        */
 
-
-                arrivo su una casella non ancora venduta (chiede all’utente se desidera comprarla);
-● arrivo su una casella di proprietà senza una casa (chiede all’utente se desidera costruire
-una casa);
-● arrivo su una casella di proprietà con una casa (chiede all’utente se desidera migliorare
-la casa in albergo).
-        }
-        Player& winner = pList.front();
-        //ofs<<"Giocatore "<<playerID<<" ha vinto la partita"<<endl;
         ofs.close();
     } else {
         cout << "Modalità non valida. Utilizzo: " << argv[0] << " <computer/human>" << endl;
