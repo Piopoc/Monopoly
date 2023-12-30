@@ -9,6 +9,8 @@ class Player{
         Player& operator=(Player& p);
     //controllo se giocatore ha denaro
         bool hasMoney() const;
+    //controllo se ha abbastanza denaro da spendere
+        bool hasThisMoney(int valore);
     //ottiene il saldo giocatore
         int saldo();
     //versa una somma di denaro al giocatore
@@ -17,12 +19,13 @@ class Player{
         void preleva(int x);
     //ottieni id del giocatore
         int getID() const;
+    //controlla se puo e sceglie se comprare p=25% computer
+        bool computerCompra(int valore);
     private:
     //fiorini
         int cash;
     //id del giocatore
         int playerID;
-
 };
 int dadi();
 

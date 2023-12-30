@@ -43,27 +43,34 @@ int main(int argc, char* argv[]){
             int lancio = dadi();
             int playerID = pt.getID();
             ofs<<"Giocatore "<<playerID<<" ha tirato i dadi ottenendo un valore di "<<lancio<<endl;
-            //cin nel file
             //t.move(pt,lancio);
             //Cell currCell = get_pos();
                 //if(passaggio per il via)
                     ofs<<"Giocatore "<<playerID<<" è passato dal via e ha ritirato 20 fiorini"<<endl;
             //ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<currCell; //cosa stampa il << di cell?
-                //if(casella angolare)
-                //else if (Casella laterale non appartenente nessuno dei giocatori)
-                    //if(ha soldi && compra)
-                        //ofs<<Giocatore N ha acquistato il terreno Y
-                //else if (Casella laterale di proprietà giocatore, senza casa/albergo)
-                    //if(ha soldi && costruisce casa)
+                //if(currCell.isCasellaAngolare())
+                    //pList.push(pt);
+                //else if (currCell.isLaterale() && currCell.noProprietario())
+                    //if(pt.computerCompra(currCell.get_value()))
+                        //pt.preleva(currCell.get_value());
+                        //currCell.setProp(pt);
+                        //ofs<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<currCell<<endl; //-...........
+                    
+                //else if (currCell.isLaterale() &&  currCell.Proprietario()==pt && currCell.noEdifici())
+                    //if(pt.computerCompra(currCell.get_value()))
+                        //valutare il prezzo in base al terreno
+                        //pt.preleva(prezzo);
                         //ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<currCell<<endl; //stampa info terreno?
-                //else if (Casella laterale con casa proprietà)
-                    //if(ha soldi && migliora in albergo)
+                //else if (currCell.isLaterale() &&  currCell.Proprietario()==pt && currCell.c'èCasa())
+                    //if(pt.computerCompra(currCell.get_value()))
+                        //valutare il prezzo in base al terreno
+                        //pt.preleva(prezzo);
                         //ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<currCell<<endl; //stampa info terreno?
-                //else (Casella laterale con casa proprietà)
-                    //int valore = currCell.get_value();
-                    //if(pt.saldo()>=valore)
-                        //currCell.getProprietario().versa(pt.preleva(valore));
-                        //ofs<<<<"Giocatore "<<playerID<<" ha pagato "<<valore<<" fiorini a giocatore "<<currCell.getProprietario().getID()<<" per pernottamento nella casella "<<currCell<<endl; //info su cell
+                //else //Casella laterale con casa/albergo proprietà altrui
+                    //int valoreProp = currCell.get_value();
+                    //if(pt.hasThisMoney(valoreProp))
+                        //currCell.getProprietario().versa(pt.preleva(valoreProp));
+                        //ofs<<<<"Giocatore "<<playerID<<" ha pagato "<<valoreProp<<" fiorini a giocatore "<<currCell.getProprietario().getID()<<" per pernottamento nella casella "<<currCell<<endl; //info su cell
                         pList.push(pt);
                     //else //non ha abbastanza soldi
                         ofs<<"Giocatore "<<playerID<<"è stato eliminato"<<endl;
