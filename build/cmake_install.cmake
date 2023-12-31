@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Install script for directory: /home/piopo/Documenti/C++/monopoli
+=======
+# Install script for directory: /mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly
+>>>>>>> local
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +54,9 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
+<<<<<<< HEAD
 file(WRITE "/home/piopo/Documenti/C++/monopoli/build/${CMAKE_INSTALL_MANIFEST}"
+=======
+file(WRITE "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/build/${CMAKE_INSTALL_MANIFEST}"
+>>>>>>> local
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

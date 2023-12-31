@@ -53,10 +53,17 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
+<<<<<<< HEAD
 CMAKE_SOURCE_DIR = /home/piopo/Documenti/C++/monopoli
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/piopo/Documenti/C++/monopoli/build
+=======
+CMAKE_SOURCE_DIR = "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly"
+
+# The top-level build directory on which CMake was run.
+CMAKE_BINARY_DIR = "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/build"
+>>>>>>> local
 
 # Include any dependencies generated for this target.
 include CMakeFiles/exe.dir/depend.make
@@ -72,6 +79,7 @@ include CMakeFiles/exe.dir/flags.make
 CMakeFiles/exe.dir/src/main.cpp.o: CMakeFiles/exe.dir/flags.make
 CMakeFiles/exe.dir/src/main.cpp.o: /home/piopo/Documenti/C++/monopoli/src/main.cpp
 CMakeFiles/exe.dir/src/main.cpp.o: CMakeFiles/exe.dir/compiler_depend.ts
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/piopo/Documenti/C++/monopoli/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/exe.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exe.dir/src/main.cpp.o -MF CMakeFiles/exe.dir/src/main.cpp.o.d -o CMakeFiles/exe.dir/src/main.cpp.o -c /home/piopo/Documenti/C++/monopoli/src/main.cpp
 
@@ -82,10 +90,23 @@ CMakeFiles/exe.dir/src/main.cpp.i: cmake_force
 CMakeFiles/exe.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/exe.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piopo/Documenti/C++/monopoli/src/main.cpp -o CMakeFiles/exe.dir/src/main.cpp.s
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/exe.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exe.dir/src/main.cpp.o -MF CMakeFiles/exe.dir/src/main.cpp.o.d -o CMakeFiles/exe.dir/src/main.cpp.o -c "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/src/main.cpp"
+
+CMakeFiles/exe.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exe.dir/src/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/src/main.cpp" > CMakeFiles/exe.dir/src/main.cpp.i
+
+CMakeFiles/exe.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exe.dir/src/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/src/main.cpp" -o CMakeFiles/exe.dir/src/main.cpp.s
+>>>>>>> local
 
 CMakeFiles/exe.dir/src/tabellone.cpp.o: CMakeFiles/exe.dir/flags.make
 CMakeFiles/exe.dir/src/tabellone.cpp.o: /home/piopo/Documenti/C++/monopoli/src/tabellone.cpp
 CMakeFiles/exe.dir/src/tabellone.cpp.o: CMakeFiles/exe.dir/compiler_depend.ts
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/piopo/Documenti/C++/monopoli/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/exe.dir/src/tabellone.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exe.dir/src/tabellone.cpp.o -MF CMakeFiles/exe.dir/src/tabellone.cpp.o.d -o CMakeFiles/exe.dir/src/tabellone.cpp.o -c /home/piopo/Documenti/C++/monopoli/src/tabellone.cpp
 
@@ -96,10 +117,23 @@ CMakeFiles/exe.dir/src/tabellone.cpp.i: cmake_force
 CMakeFiles/exe.dir/src/tabellone.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/exe.dir/src/tabellone.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piopo/Documenti/C++/monopoli/src/tabellone.cpp -o CMakeFiles/exe.dir/src/tabellone.cpp.s
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/exe.dir/src/tabellone.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exe.dir/src/tabellone.cpp.o -MF CMakeFiles/exe.dir/src/tabellone.cpp.o.d -o CMakeFiles/exe.dir/src/tabellone.cpp.o -c "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/src/tabellone.cpp"
+
+CMakeFiles/exe.dir/src/tabellone.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exe.dir/src/tabellone.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/src/tabellone.cpp" > CMakeFiles/exe.dir/src/tabellone.cpp.i
+
+CMakeFiles/exe.dir/src/tabellone.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exe.dir/src/tabellone.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/src/tabellone.cpp" -o CMakeFiles/exe.dir/src/tabellone.cpp.s
+>>>>>>> local
 
 CMakeFiles/exe.dir/src/Player.cpp.o: CMakeFiles/exe.dir/flags.make
 CMakeFiles/exe.dir/src/Player.cpp.o: /home/piopo/Documenti/C++/monopoli/src/Player.cpp
 CMakeFiles/exe.dir/src/Player.cpp.o: CMakeFiles/exe.dir/compiler_depend.ts
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/piopo/Documenti/C++/monopoli/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/exe.dir/src/Player.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exe.dir/src/Player.cpp.o -MF CMakeFiles/exe.dir/src/Player.cpp.o.d -o CMakeFiles/exe.dir/src/Player.cpp.o -c /home/piopo/Documenti/C++/monopoli/src/Player.cpp
 
@@ -110,10 +144,23 @@ CMakeFiles/exe.dir/src/Player.cpp.i: cmake_force
 CMakeFiles/exe.dir/src/Player.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/exe.dir/src/Player.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piopo/Documenti/C++/monopoli/src/Player.cpp -o CMakeFiles/exe.dir/src/Player.cpp.s
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/exe.dir/src/Player.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exe.dir/src/Player.cpp.o -MF CMakeFiles/exe.dir/src/Player.cpp.o.d -o CMakeFiles/exe.dir/src/Player.cpp.o -c "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/src/Player.cpp"
+
+CMakeFiles/exe.dir/src/Player.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exe.dir/src/Player.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/src/Player.cpp" > CMakeFiles/exe.dir/src/Player.cpp.i
+
+CMakeFiles/exe.dir/src/Player.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exe.dir/src/Player.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/src/Player.cpp" -o CMakeFiles/exe.dir/src/Player.cpp.s
+>>>>>>> local
 
 CMakeFiles/exe.dir/src/Cell.cpp.o: CMakeFiles/exe.dir/flags.make
 CMakeFiles/exe.dir/src/Cell.cpp.o: /home/piopo/Documenti/C++/monopoli/src/Cell.cpp
 CMakeFiles/exe.dir/src/Cell.cpp.o: CMakeFiles/exe.dir/compiler_depend.ts
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/piopo/Documenti/C++/monopoli/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/exe.dir/src/Cell.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exe.dir/src/Cell.cpp.o -MF CMakeFiles/exe.dir/src/Cell.cpp.o.d -o CMakeFiles/exe.dir/src/Cell.cpp.o -c /home/piopo/Documenti/C++/monopoli/src/Cell.cpp
 
@@ -124,6 +171,18 @@ CMakeFiles/exe.dir/src/Cell.cpp.i: cmake_force
 CMakeFiles/exe.dir/src/Cell.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/exe.dir/src/Cell.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piopo/Documenti/C++/monopoli/src/Cell.cpp -o CMakeFiles/exe.dir/src/Cell.cpp.s
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/exe.dir/src/Cell.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exe.dir/src/Cell.cpp.o -MF CMakeFiles/exe.dir/src/Cell.cpp.o.d -o CMakeFiles/exe.dir/src/Cell.cpp.o -c "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/src/Cell.cpp"
+
+CMakeFiles/exe.dir/src/Cell.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exe.dir/src/Cell.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/src/Cell.cpp" > CMakeFiles/exe.dir/src/Cell.cpp.i
+
+CMakeFiles/exe.dir/src/Cell.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exe.dir/src/Cell.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/src/Cell.cpp" -o CMakeFiles/exe.dir/src/Cell.cpp.s
+>>>>>>> local
 
 # Object files for target exe
 exe_OBJECTS = \
@@ -141,7 +200,11 @@ exe: CMakeFiles/exe.dir/src/Player.cpp.o
 exe: CMakeFiles/exe.dir/src/Cell.cpp.o
 exe: CMakeFiles/exe.dir/build.make
 exe: CMakeFiles/exe.dir/link.txt
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/piopo/Documenti/C++/monopoli/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable exe"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable exe"
+>>>>>>> local
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/exe.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -153,6 +216,10 @@ CMakeFiles/exe.dir/clean:
 .PHONY : CMakeFiles/exe.dir/clean
 
 CMakeFiles/exe.dir/depend:
+<<<<<<< HEAD
 	cd /home/piopo/Documenti/C++/monopoli/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/piopo/Documenti/C++/monopoli /home/piopo/Documenti/C++/monopoli /home/piopo/Documenti/C++/monopoli/build /home/piopo/Documenti/C++/monopoli/build /home/piopo/Documenti/C++/monopoli/build/CMakeFiles/exe.dir/DependInfo.cmake "--color=$(COLOR)"
+=======
+	cd "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly" "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly" "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/build" "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/build" "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/build/CMakeFiles/exe.dir/DependInfo.cmake" --color=$(COLOR)
+>>>>>>> local
 .PHONY : CMakeFiles/exe.dir/depend
 

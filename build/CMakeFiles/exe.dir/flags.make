@@ -4,7 +4,11 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
+<<<<<<< HEAD
 CXX_INCLUDES = -I/home/piopo/Documenti/C++/monopoli/../include
+=======
+CXX_INCLUDES = -I"/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/../include"
+>>>>>>> local
 
 CXX_FLAGS =  -O2 -std=gnu++11
 

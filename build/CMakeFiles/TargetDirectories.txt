@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 /home/piopo/Documenti/C++/monopoli/build/CMakeFiles/exe.dir
 /home/piopo/Documenti/C++/monopoli/build/CMakeFiles/edit_cache.dir
 /home/piopo/Documenti/C++/monopoli/build/CMakeFiles/rebuild_cache.dir
+=======
+/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/build/CMakeFiles/exe.dir
+/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/build/CMakeFiles/rebuild_cache.dir
+>>>>>>> local
