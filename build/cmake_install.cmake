@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# Install script for directory: /home/piopo/Documenti/C++/monopoli
-=======
-# Install script for directory: /mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly
->>>>>>> local
+# Install script for directory: /mnt/c/Users/leval/Documents/Monopoly
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -33,7 +29,7 @@ endif()
 
 # Install shared libraries without execute permission?
 if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
-  set(CMAKE_INSTALL_SO_NO_EXE "0")
+  set(CMAKE_INSTALL_SO_NO_EXE "1")
 endif()
 
 # Is this installation the result of a crosscompile?
@@ -54,9 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-<<<<<<< HEAD
-file(WRITE "/home/piopo/Documenti/C++/monopoli/build/${CMAKE_INSTALL_MANIFEST}"
-=======
-file(WRITE "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/build/${CMAKE_INSTALL_MANIFEST}"
->>>>>>> local
+file(WRITE "/mnt/c/Users/leval/Documents/Monopoly/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
