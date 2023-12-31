@@ -19,3 +19,6 @@ a piopo
 void move(player,fromCell,numeroSalti)
 bool passAcrossStart(player,fromCell,toCell)
 Cell whereIs(player)
+
+RICHIESTA FUNZIONE
+//tutte le sue proprietà vengono rese libere (dato il player)
