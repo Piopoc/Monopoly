@@ -174,3 +174,20 @@ std::string tabellone::create_coordinates(int t)
     std::string s = std::to_string(y + x);
     return s;
 }
+
+/* Cell tabellone::whereIs(Player p)
+{
+    for(int i=0;i<"vectorPlayer".size();i++){
+        if(p.getID()=="vectorPlayer[i]".getID()){
+            return tabs[i];
+        }
+    }
+    throw std::exception("Il giocatore non è presente nella board");
+} 
+
+bool tabellone::beyondStart(Player p){
+    Cell from=whereIs(p);
+    move(p,from,numerosalti);
+    Cell to=whereIs(p);
+    return to<from;
+}*/

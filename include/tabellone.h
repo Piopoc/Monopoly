@@ -10,6 +10,8 @@ class tabellone{
     public:
         tabellone();
         void stampa();
+        Cell whereIs(Player p);
+        bool beyondStart(Player p, Cell from, Cell to);
         ~tabellone(){};
     private:
         std::vector<std::shared_ptr<Cell>> tabs;
