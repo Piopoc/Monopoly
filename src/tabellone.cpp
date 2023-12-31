@@ -230,6 +230,6 @@ std::string tabellone::create_coordinates(int t)
 {
     char x = parametrizzazione_bordo_x(t) + 49;
     char y = parametrizzazione_bordo_y(t) + 65;
-    std::string s = y + x;
+    std::string s = "" + y + x;
     return s;
 }

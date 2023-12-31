@@ -2,6 +2,7 @@
 #ifndef CELL_H
 #define CELL_H
 #include <iostream>
+#include <vector>
 #include "../include/Player.h"
 //Si usa per le celle laterali e ne definisce il tipo: contiene i vari prezzi associati al tipo di terreno
 struct Type
@@ -39,7 +40,7 @@ class Cell
         virtual std::string to_string() const = 0;
 
     protected:
-        Player* occupying[4];
+        std::vector<Player> occupying{4};
         int number_of_occupants = 0;
         std::string coordinates;
         Cell() {};    
@@ -51,8 +52,9 @@ std::ostream& operator<<(std::ostream& o, const Cell& c);
 class SideCell : public Cell
 {
     Type type;
-    Player* owner;
-    char property;
+    Player owner;
+    char property = 0;
+    bool is_owned = 0;
 
     public:
         SideCell(const Type& t, const std::string& c);
@@ -63,10 +65,10 @@ class SideCell : public Cell
         void upgrade_property();
 
         Type get_type() const {return type;};
-        Player get_owner() const {return *owner;};
+        Player get_owner() const;
         char get_property() const {return property;};
 
-        bool has_owner() const {return owner;};
+        bool has_owner() const {return is_owned;};
         bool has_house() const {return (property == '*');};
         bool has_hotel() const {return (property == '^');};
 
