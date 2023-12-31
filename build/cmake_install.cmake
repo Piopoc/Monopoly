@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/c/Users/leval/Documents/Monopoly
+# Install script for directory: /mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/mnt/c/Users/leval/Documents/Monopoly/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -1,5 +1,5 @@
-CMakeFiles/exe.dir/src/main.cpp.o: \
- /mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI\ C++/PROGETTO\ FINALE/Monopoly/src/main.cpp \
+CMakeFiles/exe.dir/src/Cell.cpp.o: \
+ /mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI\ C++/PROGETTO\ FINALE/Monopoly/src/Cell.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -148,20 +148,10 @@ CMakeFiles/exe.dir/src/main.cpp.o: \
  /usr/include/c++/11/bits/locale_facets.tcc \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
- /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/queue \
- /usr/include/c++/11/deque /usr/include/c++/11/bits/stl_uninitialized.h \
- /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
- /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_vector.h \
+ /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/vector \
+ /usr/include/c++/11/bits/stl_uninitialized.h \
+ /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
- /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/bits/stl_heap.h \
- /usr/include/c++/11/bits/stl_queue.h \
- /usr/include/c++/11/bits/uses_allocator.h /usr/include/c++/11/fstream \
- /usr/include/c++/11/bits/codecvt.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
- /usr/include/c++/11/bits/fstream.tcc \
- /mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI\ C++/PROGETTO\ FINALE/Monopoly/src/../include/tabellone.h \
- /mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI\ C++/PROGETTO\ FINALE/Monopoly/src/../include/../include/Cell.h \
- /mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI\ C++/PROGETTO\ FINALE/Monopoly/src/../include/../include/../include/Player.h \
- /mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI\ C++/PROGETTO\ FINALE/Monopoly/src/../include/Player.h \
- /mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI\ C++/PROGETTO\ FINALE/Monopoly/src/../include/Cell.h
+ /usr/include/c++/11/bits/vector.tcc \
+ /mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI\ C++/PROGETTO\ FINALE/Monopoly/src/../include/Cell.h \
+ /mnt/c/Users/pierf/OneDrive/Desktop/C++/ESERCIZI\ C++/PROGETTO\ FINALE/Monopoly/src/../include/../include/Player.h
