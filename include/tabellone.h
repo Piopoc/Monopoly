@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <memory>
 #include "../include/Cell.h"
 
 class tabellone{
@@ -11,7 +12,7 @@ class tabellone{
         void stampa();
         ~tabellone(){};
     private:
-        std::vector<Cell*> tabs;
+        std::vector<std::shared_ptr<Cell>> tabs;
         int parametrizzazione_bordo_x(int t);
         int parametrizzazione_bordo_y(int t);
         std::string create_coordinates(int t);

@@ -25,55 +25,67 @@ tabellone::tabellone(){
     int fraw=1;
     int fcolomn=65;
 
-    
+    std::shared_ptr<Cell> pointer;
+    /*
     EdgeCell empty(false,"");
     EdgeCell start(true,"");
     SideCell eco(types::economic(),"");
     SideCell stand(types::standard(),"");
     SideCell lux(types::luxury(),"");
-
+    */
     for(int i=0;i<dim;i++){
         if(i==corner_box1 || i==corner_box2 || i==corner_box3 || i==corner_box4){
-            tabs.push_back(&empty);
+            pointer.reset(new EdgeCell{false, ""});
+            tabs.push_back(pointer);
         }
         if(i>corner_box1 && i!=corner_box2 && i!=corner_box3 && i!=corner_box4){
             if (e > 0 || s > 0 || l > 0) {
                 int temp = rand() % 3 + 1;
                 if (e > 0 && temp == 1) {
-                        tabs.push_back(&eco);
+                        pointer.reset(new SideCell{types::economic(), ""});
+                        tabs.push_back(pointer);
                         e--;
                     } else if (s > 0 && temp == 2) {
-                        tabs.push_back(&stand);
+                        pointer.reset(new SideCell{types::standard(), ""});
+                        tabs.push_back(pointer);
                         s--;
                     } else if (l > 0 && temp == 3) {
-                        tabs.push_back(&lux);
+                        pointer.reset(new SideCell{types::luxury(), ""});
+                        tabs.push_back(pointer);
                         l--;
                     } else {
                         // Trova la proprietà ancora disponibile
                         if (e > 0) {
-                            tabs.push_back(&eco);
+                            pointer.reset(new SideCell{types::economic(), ""});
+                            tabs.push_back(pointer);
                             e--;
                         } else if (s > 0) {
-                            tabs.push_back(&stand);
+                            pointer.reset(new SideCell{types::standard(), ""});
+                            tabs.push_back(pointer);
                             s--;
                         } else if (l > 0) {
-                            tabs.push_back(&lux);
+                            pointer.reset(new SideCell{types::luxury(), ""});
+                            tabs.push_back(pointer);
                             l--;
                         }
                     }
             }
         }
         if(p==1 && i==corner_box1){
-            tabs.push_back(&start);
+            pointer.reset(new EdgeCell{true, ""});
+            tabs.push_back(pointer);
         }
         else if(p==2 && i==corner_box2){
-            tabs.push_back(&start);
+            pointer.reset(new EdgeCell{true, ""});
+            tabs.push_back(pointer);
         }
         else if(p==3 && i==corner_box3){
-            tabs.push_back(&start);
+            pointer.reset(new EdgeCell{true, ""});
+            tabs.push_back(pointer);
         }
         else{
-            tabs.push_back(&start);
+            pointer.reset(new EdgeCell{true, ""});
+            tabs.push_back(pointer);
         }
     }
 }
