@@ -172,7 +172,7 @@ void tabellone::stampa(){
     {
         for(int x = 2; x <= 7; x++)
         {
-            matrix[y][x] = "0";
+            matrix[y][x] = "             ";
         }
     }
 
