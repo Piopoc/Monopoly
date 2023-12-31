@@ -75,7 +75,7 @@ SideCell::SideCell(const Type& t, const std::string& c)
 {coordinates = c;}
 
 //FALLISCE SILENZIONSAMENTE SE E' GIA' PRESENTE UN PROPRIETARIO
-void SideCell::add_owner(Player p)
+void SideCell::add_owner(Player* p)
 {
     if(is_owned)
     {  
@@ -117,7 +117,7 @@ void SideCell::upgrade_property()
     }
 }
 
-Player SideCell::get_owner() const
+Player* SideCell::get_owner() const
 {
     if(!is_owned)
     {

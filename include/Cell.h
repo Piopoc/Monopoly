@@ -29,8 +29,8 @@ namespace types
 class Cell
 {        
     public:
-        void add_occupant(Player p);
-        void remove_occupant(Player p);
+        void add_occupant(Player p); //vanno messi in reference i player altrimenti si rischia inconsisenza
+        void remove_occupant(Player p); //vanno messi in reference i player altrimenti si rischia inconsisenza
 
         Cell(const Cell&) = delete;
         Cell& operator=(const Cell&) = delete;
@@ -53,20 +53,20 @@ std::ostream& operator<<(std::ostream& o, const Cell& c);
 class SideCell : public Cell
 {
     Type type;
-    Player owner;
+    Player* owner;
     char property = 0;
     bool is_owned = 0;
 
     public:
         SideCell(const Type& t, const std::string& c);
 
-        void add_owner(Player p);
+        void add_owner(Player* p);
         void remove_owner();
 
         void upgrade_property();
 
         Type get_type() const {return type;};
-        Player get_owner() const;
+        Player* get_owner() const;
         char get_property() const {return property;};
 
         std::string to_string() const override;
