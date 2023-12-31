@@ -23,7 +23,7 @@ int main(int argc, char* argv[]){
     Player* p2;
     Player* p3;
     Player* p4;
-     //apertura file log in scrittura
+    /*  //apertura file log in scrittura
     ofstream ofs("partita.log",ofstream::out);
     if(!ofs.good()) throw std::exception();
     //determinazione ordine di gioco inserendo i giocatori in una coda
@@ -66,7 +66,7 @@ int main(int argc, char* argv[]){
         ordine += "\n";
     }
     cout<<ordine;
-    ofs<<ordine;
+    ofs<<ordine; */
     //inserisci i giocatori nella cella del via
     //t.insertStart(p1);
     //t.insertStart(p2);
@@ -132,7 +132,7 @@ int main(int argc, char* argv[]){
         }
         Player& winner = *pList.front();
         ofs<<"Giocatore "<<playerID<<" ha vinto la partita"<<endl;*/
-        ofs.close();
+        //ofs.close();
     }
     else if (modalitaGioco == "human") {
     t.stampa(); //ogni volta che viene richiesto

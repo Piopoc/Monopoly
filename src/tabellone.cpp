@@ -88,64 +88,7 @@ void tabellone::stampa(){
     static const int dim=10;
     std::string matrix[dim][dim];
     int fraw=1;
-    int fcolomn=65;
-
-    int a=0; 
-    int b=7;
-    int c=20;
-    int d=27;    
-
-    /*
-    // carica della matrice traimte vector
-    for(int i=0;i<dim;i++){
-        for(int j=0;j<dim;j++){
-            if(i==0 && j==0){
-                matrix[i][j]="   ";
-            }
-            else if(j==0 && i<dim-1){
-                if(i==dim-1){
-                    matrix[i][j]="\n";
-                }
-                else{
-                    matrix[i][j]=std::string(1, static_cast<char>(fcolomn++));
-                }
-            }
-            else if(i==0 && j<dim-1){
-                matrix[i][j]="    "+std::to_string(fraw++)+"    ";
-            }
-            else if(j==dim-2){
-                if(b<14){
-                    if(b==7){
-                        matrix[i][j]=tabs[b++]->to_string();
-                    }
-                    else{
-                        matrix[i][j]="                                                      "+tabs[b++]->to_string();
-                    }
-                }
-            }
-            else if(i==1){
-                if(a<7){
-                    if(a==0){
-                        matrix[i][j]="  "+tabs[a++]->to_string();
-                    }
-                    else{
-                        matrix[i][j]=tabs[a++]->to_string();
-                    }
-                }
-            }
-            else if(j==1){
-                if(d>=21){
-                    matrix[i][j]="  "+tabs[d--]->to_string();
-                }
-            }
-            else if(i==dim-2){
-                 if(c>=14){
-                    matrix[i][j]=tabs[c--]->to_string();
-                }
-            }
-            
-        }
-    }*/
+    int fcolomn=65;  
 
     matrix[0][0] = " ";
     matrix[1][0] = " ";
