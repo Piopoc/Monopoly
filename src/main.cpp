@@ -19,15 +19,15 @@ int main(int argc, char* argv[]){
     //creazione tabellone di gioco
     tabellone t;
     //creazione giocatori con 100 fiorini di budget
-    Player* p1;
-    Player* p2;
-    Player* p3;
-    Player* p4;
+    Player* p1(1);
+    Player* p2(2);
+    Player* p3(3);
+    Player* p4(4);
     //apertura file log in scrittura
     ofstream ofs("partita.log",ofstream::out);
     if(!ofs.good()) throw std::exception();
     //determinazione ordine di gioco inserendo i giocatori in una coda
-    queue<Player*> pList; //da valutare se mettere nel free store
+    queue<Player*> pList; //da valutare se mettere nel free store //?????????????????????????
     //vettore con lanci di dadi e corrispettivi giocatori
     vector<int> lanciDadi;
     vector<Player*> corrispettivi;
@@ -70,10 +70,10 @@ int main(int argc, char* argv[]){
     p2->set_currCell(start);
     p3->set_currCell(start);
     p4->set_currCell(start);
-    //t.insertStart(p1); o eventualmente move(start,0)
-    //t.insertStart(p2);
-    //t.insertStart(p3);
-    //t.insertStart(p4);
+    t.insertStart(p1); //o eventualmente move(start,0) //?????????????????????????
+    t.insertStart(p2); //?????????????????????????
+    t.insertStart(p3);//?????????????????????????
+    t.insertStart(p4); //?????????????????????????
     //scelta modalità
     if (modalitaGioco == "computer") {
         //inizia la partita
@@ -110,6 +110,7 @@ int main(int argc, char* argv[]){
             }
             //pt è proprietario
             else if (currCell.get_owner()==pt){
+                //proprietà senza casa
                 if(!currCell.hasHouse()){
                     if(pt.pc_buys(currCell.get_value())){
                     //valutare il prezzo in base al terreno
@@ -117,25 +118,28 @@ int main(int argc, char* argv[]){
                     ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<currCell<<endl; //stampa info terreno?
                     }
                 }
-                if(currCell.hasHouse() && !currCell.hasAlbergo()){ //Casella di proprietà con casa
+                //proprietà con casa
+                if(currCell.hasHouse() && !currCell.hasAlbergo()){
                     if(pt.pc_buys(currCell.get_value())){
                     int prezzo; //valutare il prezzo in base al terreno
                     pt.withdraw(prezzo);
                     ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<currCell<<endl; //stampa info terreno?
                     }
                 }
-                //se si trova in una sua proprietà dove ha gia costruito albergo non succede niente
+                //proprietà con albergo non può fare niente
                 pList.push(p);
             }
             //proprietà altrui
             else{
                 int valoreProp = currCell.get_value();
+                //paga
                 if(pt.hasThisMoney(valoreProp)){
                     currCell.get_owner().deposit(pt.withdraw(valoreProp));
                     ofs<<<<"Giocatore "<<playerID<<" ha pagato "<<valoreProp<<" fiorini a giocatore "<<currCell.getProprietario().get_ID()<<" per pernottamento nella casella "<<currCell<<endl; //info su cell
                     pList.push(p);
                 }
-                else{ //non ha abbastanza soldi
+                //non ha abbastanza soldi
+                else{
                     ofs<<"Giocatore "<<playerID<<"è stato eliminato"<<endl;
                     //NON ESEGUO IL PUSH, eliminato
                     //tutte le sue proprietà vengono rese libere
