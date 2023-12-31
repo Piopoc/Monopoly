@@ -23,7 +23,7 @@ int main(int argc, char* argv[]){
     Player* p2;
     Player* p3;
     Player* p4;
-    /*  //apertura file log in scrittura
+    //apertura file log in scrittura
     ofstream ofs("partita.log",ofstream::out);
     if(!ofs.good()) throw std::exception();
     //determinazione ordine di gioco inserendo i giocatori in una coda
@@ -31,34 +31,31 @@ int main(int argc, char* argv[]){
     //vettore con lanci di dadi e corrispettivi giocatori
     vector<int> lanciDadi;
     vector<Player*> corrispettivi;
-    lanciDadi.push_back(dadi());
+    lanciDadi.push_back(dice());
     corrispettivi.push_back(p1);
-    lanciDadi.push_back(dadi());
+    lanciDadi.push_back(dice());
     corrispettivi.push_back(p2);
-    lanciDadi.push_back(dadi());
+    lanciDadi.push_back(dice());
     corrispettivi.push_back(p3);
-    lanciDadi.push_back(dadi());
+    lanciDadi.push_back(dice());
     corrispettivi.push_back(p4);
-    
     //gestione ordine di partenza
     int full = 0;
     while(full!=4){
-        if(noMaxRipetuti(lanciDadi)){
-            int posMax = getPosMax(lanciDadi);
-            lanciDadi[posMax] = 0;
-            pList.push(corrispettivi[posMax]);
+        if(!repeated_max(lanciDadi)){
+            int posmax = get_posmax(lanciDadi);
+            lanciDadi[posmax] = 0;
+            pList.push(corrispettivi[posmax]);
             full++;
         }
         else{
-            rilanciaMaxRipetuti(lanciDadi);
+            throw_again(lanciDadi);
         }
     }
-    //ordine di gioco
     string ordine = "ordine di gioco:\n";
     for(int i =0; i<4; i++){
         Player* p = pList.front();
-        Player& pref = *p;
-        int id = pref.getID();
+        int id = p->get_ID();
         pList.pop();
         pList.push(p);
         ordine += "p";
@@ -66,62 +63,66 @@ int main(int argc, char* argv[]){
         ordine += "\n";
     }
     cout<<ordine;
-    ofs<<ordine; */
+    ofs<<ordine;
     //inserisci i giocatori nella cella del via
-    //t.insertStart(p1);
+    Cell start = t.get_start();
+    p1->set_currCell(start);
+    p2->set_currCell(start);
+    p3->set_currCell(start);
+    p4->set_currCell(start);
+    //t.insertStart(p1); o eventualmente move(start,0)
     //t.insertStart(p2);
     //t.insertStart(p3);
     //t.insertStart(p4);
-    
-    if (modalitaGioco == "computer") {/*
+    //scelta modalità
+    if (modalitaGioco == "computer") {
     while(pList.size()!=1){
-        Player* p = pList.front();
-        Player& pt = *p; //player del turno
+        Player* pt = pList.front(); //player del turno
         pList.pop();
-        int lancio = dadi();
-        int playerID = pt.getID();
+        int lancio = dice();
+        int playerID = pt->get_ID();
         ofs<<"Giocatore "<<playerID<<" ha tirato i dadi ottenendo un valore di "<<lancio<<endl;
-        Cell fromCell = t.whereIs(pt);
-        Cell currCell = t.whereIs(pt);
-        t.move(pt,fromCell,lancio);
+        Cell fromCell = pt->get_currCell();
+        Cell currCell = t.move(pt,fromCell,lancio);
         if(passAcrossStart(player,fromCell,currCell)){
-            pt.versa(20);
+            pt->deposit(20);
             ofs<<"Giocatore "<<playerID<<" è passato dal via e ha ritirato 20 fiorini"<<endl;
         }
         ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<currCell; //cosa stampa il << di cell?
-        if(dynamic_cast<EdgeCell*> (currCell)){
+        if(dynamic_cast<EdgeCell*> (currCell)){ //casella angolare
             pList.push(p);
         }
-        else if(currCell.getOwner()==nullptr){
-            if(pt.computerCompra(currCell.get_value())){
-                pt.preleva(currCell.get_value());
+        else if(!currCell.has_owner()){ //non ha proprietario
+            if(pt.pc_buys(currCell.get_value())){
+                pt.withdraw(currCell.get_value());
                 currCell.setProp(pt);
                 ofs<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<currCell<<endl; //-...........
             }
             pList.push(p);      
         }
-        else if (currCell.getOwner()==pt){
+        else if (currCell.get_owner()==pt){ //pt è proprietario
             if(!currCell.hasHouse()){
-                if(pt.computerCompra(currCell.get_value())){
+                if(pt.pc_buys(currCell.get_value())){
                 //valutare il prezzo in base al terreno
-                pt.preleva(prezzo);
+                pt.withdraw(prezzo);
                 ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<currCell<<endl; //stampa info terreno?
                 }
             }
-            if(!currCell.hasAlbergo()){ //Casella di proprietà con casa
-                if(pt.computerCompra(currCell.get_value())){
+            if(currCell.hasHouse() && !currCell.hasAlbergo()){ //Casella di proprietà con casa
+                if(pt.pc_buys(currCell.get_value())){
                 int prezzo; //valutare il prezzo in base al terreno
-                pt.preleva(prezzo);
+                pt.withdraw(prezzo);
                 ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<currCell<<endl; //stampa info terreno?
                 }
             }
+            //se si trova in una sua proprietà dove ha gia costruito albergo non succede niente
             pList.push(p);
         }
-        else{ //Casella laterale con casa/albergo proprietà altrui
+        else{ //proprietà altrui
             int valoreProp = currCell.get_value();
             if(pt.hasThisMoney(valoreProp)){
-                currCell.getProprietario().versa(pt.preleva(valoreProp));
-                ofs<<<<"Giocatore "<<playerID<<" ha pagato "<<valoreProp<<" fiorini a giocatore "<<currCell.getProprietario().getID()<<" per pernottamento nella casella "<<currCell<<endl; //info su cell
+                currCell.get_owner().deposit(pt.withdraw(valoreProp));
+                ofs<<<<"Giocatore "<<playerID<<" ha pagato "<<valoreProp<<" fiorini a giocatore "<<currCell.getProprietario().get_ID()<<" per pernottamento nella casella "<<currCell<<endl; //info su cell
                 pList.push(p);
             }
             else{ //non ha abbastanza soldi
@@ -131,7 +132,7 @@ int main(int argc, char* argv[]){
             }
         }
         Player& winner = *pList.front();
-        ofs<<"Giocatore "<<playerID<<" ha vinto la partita"<<endl;*/
+        ofs<<"Giocatore "<<playerID<<" ha vinto la partita"<<endl;
         //ofs.close();
     }
     else if (modalitaGioco == "human") {

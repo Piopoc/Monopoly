@@ -105,9 +105,9 @@ void tabellone::stampa(){
         matrix[parametrizzazione_bordo_y(t)][parametrizzazione_bordo_x(t)] = tabs[t] -> to_string();
     }
 
-    for(int y = 2; y <= 7; y++)
+    for(int y = 2; y < dim-2; y++)
     {
-        for(int x = 2; x <= 7; x++)
+        for(int x = 2; x < dim-2; x++)
         {
             matrix[y][x] = "             ";
         }
