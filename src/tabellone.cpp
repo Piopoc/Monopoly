@@ -26,19 +26,29 @@ tabellone::tabellone(){
     int fcolomn=65;
 
     std::shared_ptr<Cell> pointer;
-    /*
-    EdgeCell empty(false,"");
-    EdgeCell start(true,"");
-    SideCell eco(types::economic(),"");
-    SideCell stand(types::standard(),"");
-    SideCell lux(types::luxury(),"");
-    */
+    
     for(int i=0;i<dim;i++){
-        if(i==corner_box1 || i==corner_box2 || i==corner_box3 || i==corner_box4){
+        if(p==1 && i==corner_box1){
+            pointer.reset(new EdgeCell{true, ""});
+            tabs.push_back(pointer);
+        }
+        else if(p==2 && i==corner_box2){
+            pointer.reset(new EdgeCell{true, ""});
+            tabs.push_back(pointer);
+        }
+        else if(p==3 && i==corner_box3){
+            pointer.reset(new EdgeCell{true, ""});
+            tabs.push_back(pointer);
+        }
+        else if(p==4 && i==corner_box4){
+            pointer.reset(new EdgeCell{true, ""});
+            tabs.push_back(pointer);
+        }
+        else if(i==corner_box1 || i==corner_box2 || i==corner_box3 || i==corner_box4 ){
             pointer.reset(new EdgeCell{false, ""});
             tabs.push_back(pointer);
         }
-        if(i>corner_box1 && i!=corner_box2 && i!=corner_box3 && i!=corner_box4){
+        else if(i>corner_box1 && i!=corner_box2 && i!=corner_box3 && i!=corner_box4){
             if (e > 0 || s > 0 || l > 0) {
                 int temp = rand() % 3 + 1;
                 if (e > 0 && temp == 1) {
@@ -70,22 +80,6 @@ tabellone::tabellone(){
                         }
                     }
             }
-        }
-        if(p==1 && i==corner_box1){
-            pointer.reset(new EdgeCell{true, ""});
-            tabs.push_back(pointer);
-        }
-        else if(p==2 && i==corner_box2){
-            pointer.reset(new EdgeCell{true, ""});
-            tabs.push_back(pointer);
-        }
-        else if(p==3 && i==corner_box3){
-            pointer.reset(new EdgeCell{true, ""});
-            tabs.push_back(pointer);
-        }
-        else{
-            pointer.reset(new EdgeCell{true, ""});
-            tabs.push_back(pointer);
         }
     }
 }
@@ -160,12 +154,12 @@ void tabellone::stampa(){
     for(int i = 1; i < dim- 1; i++)
     {
         matrix[i][0]=std::string(1, static_cast<char>(fcolomn++));
-        matrix[0][i]=std::to_string(fraw++);
+        matrix[0][i]="      "+std::to_string(fraw++)+"      ";
     }
 
-    for(int t = 0; t <= 27; t++)
+    for(int t = 0; t <tabs.size(); t++)
     {
-        matrix[parametrizzazione_bordo_y(t)][parametrizzazione_bordo_x(t)] = tabs[0] -> to_string();
+        matrix[parametrizzazione_bordo_y(t)][parametrizzazione_bordo_x(t)] = tabs[t] -> to_string();
     }
 
     for(int y = 2; y <= 7; y++)
