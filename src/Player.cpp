@@ -51,12 +51,12 @@ void Player::set_currpos(int pos){
     currentPos = pos;
 }
 
-int dadi() //va messo il seed???????????????????????????????? se vuoi che ogni volta estragga gli stessi valori
+int dice() //va messo il seed???????????????????????????????? se vuoi che ogni volta estragga gli stessi valori
 {
     srand (time(NULL));
     return (rand() % 6 + 1)+(rand() % 6 + 1);
 }
-bool noMaxRipetuti(std::vector<int> a){
+bool repeated_max(std::vector<int> a){
         int max = 0;
         bool done = false;
         for(int i = 0; i<4; i++){
@@ -70,7 +70,7 @@ bool noMaxRipetuti(std::vector<int> a){
         }
         return done;
     }
-int getPosMax(std::vector<int> a){
+int get_posmax(std::vector<int> a){
     int max = 0;
     for(int i = 1; i<4; i++){
         if(a[i]>a[max]){
@@ -79,10 +79,10 @@ int getPosMax(std::vector<int> a){
     }
     return max;
 }
-void rilanciaMaxRipetuti(std::vector<int> a){
+void throw_again(std::vector<int> a){
     for(int i = 0; i<4; i++){
         if(a[i]==-1){
-            a[i] = dadi();
+            a[i] = dice();
         }
     }
 }

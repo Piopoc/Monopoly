@@ -31,7 +31,7 @@ int main(int argc, char* argv[]){
     //vettore con lanci di dadi e corrispettivi giocatori
     vector<int> lanciDadi;
     vector<Player*> corrispettivi;
-    lanciDadi.push_back(Player::dice());
+    lanciDadi.push_back(dice());
     corrispettivi.push_back(p1);
     lanciDadi.push_back(dice());
     corrispettivi.push_back(p2);
