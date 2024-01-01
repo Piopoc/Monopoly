@@ -108,18 +108,20 @@ int main(int argc, char* argv[]){
             else if (currCell->get_owner()==pt){
                 //proprietà senza casa
                 if(!currCell->hasHouse()){
-                    if(pt->pc_buys(currCell->get_value())){
-                    //valutare il prezzo in base al terreno
-                    pt->withdraw(prezzo);
-                    ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<currCell<<endl; //stampa info terreno?
+                    int price = currCell->get_type()->upgrade_to_house;
+                    if(pt->pc_buys(price)){
+                        currCell->add_owner(pt);
+                        pt->withdraw(price);
+                        ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<currCell<<endl; //stampa info terreno?
                     }
                 }
                 //proprietà con casa
                 if(currCell->hasHouse() && !currCell->hasAlbergo()){
-                    if(pt->pc_buys(currCell->get_value())){
-                    int prezzo; //valutare il prezzo in base al terreno
-                    pt->withdraw(prezzo);
-                    ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<currCell<<endl; //stampa info terreno?
+                    int price = currCell->get_type()->upgrade_to_hotel;
+                    if(pt->pc_buys(price)){
+                        currCell->add_owner(pt);
+                        pt->withdraw(price);
+                        ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<currCell<<endl; //stampa info terreno?
                     }
                 }
                 //proprietà con albergo non può fare niente
@@ -127,11 +129,17 @@ int main(int argc, char* argv[]){
             }
             //proprietà altrui
             else{
-                int valoreProp = currCell->get_value();
+                int tax = 0;
+                if(currCell->has_house()){
+                    tax = currCell->get_type()->house_stay;
+                }
+                if(currCell->has_hotel()){
+                    tax = currCell->get_type()->hotel_stay;
+                }
                 //paga
-                if(pt->has_this_money(valoreProp)){
-                    currCell->get_owner()->deposit(pt->withdraw(valoreProp));
-                    ofs<<"Giocatore "<<playerID<<" ha pagato "<<valoreProp<<" fiorini a giocatore "<<currCell->get_owner()->get_ID()<<" per pernottamento nella casella "<<currCell<<endl; //info su cell
+                if(pt->has_this_money(tax)){
+                    currCell->get_owner()->deposit(pt->withdraw(tax));
+                    ofs<<"Giocatore "<<playerID<<" ha pagato "<<tax<<" fiorini a giocatore "<<currCell->get_owner()->get_ID()<<" per pernottamento nella casella "<<currCell<<endl; //info su cell
                     pList.push(pt);
                 }
                 //non ha abbastanza soldi
@@ -139,6 +147,7 @@ int main(int argc, char* argv[]){
                     ofs<<"Giocatore "<<playerID<<"è stato eliminato"<<endl;
                     //NON ESEGUO IL PUSH, eliminato
                     //tutte le sue proprietà vengono rese libere
+                    //t.elimination(pt);
                 }
             }
         //termina la partita
