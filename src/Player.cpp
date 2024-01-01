@@ -1,6 +1,8 @@
 // @author Alberto Levorato, matricola: 2066600
 
 #include <iostream>
+#include <queue>
+#include "../include/Cell.h"
 #include "../include/Player.h"
 
 Player::Player(int ID)
@@ -42,19 +44,13 @@ bool Player::pc_buys(int valore) //va messo il seed?????????????????????????????
     }
     return false;
 }
-Cell Player::get_currCell() const{
-    return currentCell;
-}
-void Player::set_currCell(Cell curr){
-    currentCell = curr;
-}
-//helper functions
+
 int dadi() //va messo il seed???????????????????????????????? se vuoi che ogni volta estragga gli stessi valori
 {
     srand (time(NULL));
     return (rand() % 6 + 1)+(rand() % 6 + 1);
 }
-bool repeated_max(std::vector<int> a){
+bool noMaxRipetuti(std::vector<int> a){
         int max = 0;
         bool done = false;
         for(int i = 0; i<4; i++){
@@ -68,7 +64,7 @@ bool repeated_max(std::vector<int> a){
         }
         return done;
     }
-int get_posmax(std::vector<int> a){
+int getPosMax(std::vector<int> a){
     int max = 0;
     for(int i = 1; i<4; i++){
         if(a[i]>a[max]){
@@ -77,10 +73,10 @@ int get_posmax(std::vector<int> a){
     }
     return max;
 }
-void throw_again(std::vector<int> a){
+void rilanciaMaxRipetuti(std::vector<int> a){
     for(int i = 0; i<4; i++){
         if(a[i]==-1){
-            a[i] = dice();
+            a[i] = dadi();
         }
     }
 }

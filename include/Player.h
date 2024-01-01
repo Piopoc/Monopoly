@@ -4,6 +4,8 @@
 #define PLAYER_H
 #include <vector>
 
+class Cell;
+
 class Player{
     public:
     //costruttore con id player
@@ -25,14 +27,14 @@ class Player{
     //dove si trova
         Cell get_currCell() const;
     //dove va
-        void set_currCell(Cell curr)
+        void set_currCell(Cell curr);
     private:
     //fiorini
         int cash;
     //id del giocatore
         int playerID;
     //cella in cui si trova
-        Cell currentCell;
+        Cell* currentCell;
 };
 //tira 2 dadi
 int dice();

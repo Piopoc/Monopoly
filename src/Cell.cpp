@@ -35,7 +35,7 @@ void Cell::add_occupant(Player p)
 {
     for(int i = 0; i < number_of_occupants; i++)
     {
-        if(occupying[i].getID() == p.getID())
+        if(occupying[i].get_ID() == p.get_ID())
         {
             throw std::logic_error{"Giocatore già presente"};
         }
@@ -49,7 +49,7 @@ void Cell::remove_occupant(Player p)
 {
     for(int i = 0; i < number_of_occupants; i++)
     {
-        if(occupying[i].getID() == p.getID())
+        if(occupying[i].get_ID() == p.get_ID())
         {
             for(int j = i; j < number_of_occupants - 1; j++)
             {
@@ -140,7 +140,7 @@ std::string SideCell::to_string() const
     {   
         for(int i = 0; i < number_of_occupants; i++)
         {
-            s += (occupying[i].getID() + 48);  //Conversione da int a char
+            s += (occupying[i].get_ID() + 48);  //Conversione da int a char
             s += " ";
         }
     }
@@ -193,7 +193,7 @@ std::string EdgeCell::to_string() const
     {
         for(int i = 0; i < number_of_occupants; i++)
         {
-            s += (occupying[i].getID() + 48);
+            s += (occupying[i].get_ID() + 48);
             s += " ";
         }
     }

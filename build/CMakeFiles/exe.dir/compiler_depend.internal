@@ -192,6 +192,8 @@ CMakeFiles/exe.dir/src/Cell.cpp.o
 CMakeFiles/exe.dir/src/Player.cpp.o
  /home/piopo/Documenti/C++/monopoli/src/Player.cpp
  /home/piopo/Documenti/C++/monopoli/include/Player.h
+ /home/piopo/Documenti/C++/monopoli/include/Cell.h
+ /home/piopo/Documenti/C++/monopoli/include/Player.h
  /usr/include/alloca.h
  /usr/include/asm-generic/errno-base.h
  /usr/include/asm-generic/errno.h

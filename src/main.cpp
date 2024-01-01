@@ -19,7 +19,7 @@ int main(int argc, char* argv[]){
     //creazione tabellone di gioco
     tabellone t;
     //creazione giocatori con 100 fiorini di budget
-    Player* p1(1);
+    /* Player* p1(1);
     Player* p2(2);
     Player* p3(3);
     Player* p4(4);
@@ -73,11 +73,11 @@ int main(int argc, char* argv[]){
     t.insertStart(p1); //o eventualmente move(start,0) //?????????????????????????
     t.insertStart(p2); //?????????????????????????
     t.insertStart(p3);//?????????????????????????
-    t.insertStart(p4); //?????????????????????????
+    t.insertStart(p4); //????????????????????????? */
     //scelta modalità
     if (modalitaGioco == "computer") {
         //inizia la partita
-        while(pList.size()!=1){
+        /* while(pList.size()!=1){
             //player del turno
             Player* pt = pList.front();
             pList.pop();
@@ -149,7 +149,7 @@ int main(int argc, char* argv[]){
         Player& winner = *pList.front();
         ofs<<"Giocatore "<<playerID<<" ha vinto la partita"<<endl;
         ofs.close();
-        }
+        } */
     }
     else if (modalitaGioco == "human") {
         t.stampa(); //ogni volta che viene richiesto
@@ -160,12 +160,12 @@ int main(int argc, char* argv[]){
         arrivo su una casella di proprietà con una casa (chiede all’utente se desidera migliorare la casa in albergo).
         */
 
-        ofs.close();
+        //ofs.close();
     }
     else {
         cout << "Modalità non valida. Utilizzo: " << argv[0] << " <computer/human>" << endl;
-        ofs << "Modalità non valida. Utilizzo: " << argv[0] << " <computer/human>" << endl;
-        ofs.close();
+        //ofs << "Modalità non valida. Utilizzo: " << argv[0] << " <computer/human>" << endl;
+        //ofs.close();
         return 1;
     }
 

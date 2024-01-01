@@ -5,6 +5,7 @@
 #include <vector>
 #include "../include/Player.h"
 //Si usa per le celle laterali e ne definisce il tipo: contiene i vari prezzi associati al tipo di terreno
+
 struct Type
 {
     const int purchase_land;
