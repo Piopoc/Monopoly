@@ -96,9 +96,9 @@ int main(int argc, char* argv[]){
                 continue;
             }
             SideCell* currCell = dynamic_cast<SideCell*>(currGenericCell);
-            //non ha proprietario
+            //non ha proprietario, comprare?
             if(!currCell->has_owner()){
-                int price = currCell->get_type()->purchase_land;
+                int price = currCell->get_type().purchase_land;
                 if(pt->pc_buys(price)){
                     pt->withdraw(price);
                     currCell->add_owner(pt);
@@ -108,18 +108,18 @@ int main(int argc, char* argv[]){
             }
             //pt è proprietario
             else if (currCell->get_owner()==pt){
-                //proprietà senza casa
-                if(!currCell->hasHouse()){
-                    int price = currCell->get_type()->upgrade_to_house;
+                //proprietà senza casa, comprare casa?
+                if(!currCell->has_house()){
+                    int price = currCell->get_type().upgrade_to_house;
                     if(pt->pc_buys(price)){
                         pt->withdraw(price);
                         currCell->upgrade_property();
                         ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<currCell<<endl; //stampa info terreno?
                     }
                 }
-                //proprietà con casa
-                if(currCell->hasHouse() && !currCell->hasAlbergo()){
-                    int price = currCell->get_type()->upgrade_to_hotel;
+                //proprietà con casa, migliorare in hotel?
+                if(currCell->has_house() && !currCell->has_hotel()){
+                    int price = currCell->get_type().upgrade_to_hotel;
                     if(pt->pc_buys(price)){
                         pt->withdraw(price);
                         currCell->upgrade_property();
@@ -133,14 +133,15 @@ int main(int argc, char* argv[]){
             else{
                 int tax = 0;
                 if(currCell->has_house()){
-                    tax = currCell->get_type()->house_stay;
+                    tax = currCell->get_type().house_stay;
                 }
                 if(currCell->has_hotel()){
-                    tax = currCell->get_type()->hotel_stay;
+                    tax = currCell->get_type().hotel_stay;
                 }
                 //paga
                 if(pt->has_this_money(tax)){
-                    currCell->get_owner()->deposit(pt->withdraw(tax));
+                    pt->withdraw(tax);
+                    currCell->get_owner()->deposit(tax);
                     ofs<<"Giocatore "<<playerID<<" ha pagato "<<tax<<" fiorini a giocatore "<<currCell->get_owner()->get_ID()<<" per pernottamento nella casella "<<currCell<<endl; //info su cell
                     pList.push(pt);
                 }
