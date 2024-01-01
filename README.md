@@ -9,16 +9,6 @@ N.B.
 
 richieste per il main:
 
-a pier
-bool hasOwner()
-bool hasHouse()
-bool hasAlbergo()
-int getIDofOwner()
-
 a piopo
-void move(player,fromCell,numeroSalti)
-bool passAcrossStart(player,fromCell,toCell)
-Cell whereIs(player)
-
-RICHIESTA FUNZIONE
+RICHIESTA FUNZIONE void elimination(Player*)
 //tutte le sue proprietà vengono rese libere (dato il player)
