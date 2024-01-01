@@ -30,12 +30,12 @@ Type types::luxury()
 }
 
 //Cell
-//Aggiunge alla lista dei giocatori che occupano la casella, FALLISCE SILENZIOSAMENTE SE GIA' PRESENTE
-void Cell::add_occupant(Player p)
+//Aggiunge alla lista dei giocatori che occupano la casella
+void Cell::add_occupant(Player* p)
 {
     for(int i = 0; i < number_of_occupants; i++)
     {
-        if(occupying[i].get_ID() == p.get_ID())
+        if(occupying[i]->get_ID() == p->get_ID())
         {
             throw std::logic_error{"Giocatore già presente"};
         }
@@ -44,12 +44,12 @@ void Cell::add_occupant(Player p)
     occupying[number_of_occupants++] = p;
 }
 
-//Rimuove dalla lista dei giocatori che occupano la casella, FALLISCE SILENZIOSAMENTE SE NON PRESENTE
-void Cell::remove_occupant(Player p)
+//Rimuove dalla lista dei giocatori che occupano la casella
+void Cell::remove_occupant(Player* p)
 {
     for(int i = 0; i < number_of_occupants; i++)
     {
-        if(occupying[i].get_ID() == p.get_ID())
+        if(occupying[i]->get_ID() == p->get_ID())
         {
             for(int j = i; j < number_of_occupants - 1; j++)
             {
@@ -70,38 +70,34 @@ std::ostream& operator<<(std::ostream& o, const Cell& c)
 }
 
 //SideCell
-SideCell::SideCell(const Type& t, const std::string& c)
+SideCell::SideCell(const Type& t)
     : type{t}
-{coordinates = c;}
+{}
 
-//FALLISCE SILENZIONSAMENTE SE E' GIA' PRESENTE UN PROPRIETARIO
 void SideCell::add_owner(Player* p)
 {
-    if(is_owned)
+    if(owner)
     {  
         throw std::logic_error{"La casella ha già un proprietario"};
     }
 
-    is_owned = true;
     owner = p;
 }  
 
-//FALLISCE SILENZIOSAMENTE SE NON E' PRESENTE UN PROPRIETARIO
 void SideCell::remove_owner()
 {
-    if(!is_owned)
+    if(!owner)
     {
         throw std::logic_error{"La casella non ha un proprietario"};
     }
-
-    is_owned = false;
+    
+    owner = nullptr;
     property = 0;
 }
 
-//FALLISCE SILENZIOSAMENTE SE NON HA PROPRIETARIO O SE E' GIA' PRESENTE UN HOTEL
 void SideCell::upgrade_property()
 {
-    if(!is_owned)
+    if(!owner)
     {
         throw std::logic_error{"La casella non ha un proprietario"};    
     }
@@ -119,7 +115,7 @@ void SideCell::upgrade_property()
 
 Player* SideCell::get_owner() const
 {
-    if(!is_owned)
+    if(!owner)
     {
         throw std::logic_error{"La casella non ha un proprietario"};
     }
@@ -140,7 +136,7 @@ std::string SideCell::to_string() const
     {   
         for(int i = 0; i < number_of_occupants; i++)
         {
-            s += (occupying[i].get_ID() + 48);  //Conversione da int a char
+            s += (occupying[i]->get_ID() + 48);  //Conversione da int a char
             s += " ";
         }
     }
@@ -171,9 +167,9 @@ std::string SideCell::to_string() const
 }
 
 //EdgeCell
-EdgeCell::EdgeCell(bool s, const std::string& c)
+EdgeCell::EdgeCell(bool s)
     : is_start_cell{s}
-{coordinates = c;}
+{}
 
 std::string EdgeCell::to_string() const
 {
@@ -193,7 +189,7 @@ std::string EdgeCell::to_string() const
     {
         for(int i = 0; i < number_of_occupants; i++)
         {
-            s += (occupying[i].get_ID() + 48);
+            s += (occupying[i]->get_ID() + 48);
             s += " ";
         }
     }

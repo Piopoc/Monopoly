@@ -110,7 +110,7 @@ int main(int argc, char* argv[]){
                 if(!currCell->hasHouse()){
                     if(pt->pc_buys(currCell->get_value())){
                     //valutare il prezzo in base al terreno
-                    pt->withdraw(prezzo);
+                    pt.withdraw(prezzo);
                     ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<currCell<<endl; //stampa info terreno?
                     }
                 }
@@ -118,7 +118,7 @@ int main(int argc, char* argv[]){
                 if(currCell->hasHouse() && !currCell->hasAlbergo()){
                     if(pt->pc_buys(currCell->get_value())){
                     int prezzo; //valutare il prezzo in base al terreno
-                    pt->withdraw(prezzo);
+                    pt.withdraw(prezzo);
                     ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<currCell<<endl; //stampa info terreno?
                     }
                 }
@@ -156,12 +156,12 @@ int main(int argc, char* argv[]){
         arrivo su una casella di proprietà con una casa (chiede all’utente se desidera migliorare la casa in albergo).
         */
 
-        //ofs.close();
+        ofs.close();
     }
     else {
         cout << "Modalità non valida. Utilizzo: " << argv[0] << " <computer/human>" << endl;
-        //ofs << "Modalità non valida. Utilizzo: " << argv[0] << " <computer/human>" << endl;
-        //ofs.close();
+        ofs << "Modalità non valida. Utilizzo: " << argv[0] << " <computer/human>" << endl;
+        ofs.close();
         return 1;
     }
 

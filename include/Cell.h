@@ -30,21 +30,22 @@ namespace types
 class Cell
 {        
     public:
-        void add_occupant(Player p); //vanno messi in reference i player altrimenti si rischia inconsisenza
-        void remove_occupant(Player p); //vanno messi in reference i player altrimenti si rischia inconsisenza
+        void add_occupant(Player* p);
+        void remove_occupant(Player* p);
 
         Cell(const Cell&) = delete;
         Cell& operator=(const Cell&) = delete;
-
-        std::string get_coordinates() const {return coordinates;};
 
         virtual std::string to_string() const = 0;
         virtual ~Cell() = default;
 
     protected:
+<<<<<<< HEAD
         std::vector<Player> occupying{4}; //vector<Player*> meglio 
+=======
+        std::vector<Player*> occupying{4}; 
+>>>>>>> local
         int number_of_occupants = 0;
-        std::string coordinates;
         Cell() {};    
 }; 
 
@@ -54,12 +55,11 @@ std::ostream& operator<<(std::ostream& o, const Cell& c);
 class SideCell : public Cell
 {
     Type type;
-    Player* owner;
+    Player* owner = nullptr;
     char property = 0;
-    bool is_owned = 0;
 
     public:
-        SideCell(const Type& t, const std::string& c);
+        SideCell(const Type& t);
 
         void add_owner(Player* p);
         void remove_owner();
@@ -72,7 +72,7 @@ class SideCell : public Cell
 
         std::string to_string() const override;
         
-        bool has_owner() const {return is_owned;};
+        bool has_owner() const {return owner;};
         bool has_house() const {return (property == '*');};
         bool has_hotel() const {return (property == '^');};
 };
@@ -83,7 +83,7 @@ class EdgeCell : public Cell
     bool is_start_cell;
 
     public:
-        EdgeCell(bool s, const std::string& c);
+        EdgeCell(bool s);
 
         bool is_start() const {return is_start_cell;};
 
