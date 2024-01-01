@@ -64,7 +64,7 @@ int main(int argc, char* argv[]){
     }
     cout<<ordine;
     ofs<<ordine;
-    //inserisci i giocatori nella cella del via    
+    //inserisci i giocatori nella cella del via 
     Cell* start = t.get_cell(0);
     start->add_occupant(p1);
     start->add_occupant(p2);
@@ -82,55 +82,57 @@ int main(int argc, char* argv[]){
             int lancio = dice();
             ofs<<"Giocatore "<<playerID<<" ha tirato i dadi ottenendo un valore di "<<lancio<<endl;
             t.move(pt,lancio); //?????????????????????????
-            Cell* currCell = t.get_cell(pt->get_currpos());
+            Cell* currGenericCell = t.get_cell(pt->get_currpos());
             //situazioni possibili
-            if(passAcrossStart(player,fromCell,currCell)){ //?????????????????????????
+            if(passAcrossStart(player,fromCell,currGenericCell)){ //?????????????????????????
                 pt->deposit(20);
                 ofs<<"Giocatore "<<playerID<<" è passato dal via e ha ritirato 20 fiorini"<<endl;
             }
             ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<currCell; //cosa stampa il << di cell?//?????????????????????????
             //casella angolare
-            if(dynamic_cast<EdgeCell*> (currCell)){
-                pList.push(p);
+            if(dynamic_cast<EdgeCell*> (currGenericCell)){
+                pList.push(pt);
+                continue;
             }
+            SideCell* currCell = currGenericCell;
             //non ha proprietario
-            else if(!currCell.has_owner()){
-                if(pt->pc_buys(currCell.get_value())){
-                    pt->withdraw(currCell.get_value());
-                    currCell.add_owner(pt);
+            if(!currCell->has_owner()){
+                if(pt->pc_buys(currCell->get_value())){
+                    pt->withdraw(currCell->get_value());
+                    currCell->add_owner(pt);
                     ofs<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<currCell<<endl; //-...........
                 }
-                pList.push(p);      
+                pList.push(pt);      
             }
             //pt è proprietario
-            else if (currCell.get_owner()==pt){
+            else if (currCell->get_owner()==pt){
                 //proprietà senza casa
-                if(!currCell.hasHouse()){
-                    if(pt->pc_buys(currCell.get_value())){
+                if(!currCell->hasHouse()){
+                    if(pt->pc_buys(currCell->get_value())){
                     //valutare il prezzo in base al terreno
                     pt->withdraw(prezzo);
                     ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<currCell<<endl; //stampa info terreno?
                     }
                 }
                 //proprietà con casa
-                if(currCell.hasHouse() && !currCell.hasAlbergo()){
-                    if(pt->pc_buys(currCell.get_value())){
+                if(currCell->hasHouse() && !currCell->hasAlbergo()){
+                    if(pt->pc_buys(currCell->get_value())){
                     int prezzo; //valutare il prezzo in base al terreno
                     pt->withdraw(prezzo);
                     ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<currCell<<endl; //stampa info terreno?
                     }
                 }
                 //proprietà con albergo non può fare niente
-                pList.push(p);
+                pList.push(pt);
             }
             //proprietà altrui
             else{
-                int valoreProp = currCell.get_value();
+                int valoreProp = currCell->get_value();
                 //paga
-                if(pt->hasThisMoney(valoreProp)){
-                    currCell.get_owner().deposit(pt->withdraw(valoreProp));
-                    ofs<<"Giocatore "<<playerID<<" ha pagato "<<valoreProp<<" fiorini a giocatore "<<currCell.getProprietario().get_ID()<<" per pernottamento nella casella "<<currCell<<endl; //info su cell
-                    pList.push(p);
+                if(pt->has_this_money(valoreProp)){
+                    currCell->get_owner()->deposit(pt->withdraw(valoreProp));
+                    ofs<<"Giocatore "<<playerID<<" ha pagato "<<valoreProp<<" fiorini a giocatore "<<currCell->get_owner()->get_ID()<<" per pernottamento nella casella "<<currCell<<endl; //info su cell
+                    pList.push(pt);
                 }
                 //non ha abbastanza soldi
                 else{
