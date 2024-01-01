@@ -29,52 +29,52 @@ tabellone::tabellone(){
     
     for(int i=0;i<dim;i++){
         if(p==1 && i==corner_box1){
-            pointer.reset(new EdgeCell{true, ""});
+            pointer.reset(new EdgeCell{true});
             tabs.push_back(pointer);
         }
         else if(p==2 && i==corner_box2){
-            pointer.reset(new EdgeCell{true, ""});
+            pointer.reset(new EdgeCell{true});
             tabs.push_back(pointer);
         }
         else if(p==3 && i==corner_box3){
-            pointer.reset(new EdgeCell{true, ""});
+            pointer.reset(new EdgeCell{true});
             tabs.push_back(pointer);
         }
         else if(p==4 && i==corner_box4){
-            pointer.reset(new EdgeCell{true, ""});
+            pointer.reset(new EdgeCell{true});
             tabs.push_back(pointer);
         }
         else if(i==corner_box1 || i==corner_box2 || i==corner_box3 || i==corner_box4 ){
-            pointer.reset(new EdgeCell{false, ""});
+            pointer.reset(new EdgeCell{false});
             tabs.push_back(pointer);
         }
         else if(i>corner_box1 && i!=corner_box2 && i!=corner_box3 && i!=corner_box4){
             if (e > 0 || s > 0 || l > 0) {
                 int temp = rand() % 3 + 1;
                 if (e > 0 && temp == 1) {
-                        pointer.reset(new SideCell{types::economic(), ""});
+                        pointer.reset(new SideCell{types::economic()});
                         tabs.push_back(pointer);
                         e--;
                     } else if (s > 0 && temp == 2) {
-                        pointer.reset(new SideCell{types::standard(), ""});
+                        pointer.reset(new SideCell{types::standard()});
                         tabs.push_back(pointer);
                         s--;
                     } else if (l > 0 && temp == 3) {
-                        pointer.reset(new SideCell{types::luxury(), ""});
+                        pointer.reset(new SideCell{types::luxury()});
                         tabs.push_back(pointer);
                         l--;
                     } else {
                         // Trova la proprietà ancora disponibile
                         if (e > 0) {
-                            pointer.reset(new SideCell{types::economic(), ""});
+                            pointer.reset(new SideCell{types::economic()});
                             tabs.push_back(pointer);
                             e--;
                         } else if (s > 0) {
-                            pointer.reset(new SideCell{types::standard(), ""});
+                            pointer.reset(new SideCell{types::standard()});
                             tabs.push_back(pointer);
                             s--;
                         } else if (l > 0) {
-                            pointer.reset(new SideCell{types::luxury(), ""});
+                            pointer.reset(new SideCell{types::luxury()});
                             tabs.push_back(pointer);
                             l--;
                         }
@@ -166,7 +166,7 @@ int tabellone::parametrizzazione_bordo_y(int t)
     }
     
 }
-
+/*
 std::string tabellone::create_coordinates(int t)
 {
     char x = parametrizzazione_bordo_x(t) + 49;
