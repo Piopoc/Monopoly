@@ -40,11 +40,7 @@ class Cell
         virtual ~Cell() = default;
 
     protected:
-<<<<<<< HEAD
-        std::vector<Player> occupying{4}; //vector<Player*> meglio 
-=======
         std::vector<Player*> occupying{4}; 
->>>>>>> local
         int number_of_occupants = 0;
         Cell() {};    
 }; 
