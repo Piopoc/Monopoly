@@ -19,15 +19,15 @@ int main(int argc, char* argv[]){
     //creazione tabellone di gioco
     tabellone t;
     //creazione giocatori con 100 fiorini di budget
-    Player* p1(1);
-    Player* p2(2);
-    Player* p3(3);
-    Player* p4(4);
+    Player* p1 = new Player(1);
+    Player* p2 = new Player(2);
+    Player* p3 = new Player(3);
+    Player* p4 = new Player(4);
     //apertura file log in scrittura
     ofstream ofs("partita.log",ofstream::out);
     if(!ofs.good()) throw std::exception();
     //determinazione ordine di gioco inserendo i giocatori in una coda
-    queue<Player*> pList; //da valutare se mettere nel free store //?????????????????????????
+    queue<Player*> pList;
     //vettore con lanci di dadi e corrispettivi giocatori
     vector<int> lanciDadi;
     vector<Player*> corrispettivi;
@@ -64,16 +64,12 @@ int main(int argc, char* argv[]){
     }
     cout<<ordine;
     ofs<<ordine;
-    //inserisci i giocatori nella cella del via
-    Cell start = t.get_start();
-    p1->set_currCell(start);
-    p2->set_currCell(start);
-    p3->set_currCell(start);
-    p4->set_currCell(start);
-    t.insertStart(p1); //o eventualmente move(start,0) //?????????????????????????
-    t.insertStart(p2); //?????????????????????????
-    t.insertStart(p3);//?????????????????????????
-    t.insertStart(p4); //????????????????????????? 
+    //inserisci i giocatori nella cella del via    
+    Cell* start = t.get_cell(0);
+    start->add_occupant(p1);
+    start->add_occupant(p2);
+    start->add_occupant(p3);
+    start->add_occupant(p4);
     //scelta modalità
     if (modalitaGioco == "computer") {
         //inizia la partita
@@ -85,10 +81,8 @@ int main(int argc, char* argv[]){
             //sposto il giocatore
             int lancio = dice();
             ofs<<"Giocatore "<<playerID<<" ha tirato i dadi ottenendo un valore di "<<lancio<<endl;
-            Cell currCell = pt->get_currCell();
-            currCell.remove_occupant(pt);
-            currCell = t.move(pt,currCell,lancio); //?????????????????????????
-            currCell.add_occupant(pt);
+            t.move(pt,lancio); //?????????????????????????
+            Cell* currCell = t.get_cell(pt->get_currpos());
             //situazioni possibili
             if(passAcrossStart(player,fromCell,currCell)){ //?????????????????????????
                 pt->deposit(20);

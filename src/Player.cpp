@@ -6,7 +6,7 @@
 #include "../include/Player.h"
 
 Player::Player(int ID)
-    : cash{100}, playerID{ID} 
+    : cash{100}, playerID{ID}, currentPos(0)
 {
 }
 Player& Player::operator=(Player& p)

@@ -42,7 +42,7 @@ class Cell
         virtual ~Cell() = default;
 
     protected:
-        std::vector<Player> occupying{4};
+        std::vector<Player> occupying{4}; //vector<Player*> meglio 
         int number_of_occupants = 0;
         std::string coordinates;
         Cell() {};    
