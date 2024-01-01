@@ -40,7 +40,7 @@ class Cell
         virtual ~Cell() = default;
 
     protected:
-        std::vector<Player*> occupying{4};
+        std::vector<Player*> occupying{4}; 
         int number_of_occupants = 0;
         Cell() {};    
 }; 
@@ -51,7 +51,7 @@ std::ostream& operator<<(std::ostream& o, const Cell& c);
 class SideCell : public Cell
 {
     Type type;
-    Player* owner;
+    Player* owner = nullptr;
     char property = 0;
 
     public:

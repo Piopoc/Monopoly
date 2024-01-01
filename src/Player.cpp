@@ -44,10 +44,10 @@ bool Player::pc_buys(int valore) //va messo il seed?????????????????????????????
     }
     return false;
 }
-int get_currpos() const{
+int Player::get_currpos() const{
     return currentPos;
 }
-void set_currpos(int pos){
+void Player::set_currpos(int pos){
     currentPos = pos;
 }
 
