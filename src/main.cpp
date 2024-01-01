@@ -118,9 +118,9 @@ int main(int argc, char* argv[]){
                 //proprietà con casa
                 if(currCell->hasHouse() && !currCell->hasAlbergo()){
                     if(pt->pc_buys(currCell->get_value())){
-                    int prezzo; //valutare il prezzo in base al terreno
-                    pt->withdraw(prezzo);
-                    ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<currCell<<endl; //stampa info terreno?
+                        int prezzo; //valutare il prezzo in base al terreno
+                        pt->withdraw(prezzo);
+                        ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<currCell<<endl; //stampa info terreno?
                     }
                 }
                 //proprietà con albergo non può fare niente
