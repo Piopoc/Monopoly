@@ -147,10 +147,9 @@ int main(int argc, char* argv[]){
                 }
                 //non ha abbastanza soldi
                 else{
+                    t.elimination(pt);
                     ofs<<"Giocatore "<<playerID<<"è stato eliminato"<<endl;
-                    //NON ESEGUO IL PUSH, eliminato
-                    //tutte le sue proprietà vengono rese libere
-                    //t.elimination(pt);
+                    //NON ESEGUO IL PUSH, eliminato giocatore
                 }
             }
         //termina la partita
