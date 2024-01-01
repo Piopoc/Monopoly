@@ -19,7 +19,7 @@ int main(int argc, char* argv[]){
     //creazione tabellone di gioco
     tabellone t;
     //creazione giocatori con 100 fiorini di budget
-    /* Player* p1(1);
+    Player* p1(1);
     Player* p2(2);
     Player* p3(3);
     Player* p4(4);
@@ -73,11 +73,11 @@ int main(int argc, char* argv[]){
     t.insertStart(p1); //o eventualmente move(start,0) //?????????????????????????
     t.insertStart(p2); //?????????????????????????
     t.insertStart(p3);//?????????????????????????
-    t.insertStart(p4); //????????????????????????? */
+    t.insertStart(p4); //????????????????????????? 
     //scelta modalità
     if (modalitaGioco == "computer") {
         //inizia la partita
-        /* while(pList.size()!=1){
+        while(pList.size()!=1){
             //player del turno
             Player* pt = pList.front();
             pList.pop();
@@ -101,8 +101,8 @@ int main(int argc, char* argv[]){
             }
             //non ha proprietario
             else if(!currCell.has_owner()){
-                if(pt.pc_buys(currCell.get_value())){
-                    pt.withdraw(currCell.get_value());
+                if(pt->pc_buys(currCell.get_value())){
+                    pt->withdraw(currCell.get_value());
                     currCell.add_owner(pt);
                     ofs<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<currCell<<endl; //-...........
                 }
@@ -112,17 +112,17 @@ int main(int argc, char* argv[]){
             else if (currCell.get_owner()==pt){
                 //proprietà senza casa
                 if(!currCell.hasHouse()){
-                    if(pt.pc_buys(currCell.get_value())){
+                    if(pt->pc_buys(currCell.get_value())){
                     //valutare il prezzo in base al terreno
-                    pt.withdraw(prezzo);
+                    pt->withdraw(prezzo);
                     ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<currCell<<endl; //stampa info terreno?
                     }
                 }
                 //proprietà con casa
                 if(currCell.hasHouse() && !currCell.hasAlbergo()){
-                    if(pt.pc_buys(currCell.get_value())){
+                    if(pt->pc_buys(currCell.get_value())){
                     int prezzo; //valutare il prezzo in base al terreno
-                    pt.withdraw(prezzo);
+                    pt->withdraw(prezzo);
                     ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<currCell<<endl; //stampa info terreno?
                     }
                 }
@@ -133,9 +133,9 @@ int main(int argc, char* argv[]){
             else{
                 int valoreProp = currCell.get_value();
                 //paga
-                if(pt.hasThisMoney(valoreProp)){
-                    currCell.get_owner().deposit(pt.withdraw(valoreProp));
-                    ofs<<<<"Giocatore "<<playerID<<" ha pagato "<<valoreProp<<" fiorini a giocatore "<<currCell.getProprietario().get_ID()<<" per pernottamento nella casella "<<currCell<<endl; //info su cell
+                if(pt->hasThisMoney(valoreProp)){
+                    currCell.get_owner().deposit(pt->withdraw(valoreProp));
+                    ofs<<"Giocatore "<<playerID<<" ha pagato "<<valoreProp<<" fiorini a giocatore "<<currCell.getProprietario().get_ID()<<" per pernottamento nella casella "<<currCell<<endl; //info su cell
                     pList.push(p);
                 }
                 //non ha abbastanza soldi
@@ -149,7 +149,7 @@ int main(int argc, char* argv[]){
         Player& winner = *pList.front();
         ofs<<"Giocatore "<<playerID<<" ha vinto la partita"<<endl;
         ofs.close();
-        } */
+        }
     }
     else if (modalitaGioco == "human") {
         t.stampa(); //ogni volta che viene richiesto

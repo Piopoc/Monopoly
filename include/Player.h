@@ -25,16 +25,16 @@ class Player{
     //controlla se puo e sceglie se comprare p=25% computer
         bool pc_buys(int valore);
     //dove si trova
-        Cell get_currCell() const;
+        int get_currpos() const;
     //dove va
-        void set_currCell(Cell curr);
+        void set_currpos(int pos);
     private:
     //fiorini
         int cash;
     //id del giocatore
         int playerID;
     //cella in cui si trova
-        Cell* currentCell;
+        int currentPos;
 };
 //tira 2 dadi
 int dice();
