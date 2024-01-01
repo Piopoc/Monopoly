@@ -78,27 +78,29 @@ int main(int argc, char* argv[]){
             Player* pt = pList.front();
             pList.pop();
             int playerID = pt->get_ID();
+            int initialPosition = pt->get_currpos();
             //sposto il giocatore
             int lancio = dice();
             ofs<<"Giocatore "<<playerID<<" ha tirato i dadi ottenendo un valore di "<<lancio<<endl;
             t.move(pt,lancio); //?????????????????????????
             Cell* currGenericCell = t.get_cell(pt->get_currpos());
             //situazioni possibili
-            if(passAcrossStart(player,fromCell,currGenericCell)){ //?????????????????????????
+            if(t.beyond_start(pt,initialPosition,pt->get_currpos())){ //?????????????????????????
                 pt->deposit(20);
                 ofs<<"Giocatore "<<playerID<<" è passato dal via e ha ritirato 20 fiorini"<<endl;
             }
-            ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<currCell; //cosa stampa il << di cell?//?????????????????????????
+            ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<t.get_cellname(pt->get_currpos());
             //casella angolare
             if(dynamic_cast<EdgeCell*> (currGenericCell)){
                 pList.push(pt);
                 continue;
             }
-            SideCell* currCell = currGenericCell;
+            SideCell* currCell = dynamic_cast<SideCell*>(currGenericCell);
             //non ha proprietario
             if(!currCell->has_owner()){
-                if(pt->pc_buys(currCell->get_value())){
-                    pt->withdraw(currCell->get_value());
+                int price = currCell->get_type()->purchase_land;
+                if(pt->pc_buys(price)){
+                    pt->withdraw(price);
                     currCell->add_owner(pt);
                     ofs<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<currCell<<endl; //-...........
                 }
@@ -110,16 +112,17 @@ int main(int argc, char* argv[]){
                 if(!currCell->hasHouse()){
                     int price = currCell->get_type()->upgrade_to_house;
                     if(pt->pc_buys(price)){
-                        currCell->add_owner(pt);
                         pt->withdraw(price);
+                        currCell->upgrade_property();
                         ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<currCell<<endl; //stampa info terreno?
                     }
                 }
                 //proprietà con casa
                 if(currCell->hasHouse() && !currCell->hasAlbergo()){
-                    if(pt->pc_buys(currCell->get_value())){
-                        int prezzo; //valutare il prezzo in base al terreno
-                        pt->withdraw(prezzo);
+                    int price = currCell->get_type()->upgrade_to_hotel;
+                    if(pt->pc_buys(price)){
+                        pt->withdraw(price);
+                        currCell->upgrade_property();
                         ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<currCell<<endl; //stampa info terreno?
                     }
                 }
