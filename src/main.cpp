@@ -85,7 +85,7 @@ int main(int argc, char* argv[]){
             t.move(pt,lancio); //?????????????????????????
             Cell* currGenericCell = t.get_cell(pt->get_currpos());
             //situazioni possibili
-            if(t.beyond_start(pt,initialPosition,pt->get_currpos())){ //?????????????????????????
+            if(t.beyond_start(pt,initialPosition)){ //?????????????????????????
                 pt->deposit(20);
                 ofs<<"Giocatore "<<playerID<<" è passato dal via e ha ritirato 20 fiorini"<<endl;
             }
@@ -159,7 +159,7 @@ int main(int argc, char* argv[]){
         }
     }
     else if (modalitaGioco == "human") {
-        t.stampa(); //ogni volta che viene richiesto
+        t.print_matrix(); //ogni volta che viene richiesto
                     
         /*interazioni con humanPlayer
         arrivo su una casella non ancora venduta (chiede all’utente se desidera comprarla);

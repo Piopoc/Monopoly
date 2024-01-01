@@ -52,47 +52,45 @@ tabellone::tabellone(){
             if (e > 0 || s > 0 || l > 0) {
                 int temp = rand() % 3 + 1;
                 if (e > 0 && temp == 1) {
+                    pointer.reset(new SideCell{types::economic()});
+                    tabs.push_back(pointer);
+                    e--;
+                } else if (s > 0 && temp == 2) {
+                    pointer.reset(new SideCell{types::standard()});
+                    tabs.push_back(pointer);
+                    s--;
+                } else if (l > 0 && temp == 3) {
+                    pointer.reset(new SideCell{types::luxury()});
+                    tabs.push_back(pointer);
+                    l--;
+                } else {
+                    // Trova la proprietà ancora disponibile
+                    if (e > 0) {
                         pointer.reset(new SideCell{types::economic()});
                         tabs.push_back(pointer);
                         e--;
-                    } else if (s > 0 && temp == 2) {
+                    } else if (s > 0) {
                         pointer.reset(new SideCell{types::standard()});
                         tabs.push_back(pointer);
                         s--;
-                    } else if (l > 0 && temp == 3) {
+                    } else if (l > 0) {
                         pointer.reset(new SideCell{types::luxury()});
                         tabs.push_back(pointer);
                         l--;
-                    } else {
-                        // Trova la proprietà ancora disponibile
-                        if (e > 0) {
-                            pointer.reset(new SideCell{types::economic()});
-                            tabs.push_back(pointer);
-                            e--;
-                        } else if (s > 0) {
-                            pointer.reset(new SideCell{types::standard()});
-                            tabs.push_back(pointer);
-                            s--;
-                        } else if (l > 0) {
-                            pointer.reset(new SideCell{types::luxury()});
-                            tabs.push_back(pointer);
-                            l--;
-                        }
                     }
+                }
             }
         }
     }
 }
 
-void tabellone::stampa(){
+void tabellone::print_matrix(){
     static const int dim=10;
     std::string matrix[dim][dim];
     int fraw=1;
     int fcolomn=65;  
 
     matrix[0][0] = " ";
-    matrix[1][0] = " ";
-    matrix[0][1] = " ";
 
     for(int i = 1; i < dim- 1; i++)
     {
@@ -166,20 +164,71 @@ int tabellone::parametrizzazione_bordo_y(int t)
     }
     
 }
-/*
-std::string tabellone::create_coordinates(int t)
-{
-    char x = parametrizzazione_bordo_x(t) + 49;
-    char y = parametrizzazione_bordo_y(t) + 65;
-    std::string s = std::to_string(y + x);
-    return s;
+
+bool tabellone::beyond_start(Player* p, int from){
+    return p->get_currpos()<from;
 }
-// funzioni da implementare:
-    //get_start()
-/*
-bool tabellone::beyondStart(Player p){
-    Cell from=whereIs(p);
-    move(p,from,numerosalti);
-    Cell to=whereIs(p);
-    return to<from;
-}*/
+
+void tabellone::move(Player* p, int spostamenti){
+    int from=p->get_currpos();
+    tabs[from]->remove_occupant(p);
+    int to=(from+spostamenti)%tabs.size();
+    p->set_currpos(to);
+    tabs[to]->add_occupant(p);
+}
+
+Cell* tabellone::get_cell(int pos){
+    if(pos>=0 && pos<tabs.size()){
+        return tabs[pos].get();
+    }
+    else{
+        throw std::out_of_range("indice supera il limite");
+    }
+}
+
+// PROBABILMENTE NON È IL MODO PIÙ EFFICIENTE PER FARLO --> POSSIBILE DEBUG IN FUTURO
+std::string tabellone::get_cellname(int pos){
+    static const int dim=10;
+    std::string matrix[dim][dim];
+    int fraw=1;
+    int fcolomn=65;  
+
+    matrix[0][0] = " ";
+
+    for(int i = 1; i < dim- 1; i++)
+    {
+        matrix[i][0]=std::string(1, static_cast<char>(fcolomn++));
+        matrix[0][i]="      "+std::to_string(fraw++)+"      ";
+    }
+
+    for(int t = 0; t <tabs.size(); t++)
+    {
+        matrix[parametrizzazione_bordo_y(t)][parametrizzazione_bordo_x(t)] = tabs[t] -> to_string();
+    }
+
+    for(int y = 2; y < dim-2; y++)
+    {
+        for(int x = 2; x < dim-2; x++)
+        {
+            matrix[y][x] = "             ";
+        }
+    }
+
+    for(int i=0;i<dim-1;i++){
+        for(int j=0;j<dim;j++){
+            if(tabs[pos]->to_string()==matrix[i][j]){
+                return matrix[i][0]+matrix[0][j];
+            }
+        }
+    }
+    throw std::logic_error("cella non trovata");
+}
+
+void tabellone::elimination(Player* p){
+    for(int i=0; i < tabs.size(); i++){
+        std::shared_ptr<SideCell> sideCell = std::dynamic_pointer_cast<SideCell>(tabs[i]);
+        if(sideCell && p == sideCell->get_owner()){
+            sideCell->remove_owner();
+        }
+    }
+}
