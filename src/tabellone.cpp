@@ -17,7 +17,8 @@ tabellone::tabellone(){
     int corner_box3=14;
     int corner_box4=21;
 
-    int p=rand()%4+1;
+    //int p=rand()%4+1;
+    int p=1;
     int e=8;
     int s=10;
     int l=6;
