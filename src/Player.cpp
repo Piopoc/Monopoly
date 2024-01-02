@@ -8,6 +8,9 @@
 Player::Player(int ID)
     : cash{100}, playerID{ID}, currentPos(0)
 {
+    if(ID<1 || ID>4){
+        throw std::logic_error{"ID compresi tra 1 e 4"};
+    }
 }
 Player& Player::operator=(Player& p)
 {

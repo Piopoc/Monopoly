@@ -55,7 +55,7 @@ class SideCell : public Cell
     char property = 0;
 
     public:
-        SideCell(const Type& t);
+        explicit SideCell(const Type& t);
 
         void add_owner(Player* p);
         void remove_owner();
@@ -79,7 +79,7 @@ class EdgeCell : public Cell
     bool is_start_cell;
 
     public:
-        EdgeCell(bool s);
+        explicit EdgeCell(bool s);
 
         bool is_start() const {return is_start_cell;};
 

@@ -6,7 +6,7 @@
 
 class Player{
     public:
-        explicit Player(int ID = 0); //costruttore con id player
+        explicit Player(int ID); //costruttore con id player
         Player& operator=(Player& p); //assegnamento per copia
         bool has_this_money(int valore); //controllo se ha abbastanza denaro da spendere
         int get_money(); //ottiene il saldo giocatore

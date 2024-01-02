@@ -16,14 +16,17 @@ int main(int argc, char* argv[]){
         return -1; // restituisco 1 per indicare un errore
     }
     string modalitaGioco = argv[1];
-    srand(static_cast<unsigned int>(time(0)));    
+    if(modalitaGioco != "computer" && modalitaGioco != "human"){
+        cout << "Modalità non valida. Utilizzo: " << argv[0] << " <computer/human>" << endl;
+        return 1;
+    }   
     //creazione tabellone di gioco
     tabellone t;
     //creazione giocatori con 100 fiorini di budget
-    Player* p1 = new Player(1);
-    Player* p2 = new Player(2);
-    Player* p3 = new Player(3);
-    Player* p4 = new Player(4);
+    Player p1 (1);
+    Player p2 (2);
+    Player p3 (3);
+    Player p4 (4);
     //apertura file log in scrittura
     ofstream ofs("partita.log",ofstream::out);
     if(!ofs.good()) throw std::exception();
@@ -33,13 +36,13 @@ int main(int argc, char* argv[]){
     vector<int> lanciDadi;
     vector<Player*> corrispettivi;
     lanciDadi.push_back(dice());
-    corrispettivi.push_back(p1);
+    corrispettivi.push_back(&p1);
     lanciDadi.push_back(dice());
-    corrispettivi.push_back(p2);
+    corrispettivi.push_back(&p2);
     lanciDadi.push_back(dice());
-    corrispettivi.push_back(p3);
+    corrispettivi.push_back(&p3);
     lanciDadi.push_back(dice());
-    corrispettivi.push_back(p4);
+    corrispettivi.push_back(&p4);
     //gestione ordine di partenza
     int full = 0;
     while(full!=4){
@@ -67,10 +70,10 @@ int main(int argc, char* argv[]){
     ofs<<ordine;
     //inserisci i giocatori nella cella del via 
     shared_ptr<Cell> start = t.get_cell(0);
-    start->add_occupant(p1);
-    start->add_occupant(p2);
-    start->add_occupant(p3);
-    start->add_occupant(p4);
+    start->add_occupant(&p1);
+    start->add_occupant(&p2);
+    start->add_occupant(&p3);
+    start->add_occupant(&p4);
     //scelta modalità
     if (modalitaGioco == "computer") {
         //inizia la partita
@@ -155,8 +158,8 @@ int main(int argc, char* argv[]){
             }
         }
         //termina la partita
-        Player& winner = *pList.front();
-        ofs<<"Giocatore "<<playerID<<" ha vinto la partita"<<endl;
+        Player* winner = pList.front();
+        ofs<<"Giocatore "<<winner->get_ID()<<" ha vinto la partita"<<endl;
         ofs.close();
     }
     else if (modalitaGioco == "human") {
@@ -170,12 +173,7 @@ int main(int argc, char* argv[]){
 
         ofs.close();
     }
-    else {
-        cout << "Modalità non valida. Utilizzo: " << argv[0] << " <computer/human>" << endl;
-        ofs << "Modalità non valida. Utilizzo: " << argv[0] << " <computer/human>" << endl;
-        ofs.close();
-        return 1;
-    }
+    
 
     
     /* cout<<" ___ ___   ___   ____    ___   ____    ___   _      ____      ____   __ __      _       ____  ___ ___  ____   ___     ____ "<<endl;
@@ -186,6 +184,6 @@ int main(int argc, char* argv[]){
     cout<<"|   |   ||     ||  |  ||     ||  |   |     ||     | |  |     |     ||     |    |     ||  |  ||   |   ||     ||     ||  |  |"<<endl;
     cout<<"|___|___| \\___/ |__|__| \\___/ |__|    \\___/ |_____||____|    |_____||____/     |_____||__|__||___|___||_____||_____||__|__|"<<endl;
     cout<<"---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<<endl;
-    */ return 0;
-
+    */
+    return 0;
 }
