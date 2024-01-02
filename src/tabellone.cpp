@@ -186,42 +186,18 @@ Cell* tabellone::get_cell(int pos){
     }
 }
 
-// PROBABILMENTE NON È IL MODO PIÙ EFFICIENTE PER FARLO --> POSSIBILE DEBUG IN FUTURO
 std::string tabellone::get_cellname(int pos){
-    static const int dim=10;
-    std::string matrix[dim][dim];
-    int fraw=1;
-    int fcolomn=65;  
-
-    matrix[0][0] = " ";
-
-    for(int i = 1; i < dim- 1; i++)
+    if(pos < 0 || pos >= tabs.size())
     {
-        matrix[i][0]=std::string(1, static_cast<char>(fcolomn++));
-        matrix[0][i]="      "+std::to_string(fraw++)+"      ";
+        throw std::logic_error("Casella non trovata");
     }
 
-    for(int t = 0; t <tabs.size(); t++)
-    {
-        matrix[parametrizzazione_bordo_y(t)][parametrizzazione_bordo_x(t)] = tabs[t] -> to_string();
-    }
-
-    for(int y = 2; y < dim-2; y++)
-    {
-        for(int x = 2; x < dim-2; x++)
-        {
-            matrix[y][x] = "             ";
-        }
-    }
-
-    for(int i=0;i<dim-1;i++){
-        for(int j=0;j<dim;j++){
-            if(tabs[pos]->to_string()==matrix[i][j]){
-                return matrix[i][0]+matrix[0][j];
-            }
-        }
-    }
-    throw std::logic_error("cella non trovata");
+    char x = parametrizzazione_bordo_x(pos) + 48;
+    char y = parametrizzazione_bordo_y(pos) + 64;
+    std::string s = "";
+    s += y;
+    s += x;
+    return s;
 }
 
 void tabellone::elimination(Player* p){
