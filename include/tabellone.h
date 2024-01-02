@@ -10,7 +10,7 @@ class tabellone{
     public:
         tabellone();
         void print_matrix();
-        Cell* get_cell(int pos); //da definire che torna la ref alla cell dell'indice array
+        std::shared_ptr<Cell> get_cell(int pos); //da definire che torna la ref alla cell dell'indice array
         bool beyond_start(Player* p, int from); //da definire
         void move(Player* p, int spostamenti); //da definire
         std::string get_cellname(int pos); //ritorna ad es A1
