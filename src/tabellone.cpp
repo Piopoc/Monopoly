@@ -176,7 +176,7 @@ int tabellone::parametrizzazione_bordo_y(int t)
 }
 
 bool tabellone::beyond_start(Player* p, int from){
-    return p->get_currpos()<from;
+    return p->get_currpos()<from; //pettini
 }
 
 void tabellone::move(Player* p, int spostamenti){
