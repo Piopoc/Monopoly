@@ -187,9 +187,9 @@ void tabellone::move(Player* p, int spostamenti){
     tabs[to]->add_occupant(p);
 }
 
-Cell* tabellone::get_cell(int pos){
+std::shared_ptr<Cell> tabellone::get_cell(int pos){
     if(pos>=0 && pos<tabs.size()){
-        return tabs[pos].get();
+        return tabs[pos];
     }
     else{
         throw std::out_of_range("indice supera il limite");

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <queue>
 #include <fstream>
+#include <memory>
 #include "../include/tabellone.h"
 #include "../include/Player.h"
 #include "../include/Cell.h"
@@ -65,7 +66,7 @@ int main(int argc, char* argv[]){
     cout<<ordine;
     ofs<<ordine;
     //inserisci i giocatori nella cella del via 
-    Cell* start = t.get_cell(0);
+    shared_ptr<Cell> start = t.get_cell(0);
     start->add_occupant(p1);
     start->add_occupant(p2);
     start->add_occupant(p3);
@@ -83,7 +84,7 @@ int main(int argc, char* argv[]){
             int lancio = dice();
             ofs<<"Giocatore "<<playerID<<" ha tirato i dadi ottenendo un valore di "<<lancio<<endl;
             t.move(pt,lancio); //?????????????????????????
-            Cell* currGenericCell = t.get_cell(pt->get_currpos());
+            shared_ptr<Cell> currGenericCell = t.get_cell(pt->get_currpos());
             //situazioni possibili
             if(t.beyond_start(pt,initialPosition)){ //?????????????????????????
                 pt->deposit(20);
@@ -91,11 +92,11 @@ int main(int argc, char* argv[]){
             }
             ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<t.get_cellname(pt->get_currpos());
             //casella angolare
-            if(dynamic_cast<EdgeCell*> (currGenericCell)){
+            if(dynamic_pointer_cast<EdgeCell> (currGenericCell)){
                 pList.push(pt);
                 continue;
             }
-            SideCell* currCell = dynamic_cast<SideCell*>(currGenericCell);
+            shared_ptr<SideCell> currCell = dynamic_pointer_cast<SideCell>(currGenericCell);
             //non ha proprietario, comprare?
             if(!currCell->has_owner()){
                 int price = currCell->get_type().purchase_land;
@@ -152,11 +153,11 @@ int main(int argc, char* argv[]){
                     //NON ESEGUO IL PUSH, eliminato giocatore
                 }
             }
+        }
         //termina la partita
         Player& winner = *pList.front();
         ofs<<"Giocatore "<<playerID<<" ha vinto la partita"<<endl;
         ofs.close();
-        }
     }
     else if (modalitaGioco == "human") {
         t.print_matrix(); //ogni volta che viene richiesto
