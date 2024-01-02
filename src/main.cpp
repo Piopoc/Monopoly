@@ -139,21 +139,43 @@ int main(int argc, char* argv[]){
             if(pt->get_ID()==humanID){
                 string input;
                 bool done = false;
-                while(!done)
-                {
-                    cout<<"turno human player\n[do]\n[show]\n[end]"<<endl;
+                bool turn = false;
+                while(!turn) //input!="end"
+                {   
+                    if(!done){
+                        cout<<"turno human player\n[do]\n[show]\n[end]"<<endl;
+                    }
+                    else{
+                        cout<<"turno human player\n[show]\n[end]"<<endl;
+                    }
                     cin>>input;
-                    if(input=="do"){
+                    if(input=="do" && done==false){
                         done = human_plays(t,pt,playerID,currGenericCell,pList,cout,ofs,cin); 
                         cout<<endl;                    
                     }
+                    else if(input=="do" && done==false){
+                        cout<<"azioni già svolte, usi [end] per terminare"<<endl;
+                    }
                     else if(input=="show"){
-                        //a visualizzare il tabellone
-                        //b visualizzare lista terreni/case/alberghi posseduti da ogni giocatore
-                        //c visualizzare l’ammontare di fiorini posseduto da tutti i giocatori
+                        string what;
+                        cout<<"\n[t] visualizzare il tabellone\n[p] lista possedimenti\n[c] conti bancari\nelse back to menu"<<endl;
+                        cin>>what;
+                        if(what=="t"){
+                            t.print_matrix();
+                        }
+                        else if(what=="p"){
+
+                        }
+                        else if(what=="c"){
+
+                        }
                     }
                     else if(input=="end" && done==false){
                         cout<<"devi prima completare il tuo turno con [do]"<<endl;
+                    }
+                    else if(input=="end" && done==true){
+                        cout<<endl<<"TURNO SUCCESSIVO"<<endl<<endl;
+                        turn = true;
                     }
                     else{
                         cout<<"comando non trovato, riprova"<<endl;
@@ -182,7 +204,7 @@ bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGe
     //casella angolare
     if(dynamic_pointer_cast<EdgeCell> (currGenericCell)){
         pList.push(pt);
-        cout<<"si trova in una cella angolare, fine turno"<<endl;
+        cout<<"si trova in una cella angolare"<<endl;
         return true;
     }
     shared_ptr<SideCell> currCell = dynamic_pointer_cast<SideCell>(currGenericCell);
@@ -195,17 +217,17 @@ bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGe
             pt->withdraw(price);
             currCell->add_owner(pt);
             ofs<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<t.get_cellname(pt->get_currpos())<<endl;
-            cout<<"terreno acquistato, fine turno"<<endl;
+            cout<<"terreno acquistato"<<endl;
             pList.push(pt);
             return true;
         }   
         else if(in=="y"){
-            cout<<"non possiede abbastanza denaro, fine turno"<<endl;
+            cout<<"non possiede abbastanza denaro"<<endl;
             pList.push(pt);
             return true;
         }
         else if(in=="n"){
-            cout<<"terreno non acquistato, fine turno"<<endl;
+            cout<<"terreno non acquistato"<<endl;
             pList.push(pt);
             return true;
         }
@@ -224,17 +246,17 @@ bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGe
                 pt->withdraw(price);
                 currCell->upgrade_property();
                 ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<t.get_cellname(pt->get_currpos())<<endl;
-                cout<<"casa acquistata, fine turno"<<endl;
+                cout<<"casa acquistata"<<endl;
                 pList.push(pt);
             return true;
             }   
             else if(in=="y"){
-                cout<<"non possiede abbastanza denaro, fine turno"<<endl;
+                cout<<"non possiede abbastanza denaro"<<endl;
                 pList.push(pt);
                 return true;
             }
             else if(in=="n"){
-                cout<<"casa non acquistata, fine turno"<<endl;
+                cout<<"casa non acquistata"<<endl;
                 pList.push(pt);
                 return true;
             }
@@ -251,17 +273,17 @@ bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGe
                 pt->withdraw(price);
                 currCell->upgrade_property();
                 ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<t.get_cellname(pt->get_currpos())<<endl; //stampa info terreno?
-                cout<<"hotel acquistato, fine turno"<<endl;
+                cout<<"hotel acquistato"<<endl;
                 pList.push(pt);
             return true;
             }   
             else if(in=="y"){
-                cout<<"non possiede abbastanza denaro, fine turno"<<endl;
+                cout<<"non possiede abbastanza denaro"<<endl;
                 pList.push(pt);
                 return true;
             }
             else if(in=="n"){
-                cout<<"hotel non acquistato, fine turno"<<endl;
+                cout<<"hotel non acquistato"<<endl;
                 pList.push(pt);
                 return true;
             }
@@ -270,7 +292,7 @@ bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGe
             }
         }
         //proprietà con albergo non può fare niente
-        cout<<"si trova in una sua proprietà con albergo, fine turno"<<endl;
+        cout<<"si trova in una sua proprietà con albergo"<<endl;
         pList.push(pt);
         return true;
     }
