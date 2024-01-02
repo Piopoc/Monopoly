@@ -111,7 +111,7 @@ int main(int argc, char* argv[]){
                 if(pt->pc_buys(price)){
                     pt->withdraw(price);
                     currCell->add_owner(pt);
-                    ofs<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<currCell<<endl; //-...........
+                    ofs<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<t.get_cellname(pt->get_currpos())<<endl; //-...........
                 }
                 pList.push(pt);      
             }
@@ -123,7 +123,7 @@ int main(int argc, char* argv[]){
                     if(pt->pc_buys(price)){
                         pt->withdraw(price);
                         currCell->upgrade_property();
-                        ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<currCell<<endl; //stampa info terreno?
+                        ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<t.get_cellname(pt->get_currpos())<<endl;
                     }
                 }
                 //proprietà con casa, migliorare in hotel?
@@ -132,7 +132,7 @@ int main(int argc, char* argv[]){
                     if(pt->pc_buys(price)){
                         pt->withdraw(price);
                         currCell->upgrade_property();
-                        ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<currCell<<endl; //stampa info terreno?
+                        ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<t.get_cellname(pt->get_currpos())<<endl; //stampa info terreno?
                     }
                 }
                 //proprietà con albergo non può fare niente
@@ -151,7 +151,7 @@ int main(int argc, char* argv[]){
                 if(pt->has_this_money(tax)){
                     pt->withdraw(tax);
                     currCell->get_owner()->deposit(tax);
-                    ofs<<"Giocatore "<<playerID<<" ha pagato "<<tax<<" fiorini a giocatore "<<currCell->get_owner()->get_ID()<<" per pernottamento nella casella "<<currCell<<endl; //info su cell
+                    ofs<<"Giocatore "<<playerID<<" ha pagato "<<tax<<" fiorini a giocatore "<<currCell->get_owner()->get_ID()<<" per pernottamento nella casella "<<t.get_cellname(pt->get_currpos())<<endl; //info su cell
                     pList.push(pt);
                 }
                 //non ha abbastanza soldi
