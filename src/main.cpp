@@ -69,11 +69,7 @@ int main(int argc, char* argv[]){
     cout<<ordine;
     ofs<<ordine;
     //inserisci i giocatori nella cella del via 
-    shared_ptr<Cell> start = t.get_cell(0);
-    start->add_occupant(&p1);
-    start->add_occupant(&p2);
-    start->add_occupant(&p3);
-    start->add_occupant(&p4);
+    t.start_game(&p1,&p2,&p3,&p4);
     //scelta modalità
     if (modalitaGioco == "computer") {
         //inizia la partita

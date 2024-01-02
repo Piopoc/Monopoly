@@ -220,5 +220,9 @@ void tabellone::elimination(Player* p){
 }
 
 void tabellone::start_game(Player* p1, Player* p2, Player* p3, Player* p4){
-
+    std::shared_ptr<Cell> start = get_cell(0);
+    start->add_occupant(p1);
+    start->add_occupant(p2);
+    start->add_occupant(p3);
+    start->add_occupant(p4);
 }
