@@ -85,7 +85,7 @@ tabellone::tabellone(){
 }
 
 std::string** tabellone::charge_matrix(){
-    static const int dim=10;
+    const int dim=10;
     std::string** matrix=new std::string* [dim];
     int fraw=1;
     int fcolomn=65;  
@@ -114,7 +114,7 @@ std::string** tabellone::charge_matrix(){
 }
 
 void tabellone::print_matrix(){
-    static const int dim=10;
+    const int dim=10;
     std::string** matrix=charge_matrix();
     for(int i=0;i<dim-1;i++){
         for(int j=0;j<dim;j++){
@@ -220,9 +220,35 @@ void tabellone::elimination(Player* p){
 }
 
 void tabellone::start_game(Player* p1, Player* p2, Player* p3, Player* p4){
+    //backend
     std::shared_ptr<Cell> start = get_cell(0);
     start->add_occupant(p1);
     start->add_occupant(p2);
     start->add_occupant(p3);
     start->add_occupant(p4);
+    //frontend
+    const int dim=10;
+    std::string** matrix=charge_matrix();
+    int begin=0;
+    for(int i=0;i<tabs.size();i++){
+        if((tabs[i]->to_string()).find("P")!=std::string::npos){
+            begin=i;
+        }
+    }
+
+    std::string value=tabs[begin]->to_string();
+
+    for(int i=0;i<dim-1;i++){
+        for(int j=0;j<dim;j++){
+            if(value==matrix[i][j]){
+                std::string temp=value;
+                for(int k=0;k<value.length();k++){
+                    if(value[k]=='P'){
+                        temp[k]='P'+31+32+33+34;
+                    }
+                }
+                matrix[i][j]=temp;
+            }
+        }
+    }
 }
