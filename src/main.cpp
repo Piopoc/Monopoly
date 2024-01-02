@@ -40,10 +40,11 @@ int main(int argc, char* argv[]){
     corrispettivi.push_back(&p3);
     lanciDadi.push_back(dice());
     corrispettivi.push_back(&p4);
+    cout<<lanciDadi[0]<<endl<<lanciDadi[1]<<endl<<lanciDadi[2]<<endl<<lanciDadi[3]<<endl;
     //gestione ordine di partenza
     int full = 0;
     while(full!=4){
-        if(repeated_max(lanciDadi)){
+        if(!repeated_max(lanciDadi)){
             int posmax = get_posmax(lanciDadi);
             lanciDadi[posmax] = 0;
             pList.push(corrispettivi[posmax]);

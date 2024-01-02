@@ -56,7 +56,7 @@ void Player::set_currpos(int pos){
 
 int dice()
 {
-    srand (time(NULL));
+    rand ();
     return (rand() % 6 + 1)+(rand() % 6 + 1);
 }
 bool repeated_max(std::vector<int> a){
@@ -67,7 +67,10 @@ bool repeated_max(std::vector<int> a){
                 max = a[i];
             }
             if(max!=0 && a[i]==max){
-                a[i] = -1;
+                if(done){
+                    std::cout<<"doppione di"<<a[i]<<std::endl;
+                    return true;
+                }
                 done = true;
             }
         }
@@ -83,8 +86,9 @@ int get_posmax(std::vector<int> a){
     return max;
 }
 void throw_again(std::vector<int> a){
+    int max = a[get_posmax(a)];
     for(int i = 0; i<4; i++){
-        if(a[i]==-1){
+        if(max!=0 && a[i]==max){
             a[i] = dice();
         }
     }
