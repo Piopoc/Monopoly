@@ -31,18 +31,22 @@ tabellone::tabellone(){
         if(p==1 && i==corner_box1){
             pointer.reset(new EdgeCell{true});
             tabs.push_back(pointer);
+            start_position = i;
         }
         else if(p==2 && i==corner_box2){
             pointer.reset(new EdgeCell{true});
             tabs.push_back(pointer);
+            start_position = i;
         }
         else if(p==3 && i==corner_box3){
             pointer.reset(new EdgeCell{true});
             tabs.push_back(pointer);
+            start_position = i;
         }
         else if(p==4 && i==corner_box4){
             pointer.reset(new EdgeCell{true});
             tabs.push_back(pointer);
+            start_position = i;
         }
         else if(i==corner_box1 || i==corner_box2 || i==corner_box3 || i==corner_box4 ){
             pointer.reset(new EdgeCell{false});
@@ -84,9 +88,9 @@ tabellone::tabellone(){
     }
 }
 
-std::string** tabellone::charge_matrix(){
-    const int dim=10;
-    std::string** matrix=new std::string* [dim];
+void tabellone::print_matrix(){
+    static const int dim=10;
+    std::string matrix[dim][dim];
     int fraw=1;
     int fcolomn=65;  
 
@@ -110,12 +114,9 @@ std::string** tabellone::charge_matrix(){
             matrix[y][x] = "             ";
         }
     }
-    return matrix;
-}
 
-void tabellone::print_matrix(){
-    const int dim=10;
-    std::string** matrix=charge_matrix();
+
+    // stampa della matrice
     for(int i=0;i<dim-1;i++){
         for(int j=0;j<dim;j++){
             std::cout<<matrix[i][j];
@@ -220,7 +221,12 @@ void tabellone::elimination(Player* p){
 }
 
 void tabellone::start_game(Player* p1, Player* p2, Player* p3, Player* p4){
-    //backend
+    std::shared_ptr<Cell> start = get_cell(start_position);
+    start->add_occupant(p1);
+    start->add_occupant(p2);
+    start->add_occupant(p3);
+    start->add_occupant(p4);
+    /*//backend
     std::shared_ptr<Cell> start = get_cell(0);
     start->add_occupant(p1);
     start->add_occupant(p2);
@@ -250,5 +256,5 @@ void tabellone::start_game(Player* p1, Player* p2, Player* p3, Player* p4){
                 matrix[i][j]=temp;
             }
         }
-    }
+    }*/
 }
