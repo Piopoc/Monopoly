@@ -98,7 +98,7 @@ int main(int argc, char* argv[]){
                 pt->deposit(20);
                 ofs<<"Giocatore "<<playerID<<" è passato dal via e ha ritirato 20 fiorini"<<endl;
             }
-            ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<t.get_cellname(pt->get_currpos());
+            ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<t.get_cellname(pt->get_currpos())<<endl;
             //casella angolare
             if(dynamic_pointer_cast<EdgeCell> (currGenericCell)){
                 pList.push(pt);
