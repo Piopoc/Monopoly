@@ -152,11 +152,11 @@ int main(int argc, char* argv[]){
                     //NON ESEGUO IL PUSH, eliminato giocatore
                 }
             }
+        }
         //termina la partita
         Player& winner = *pList.front();
         ofs<<"Giocatore "<<playerID<<" ha vinto la partita"<<endl;
         ofs.close();
-        }
     }
     else if (modalitaGioco == "human") {
         t.print_matrix(); //ogni volta che viene richiesto
