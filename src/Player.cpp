@@ -71,7 +71,7 @@ bool repeated_max(std::vector<int> a){
                     std::cout<<"doppione di"<<a[i]<<std::endl;
                     return true;
                 }
-                done = true;
+                //done = true;
             }
         }
         return done;

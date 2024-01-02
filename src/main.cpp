@@ -54,16 +54,16 @@ int main(int argc, char* argv[]){
             throw_again(lanciDadi);
         }
     }
-    string ordine = "ordine di gioco:\n";
+    string ordine = "ordine di gioco:";
     for(int i =0; i<4; i++){
         Player* p = pList.front();
         int id = p->get_ID();
         pList.pop();
         pList.push(p);
-        ordine += "p";
+        ordine += " p";
         ordine += to_string(id);
-        ordine += "\n";
     }
+    ordine += "\n";
     //apertura file log in scrittura
     ofstream ofs("partita.log",ofstream::out);
     if(!ofs.good()) throw std::exception();
