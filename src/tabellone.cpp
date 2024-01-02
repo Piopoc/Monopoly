@@ -84,9 +84,9 @@ tabellone::tabellone(){
     }
 }
 
-void tabellone::print_matrix(){
+std::string** tabellone::charge_matrix(){
     static const int dim=10;
-    std::string matrix[dim][dim];
+    std::string** matrix=new std::string* [dim];
     int fraw=1;
     int fcolomn=65;  
 
@@ -110,9 +110,12 @@ void tabellone::print_matrix(){
             matrix[y][x] = "             ";
         }
     }
+    return matrix;
+}
 
-
-    // stampa della matrice
+void tabellone::print_matrix(){
+    static const int dim=10;
+    std::string** matrix=charge_matrix();
     for(int i=0;i<dim-1;i++){
         for(int j=0;j<dim;j++){
             std::cout<<matrix[i][j];
@@ -121,6 +124,13 @@ void tabellone::print_matrix(){
     }
     std::cout<<std::endl;
 }
+
+/* void tabellone::delete_matrix(std::string**matrix,int dim){
+    for(int i=0;i<dim;i++){
+        delete[]matrix[i];
+    }
+    delete[]matrix;
+} */
 
 int tabellone::parametrizzazione_bordo_x(int t) {
     if (!tabs.empty()) {
@@ -207,4 +217,8 @@ void tabellone::elimination(Player* p){
             sideCell->remove_owner();
         }
     }
+}
+
+void tabellone::start_game(Player* p1, Player* p2, Player* p3, Player* p4){
+
 }
