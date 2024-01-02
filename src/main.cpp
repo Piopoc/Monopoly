@@ -27,8 +27,6 @@ int main(int argc, char* argv[]){
     Player p2 (2);
     Player p3 (3);
     Player p4 (4);
-    //inserisci i giocatori nella cella del via 
-    t.start_game(&p1,&p2,&p3,&p4);   
     //coda di gioco
     queue<Player*> pList;
     //vettore con lanci di dadi e corrispettivi giocatori
@@ -45,7 +43,7 @@ int main(int argc, char* argv[]){
     //gestione ordine di partenza
     int full = 0;
     while(full!=4){
-        if(!repeated_max(lanciDadi)){
+        if(repeated_max(lanciDadi)){
             int posmax = get_posmax(lanciDadi);
             lanciDadi[posmax] = 0;
             pList.push(corrispettivi[posmax]);
@@ -62,7 +60,7 @@ int main(int argc, char* argv[]){
         pList.pop();
         pList.push(p);
         ordine += "p";
-        ordine += id;
+        ordine += to_string(id);
         ordine += "\n";
     }
     //apertura file log in scrittura
@@ -72,7 +70,6 @@ int main(int argc, char* argv[]){
     ofs<<ordine;
     //inserisci i giocatori nella cella del via 
     t.start_game(&p1,&p2,&p3,&p4);
-
     cout<<" ___ ___   ___   ____    ___   ____    ___   _      ____      ____   __ __      _       ____  ___ ___  ____   ___     ____ "<<endl;
     cout<<"|   |   | /   \\ |    \\  /   \\ |    \\  /   \\ | |    |    |    |    \\ |  |  |    | |     /    ||   |   ||    \\ |   \\   /    |"<<endl;
     cout<<"| _   _ ||     ||  _  ||     ||  o  )|     || |     |  |     |  o  )|  |  |    | |    |  o  || _   _ ||  o  )|    \\ |  o  |"<<endl;
@@ -81,8 +78,6 @@ int main(int argc, char* argv[]){
     cout<<"|   |   ||     ||  |  ||     ||  |   |     ||     | |  |     |     ||     |    |     ||  |  ||   |   ||     ||     ||  |  |"<<endl;
     cout<<"|___|___| \\___/ |__|__| \\___/ |__|    \\___/ |_____||____|    |_____||____/     |_____||__|__||___|___||_____||_____||__|__|"<<endl;
     cout<<"---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<<endl;
-    
-
     //scelta modalità
     if (modalitaGioco == "computer") {
         //inizia la partita
@@ -171,7 +166,7 @@ int main(int argc, char* argv[]){
         ofs<<"Giocatore "<<winner->get_ID()<<" ha vinto la partita"<<endl;
         ofs.close();
     }
-    else if (modalitaGioco == "human") {
+    else{ //(modalitaGioco == "human")
         t.print_matrix(); //ogni volta che viene richiesto
                     
         /*interazioni con humanPlayer
