@@ -27,10 +27,9 @@ int main(int argc, char* argv[]){
     Player p2 (2);
     Player p3 (3);
     Player p4 (4);
-    //apertura file log in scrittura
-    ofstream ofs("partita.log",ofstream::out);
-    if(!ofs.good()) throw std::exception();
-    //determinazione ordine di gioco inserendo i giocatori in una coda
+    //inserisci i giocatori nella cella del via 
+    t.start_game(&p1,&p2,&p3,&p4);   
+    //coda di gioco
     queue<Player*> pList;
     //vettore con lanci di dadi e corrispettivi giocatori
     vector<int> lanciDadi;
@@ -66,10 +65,11 @@ int main(int argc, char* argv[]){
         ordine += id;
         ordine += "\n";
     }
+    //apertura file log in scrittura
+    ofstream ofs("partita.log",ofstream::out);
+    if(!ofs.good()) throw std::exception();
     cout<<ordine;
     ofs<<ordine;
-    //inserisci i giocatori nella cella del via 
-    t.start_game(&p1,&p2,&p3,&p4);
     //scelta modalità
     if (modalitaGioco == "computer") {
         //inizia la partita
