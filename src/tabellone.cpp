@@ -17,8 +17,6 @@ tabellone::tabellone(){
     int corner_box3=14;
     int corner_box4=21;
 
-    //int p=rand()%4+1;
-    int p=1;
     int e=8;
     int s=10;
     int l=6;
@@ -29,27 +27,11 @@ tabellone::tabellone(){
     std::shared_ptr<Cell> pointer;
     
     for(int i=0;i<dim;i++){
-        if(p==1 && i==corner_box1){
+        if(i==corner_box1){
             pointer.reset(new EdgeCell{true});
             tabs.push_back(pointer);
-            start_position = i;
         }
-        else if(p==2 && i==corner_box2){
-            pointer.reset(new EdgeCell{true});
-            tabs.push_back(pointer);
-            start_position = i;
-        }
-        else if(p==3 && i==corner_box3){
-            pointer.reset(new EdgeCell{true});
-            tabs.push_back(pointer);
-            start_position = i;
-        }
-        else if(p==4 && i==corner_box4){
-            pointer.reset(new EdgeCell{true});
-            tabs.push_back(pointer);
-            start_position = i;
-        }
-        else if(i==corner_box1 || i==corner_box2 || i==corner_box3 || i==corner_box4 ){
+        else if(i==corner_box2 || i==corner_box3 || i==corner_box4 ){
             pointer.reset(new EdgeCell{false});
             tabs.push_back(pointer);
         }
@@ -214,7 +196,7 @@ void tabellone::elimination(Player* p){
 }
 
 void tabellone::start_game(Player* p1, Player* p2, Player* p3, Player* p4){
-    std::shared_ptr<Cell> start = get_cell(start_position);
+    std::shared_ptr<Cell> start = get_cell(0);
     start->add_occupant(p1);
     start->add_occupant(p2);
     start->add_occupant(p3);
@@ -289,7 +271,7 @@ void tabellone::list_property(Player* p1, Player* p2, Player* p3, Player* p4){
     // proprietà dove non sono i giocatori
     for(int i=0;i<tabs.size();i++){
         if(auto sideCell=std::dynamic_pointer_cast<SideCell>(tabs[i])){
-            if(!sideCell->has_owner() && (sideCell->has_house() || sideCell->has_hotel )){ // qua manca la condizione che dice se c'è una proprietà
+            if(!sideCell->has_owner() && (sideCell->has_house() || sideCell->has_hotel() )){ // qua manca la condizione che dice se c'è una proprietà
                 if(sideCell->get_property()==0){
                     std::cout<<"Casella "<<get_cellname(i)<<" con proprietà \n";
                 }

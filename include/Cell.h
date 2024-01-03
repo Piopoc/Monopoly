@@ -69,6 +69,7 @@ class SideCell : public Cell
         std::string to_string() const override;
         
         bool has_owner() const {return owner;};
+        bool has_property() const {return !property;};
         bool has_house() const {return (property == '*');};
         bool has_hotel() const {return (property == '^');};
 };

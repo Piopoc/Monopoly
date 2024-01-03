@@ -22,7 +22,6 @@ class tabellone{
         ~tabellone(){};
     private:
         std::vector<std::shared_ptr<Cell>> tabs;
-        int start_position;
         //void delete_matrix(std::string**matrix,int dim);
         int parametrizzazione_bordo_x(int t);
         int parametrizzazione_bordo_y(int t);

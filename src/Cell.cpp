@@ -1,4 +1,4 @@
-//Pier Francesco Uliana, matricola 2066593
+// @author Pier Francesco Uliana, matricola 2066593
 #include <iostream>
 #include <vector>
 #include <exception>
