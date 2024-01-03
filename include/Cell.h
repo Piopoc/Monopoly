@@ -1,4 +1,4 @@
-//Pier Francesco Uliana, matricola 2066593
+//@author Pier Francesco Uliana, matricola 2066593
 #ifndef CELL_H
 #define CELL_H
 #include <iostream>
