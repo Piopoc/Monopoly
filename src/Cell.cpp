@@ -139,6 +139,17 @@ Player* SideCell::get_owner() const
     return owner;
 }
 
+//Restituisce la proprietà installata nella casella, lancia eccezione se senza proprietario
+char SideCell::get_property() const
+{
+    if(!owner)
+    {
+        throw std::logic_error("La casella non ha un proprietario");
+    }
+
+    return property;
+}
+
 //Restituisce una stringa di 13 caratteri che descrive la casella: di questa ne stampa il tipo,
 //l'eventuale casa/hotel installata e la lista dei giocatori che la occupano
 std::string SideCell::to_string() const

@@ -1,3 +1,42 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0e7ae333d5fbe93f0ee914b85eabfb35500d52f27157a50d4dc31e3ea06f4d7f
-size 620
+ordine di gioco: p2 p1 p4 p3
+Giocatore 2 ha tirato i dadi ottenendo un valore di 5
+Giocatore 2 è arrivato alla casella A6
+Giocatore 2 ha acquistato il terreno A6
+Giocatore 1 ha tirato i dadi ottenendo un valore di 8
+Giocatore 1 è arrivato alla casella B8
+Giocatore 4 ha tirato i dadi ottenendo un valore di 8
+Giocatore 4 è arrivato alla casella B8
+Giocatore 3 ha tirato i dadi ottenendo un valore di 8
+Giocatore 3 è arrivato alla casella B8
+Giocatore 2 ha tirato i dadi ottenendo un valore di 8
+Giocatore 2 è arrivato alla casella G8
+Giocatore 2 ha acquistato il terreno G8
+Giocatore 1 ha tirato i dadi ottenendo un valore di 7
+Giocatore 1 è arrivato alla casella H7
+Giocatore 1 ha acquistato il terreno H7
+Giocatore 4 ha tirato i dadi ottenendo un valore di 5
+Giocatore 4 è arrivato alla casella G8
+Giocatore 4 ha pagato 0 fiorini a giocatore 2 per pernottamento nella casella G8
+Giocatore 3 ha tirato i dadi ottenendo un valore di 6
+Giocatore 3 è arrivato alla casella H8
+Giocatore 2 ha tirato i dadi ottenendo un valore di 3
+Giocatore 2 è arrivato alla casella H6
+Giocatore 2 ha acquistato il terreno H6
+Giocatore 1 ha tirato i dadi ottenendo un valore di 7
+Giocatore 1 è arrivato alla casella G1
+Giocatore 4 ha tirato i dadi ottenendo un valore di 6
+Giocatore 4 è arrivato alla casella H3
+Giocatore 3 ha tirato i dadi ottenendo un valore di 6
+Giocatore 3 è arrivato alla casella H2
+Giocatore 2 ha tirato i dadi ottenendo un valore di 6
+Giocatore 2 è arrivato alla casella G1
+Giocatore 2 ha acquistato il terreno G1
+Giocatore 1 ha tirato i dadi ottenendo un valore di 5
+Giocatore 1 è arrivato alla casella B1
+Giocatore 4 ha tirato i dadi ottenendo un valore di 6
+Giocatore 4 è arrivato alla casella D1
+Giocatore 3 ha tirato i dadi ottenendo un valore di 6
+Giocatore 3 è arrivato alla casella C1
+Giocatore 2 ha tirato i dadi ottenendo un valore di 6
+Giocatore 2 è passato dal via e ha ritirato 5 fiorini
+Giocatore 2 è arrivato alla casella A1

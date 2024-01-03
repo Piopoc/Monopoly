@@ -1,4 +1,4 @@
-//@author Pier Francesco Uliana, matricola 2066593
+// @author Pier Francesco Uliana, matricola 2066593
 #ifndef CELL_H
 #define CELL_H
 #include <iostream>
@@ -79,14 +79,12 @@ class SideCell : public Cell
         //Ritorna il proprietario 
         Player* get_owner() const;
         //Ritorna la proprietà
-        char get_property() const {return property;};
+        char get_property() const;
 
         std::string to_string() const override;
         
         //Se ha un proprietario 
         bool has_owner() const {return owner;};
-        //Se ha una proprietà
-        bool has_property() const {return property;};
         //Se ha una casa
         bool has_house() const {return (property == '*');};
         //Se ha un hotel

@@ -1,5 +1,4 @@
 // @author Filippo Corradi, matricola: 2066680
-//test
 
 #include <iostream>
 #include <cstdlib>
@@ -250,7 +249,7 @@ void tabellone::list_property(Player* p1, Player* p2, Player* p3, Player* p4){
     // proprietà dove sono i giocatori
     for(int j=0;j<players.size();j++){
         for(int i=0;i<tabs.size();i++){
-            if(auto sideCell=std::dynamic_pointer_cast<SideCell>(tabs[i])){
+            if(std::shared_ptr<SideCell> sideCell=std::dynamic_pointer_cast<SideCell>(tabs[i])){
                 if(sideCell->has_owner() && i==players[j]->get_currpos()){
                     std::cout<<"Giocatore "<<players[j]->get_ID()<<" nella casella "<<get_cellname(i);
                     if(sideCell->get_property()==0){
@@ -271,8 +270,8 @@ void tabellone::list_property(Player* p1, Player* p2, Player* p3, Player* p4){
     }
     // proprietà dove non sono i giocatori
     for(int i=0;i<tabs.size();i++){
-        if(auto sideCell=std::dynamic_pointer_cast<SideCell>(tabs[i])){
-            if((i!=players[0]->get_currpos() && i!=players[1]->get_currpos() && i!=players[2]->get_currpos() && i!=players[3]->get_currpos()) && (sideCell->has_house() || sideCell->has_hotel() || sideCell->has_property())){
+        if(std::shared_ptr<SideCell> sideCell=std::dynamic_pointer_cast<SideCell>(tabs[i])){
+            if((i!=players[0]->get_currpos() && i!=players[1]->get_currpos() && i!=players[2]->get_currpos() && i!=players[3]->get_currpos()) && (sideCell->has_owner())){
                 if(sideCell->get_property()==0){
                     std::cout<<"Casella "<<get_cellname(i)<<" con proprietà \n";
                 }
