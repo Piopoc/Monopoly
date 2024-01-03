@@ -16,7 +16,7 @@ class tabellone{
         void move(Player* p, int spostamenti); //da definire
         std::string get_cellname(int pos); //ritorna ad es A1
         void elimination(Player* p); // elimina tutte le proprietà
-        void show(Player* p1, Player* p2, Player* p3, Player* p4);
+        //void show(Player* p1, Player* p2, Player* p3, Player* p4);
         void list_property(Player* p1, Player* p2, Player* p3, Player* p4);
         void bank_account(Player* p1, Player* p2, Player* p3, Player* p4);
         ~tabellone(){};

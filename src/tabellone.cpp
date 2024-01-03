@@ -152,7 +152,7 @@ int tabellone::parametrizzazione_bordo_y(int t)
 }
 
 bool tabellone::beyond_start(Player* p, int from){
-    return p->get_currpos()<from; //pettini
+    return p->get_currpos()<from;
 }
 
 void tabellone::move(Player* p, int spostamenti){
@@ -203,8 +203,8 @@ void tabellone::start_game(Player* p1, Player* p2, Player* p3, Player* p4){
     start->add_occupant(p4);
 }
 
-void tabellone::show(Player* p1, Player* p2, Player* p3, Player* p4){
-    print_matrix(); // magari questo non lo mettiamo dato che nel main stampa sempre
+/* void tabellone::show(Player* p1, Player* p2, Player* p3, Player* p4){
+    print_matrix();
     std::vector<Player*> players;
     players.push_back(p1);
     players.push_back(p2);
@@ -228,7 +228,7 @@ void tabellone::show(Player* p1, Player* p2, Player* p3, Player* p4){
             }
         }
     }
-}
+} */
 void tabellone::bank_account(Player* p1, Player* p2, Player* p3, Player* p4){
     std::vector<Player*> players;
     players.push_back(p1);
@@ -250,7 +250,7 @@ void tabellone::list_property(Player* p1, Player* p2, Player* p3, Player* p4){
     for(int j=0;j<players.size();j++){
         for(int i=0;i<tabs.size();i++){
             if(auto sideCell=std::dynamic_pointer_cast<SideCell>(tabs[i])){
-                if(sideCell->has_owner() && sideCell->get_owner()==players[j]){ // il problema sta qua !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                if(sideCell->has_owner() && i==players[j]->get_currpos()){
                     std::cout<<"Giocatore "<<players[j]->get_ID()<<" nella casella "<<get_cellname(i);
                     if(sideCell->get_property()==0){
                         std::cout<<" con una proprietà \n";
@@ -271,7 +271,7 @@ void tabellone::list_property(Player* p1, Player* p2, Player* p3, Player* p4){
     // proprietà dove non sono i giocatori
     for(int i=0;i<tabs.size();i++){
         if(auto sideCell=std::dynamic_pointer_cast<SideCell>(tabs[i])){
-            if(!sideCell->has_owner() && (sideCell->has_house() || sideCell->has_hotel() )){ // qua manca la condizione che dice se c'è una proprietà
+            if((i!=players[0]->get_currpos() && i!=players[1]->get_currpos() && i!=players[2]->get_currpos() && i!=players[3]->get_currpos()) && (sideCell->has_house() || sideCell->has_hotel() || sideCell->has_property())){
                 if(sideCell->get_property()==0){
                     std::cout<<"Casella "<<get_cellname(i)<<" con proprietà \n";
                 }

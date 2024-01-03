@@ -11,7 +11,7 @@
 using namespace std;
 
 void pc_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs);
-bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs, istream& cin);
+bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs);
 
 int main(int argc, char* argv[]){
     if (argc != 2) {
@@ -148,9 +148,9 @@ int main(int argc, char* argv[]){
                     else{
                         cout<<"turno human player\n[show]\n[end]"<<endl;
                     }
-                    cin>>input;
+                    getline(cin,input);
                     if(input=="do" && done==false){
-                        done = human_plays(t,pt,playerID,currGenericCell,pList,cout,ofs,cin); 
+                        done = human_plays(t,pt,playerID,currGenericCell,pList,cout,ofs); 
                         cout<<endl;                    
                     }
                     else if(input=="do" && done==false){
@@ -160,7 +160,7 @@ int main(int argc, char* argv[]){
                         // è possibile utilizzare direttamente anche la funzione show che fa' tutto assieme
                         string what;
                         cout<<"\n[t] visualizzare il tabellone\n[p] lista possedimenti\n[c] conti bancari\nelse back to menu"<<endl;
-                        cin>>what;
+                        getline(cin,what);
                         if(what=="t"){
                             t.print_matrix();
                         }
@@ -200,7 +200,7 @@ int main(int argc, char* argv[]){
 //
 //
 //
-bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs, istream& cin){
+bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs){
     string in;
     //casella angolare
     if(dynamic_pointer_cast<EdgeCell> (currGenericCell)){
@@ -213,7 +213,7 @@ bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGe
     if(!currCell->has_owner()){
         int price = currCell->get_type().purchase_land;
         cout<<"si trova in un terreno libero, desidera acquistare?\n[y]\n[n]\nelse back to menu\n: ";
-        cin>>in;
+        std::getline(cin,in);
         if(in=="y" && pt->has_this_money(price)){
             pt->withdraw(price);
             currCell->add_owner(pt);
@@ -242,7 +242,7 @@ bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGe
         if(!currCell->has_house()){
             int price = currCell->get_type().upgrade_to_house;
             cout<<"si trova in un suo terreno, desidera acquistare una casa?\n[y]\n[n]\nelse back to menu:\n ";
-            cin>>in;
+            getline(cin,in);
             if(in=="y" && pt->has_this_money(price)){
                 pt->withdraw(price);
                 currCell->upgrade_property();
@@ -269,7 +269,7 @@ bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGe
         if(currCell->has_house() && !currCell->has_hotel()){
             int price = currCell->get_type().upgrade_to_hotel;
             cout<<"si trova in un suo terreno con casa, desidera acquistare un albergo?\n[y]\n[n]\nelse back to menu\n: ";
-            cin>>in;
+            getline(cin,in);
             if(in=="y" && pt->has_this_money(price)){
                 pt->withdraw(price);
                 currCell->upgrade_property();

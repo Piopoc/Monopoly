@@ -1,3 +1,5 @@
+# @author Filippo Corradi, matricola: 2066680
+
 cmake_minimum_required(VERSION 3.10)
 project(exe)
 

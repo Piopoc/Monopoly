@@ -86,7 +86,7 @@ class SideCell : public Cell
         //Se ha un proprietario 
         bool has_owner() const {return owner;};
         //Se ha una proprietà
-        bool has_property() const {return !property;};
+        bool has_property() const {return property;};
         //Se ha una casa
         bool has_house() const {return (property == '*');};
         //Se ha un hotel
