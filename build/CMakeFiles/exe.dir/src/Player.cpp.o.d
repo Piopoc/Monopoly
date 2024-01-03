@@ -1,5 +1,5 @@
 CMakeFiles/exe.dir/src/Player.cpp.o: \
- /home/piopo/Documenti/C++/monopoli/src/Player.cpp \
+ /home/piopo/Documenti/C++/monopoly/src/Player.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/13.2.1/iostream \
  /usr/include/c++/13.2.1/bits/requires_hosted.h \
  /usr/include/c++/13.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -138,6 +138,6 @@ CMakeFiles/exe.dir/src/Player.cpp.o: \
  /usr/include/c++/13.2.1/bits/stl_heap.h \
  /usr/include/c++/13.2.1/bits/stl_queue.h \
  /usr/include/c++/13.2.1/bits/uses_allocator.h \
- /home/piopo/Documenti/C++/monopoli/src/../include/Cell.h \
- /home/piopo/Documenti/C++/monopoli/src/../include/../include/Player.h \
- /home/piopo/Documenti/C++/monopoli/src/../include/Player.h
+ /home/piopo/Documenti/C++/monopoly/src/../include/Cell.h \
+ /home/piopo/Documenti/C++/monopoly/src/../include/../include/Player.h \
+ /home/piopo/Documenti/C++/monopoly/src/../include/Player.h

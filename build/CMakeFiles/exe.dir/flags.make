@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/piopo/Documenti/C++/monopoli/../include
+CXX_INCLUDES = -I/home/piopo/Documenti/C++/monopoly/../include
 
 CXX_FLAGS =  -O2 -std=gnu++11
 

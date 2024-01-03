@@ -65,7 +65,7 @@ int main(int argc, char* argv[]){
     }
     ordine += "\n";
     //apertura file log in scrittura
-    ofstream ofs("partita.log",ofstream::out);
+    ofstream ofs("../../monopoly/partita.log",ofstream::out);
     if(!ofs.good()) throw std::exception();
     cout<<ordine;
     ofs<<ordine;

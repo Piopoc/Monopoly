@@ -116,7 +116,6 @@ void tabellone::print_matrix(){
         }
     }
 
-
     // stampa della matrice
     for(int i=0;i<dim-1;i++){
         for(int j=0;j<dim;j++){
@@ -126,13 +125,6 @@ void tabellone::print_matrix(){
     }
     std::cout<<std::endl;
 }
-
-/* void tabellone::delete_matrix(std::string**matrix,int dim){
-    for(int i=0;i<dim;i++){
-        delete[]matrix[i];
-    }
-    delete[]matrix;
-} */
 
 int tabellone::parametrizzazione_bordo_x(int t) {
     if (!tabs.empty()) {
@@ -227,35 +219,77 @@ void tabellone::start_game(Player* p1, Player* p2, Player* p3, Player* p4){
     start->add_occupant(p2);
     start->add_occupant(p3);
     start->add_occupant(p4);
-    /*//backend
-    std::shared_ptr<Cell> start = get_cell(0);
-    start->add_occupant(p1);
-    start->add_occupant(p2);
-    start->add_occupant(p3);
-    start->add_occupant(p4);
-    //frontend
-    const int dim=10;
-    std::string** matrix=charge_matrix();
-    int begin=0;
-    for(int i=0;i<tabs.size();i++){
-        if((tabs[i]->to_string()).find("P")!=std::string::npos){
-            begin=i;
-        }
-    }
+}
 
-    std::string value=tabs[begin]->to_string();
-
-    for(int i=0;i<dim-1;i++){
-        for(int j=0;j<dim;j++){
-            if(value==matrix[i][j]){
-                std::string temp=value;
-                for(int k=0;k<value.length();k++){
-                    if(value[k]=='P'){
-                        temp[k]='P'+31+32+33+34;
+void tabellone::show(Player* p1, Player* p2, Player* p3, Player* p4){
+    print_matrix(); // magari questo non lo mettiamo dato che nel main stampa sempre
+    std::vector<Player*> players;
+    players.push_back(p1);
+    players.push_back(p2);
+    players.push_back(p3);
+    players.push_back(p4);
+    for(int j=0;j<players.size();j++){
+        std::cout<<"Il giocatore "<<p1->get_ID()<<" ha "<<players[j]->get_money()<<" e possiede: \n";
+        for(int i=0;i<tabs.size();i++){
+            if(auto sideCell=std::dynamic_pointer_cast<SideCell>(tabs[i])){
+                if(sideCell->get_owner()==players[j]){
+                    if(sideCell->get_property()==0){
+                        std::cout<<"- la proprietà "<<get_cell(i)<<" in "<<get_cellname(i)<<std::endl;
+                    }
+                    else if(sideCell->get_property()=='*'){
+                        std::cout<<"- la casa "<<get_cell(i)<<" in "<<get_cellname(i)<<std::endl;
+                    }
+                    else{
+                        std::cout<<"- l'albergo "<<get_cell(i)<<" in "<<get_cellname(i)<<std::endl;
                     }
                 }
-                matrix[i][j]=temp;
             }
         }
-    }*/
+    }
+}
+
+void tabellone::list_property(Player* p1, Player* p2, Player* p3, Player* p4){
+    std::vector<Player*> players;
+    players.push_back(p1);
+    players.push_back(p2);
+    players.push_back(p3);
+    players.push_back(p4);
+    // proprietà dove sono i giocatori
+    for(int j=0;j<players.size();j++){
+        for(int i=0;i<tabs.size();i++){
+            if(auto sideCell=std::dynamic_pointer_cast<SideCell>(tabs[i])){
+                if(sideCell->get_owner()==players[j]){
+                    std::cout<<"Giocatore "<<players[j]->get_ID()<<" nella casella "<<get_cellname(i);
+                    if(sideCell->get_property()==0){
+                        std::cout<<" con una proprietà \n";
+                    }
+                    else if(sideCell->get_property()=='*'){
+                        std::cout<<" con una casa \n";
+                    }
+                    else if(sideCell->get_property()=='^'){
+                        std::cout<<" con un albergo \n";
+                    }
+                    else{
+                        std::cout<<"\n";
+                    }
+                }
+            }
+        }
+    }
+    // proprietà dove non sono i giocatori
+    for(int i=0;i<tabs.size();i++){
+        if(auto sideCell=std::dynamic_pointer_cast<SideCell>(tabs[i])){
+            if(!sideCell->has_owner()){
+                if(sideCell->get_property()==0){
+                    std::cout<<"Casella "<<get_cellname(i)<<"con proprietà \n";
+                }
+                else if(sideCell->get_property()=='*'){
+                    std::cout<<"Casella "<<get_cellname(i)<<"con casa \n";
+                }
+                else if(sideCell->get_property()=='^'){
+                    std::cout<<"Casella "<<get_cellname(i)<<"con albergo \n";
+                }
+            }
+        }
+    }
 }
