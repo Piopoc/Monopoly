@@ -157,6 +157,7 @@ int main(int argc, char* argv[]){
                         cout<<"azioni già svolte, usi [end] per terminare"<<endl;
                     }
                     else if(input=="show"){
+                        // è possibile utilizzare direttamente anche la funzione show che fa' tutto assieme
                         string what;
                         cout<<"\n[t] visualizzare il tabellone\n[p] lista possedimenti\n[c] conti bancari\nelse back to menu"<<endl;
                         cin>>what;
@@ -164,10 +165,10 @@ int main(int argc, char* argv[]){
                             t.print_matrix();
                         }
                         else if(what=="p"){
-
+                            t.list_property(&p1,&p2,&p3,&p4);
                         }
                         else if(what=="c"){
-
+                            t.bank_account(&p1,&p2,&p3,&p4);
                         }
                     }
                     else if(input=="end" && done==false){
@@ -240,7 +241,7 @@ bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGe
         //arrivo su una casella di proprietà senza una casa (chiede all’utente se desidera costruire una casa);
         if(!currCell->has_house()){
             int price = currCell->get_type().upgrade_to_house;
-            cout<<"si trova in un suo terreno, desidera acquistare una casa?\n[y]\n[n]\nelse back to menu\n: ";
+            cout<<"si trova in un suo terreno, desidera acquistare una casa?\n[y]\n[n]\nelse back to menu:\n ";
             cin>>in;
             if(in=="y" && pt->has_this_money(price)){
                 pt->withdraw(price);

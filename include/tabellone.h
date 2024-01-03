@@ -18,6 +18,7 @@ class tabellone{
         void elimination(Player* p); // elimina tutte le proprietà
         void show(Player* p1, Player* p2, Player* p3, Player* p4);
         void list_property(Player* p1, Player* p2, Player* p3, Player* p4);
+        void bank_account(Player* p1, Player* p2, Player* p3, Player* p4);
         ~tabellone(){};
     private:
         std::vector<std::shared_ptr<Cell>> tabs;

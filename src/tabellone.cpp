@@ -229,7 +229,7 @@ void tabellone::show(Player* p1, Player* p2, Player* p3, Player* p4){
     players.push_back(p3);
     players.push_back(p4);
     for(int j=0;j<players.size();j++){
-        std::cout<<"Il giocatore "<<p1->get_ID()<<" ha "<<players[j]->get_money()<<" e possiede: \n";
+        std::cout<<"Il giocatore "<<players[j]->get_ID()<<" ha "<<players[j]->get_money()<<" fiorini e possiede: \n";
         for(int i=0;i<tabs.size();i++){
             if(auto sideCell=std::dynamic_pointer_cast<SideCell>(tabs[i])){
                 if(sideCell->get_owner()==players[j]){
@@ -247,7 +247,17 @@ void tabellone::show(Player* p1, Player* p2, Player* p3, Player* p4){
         }
     }
 }
+void tabellone::bank_account(Player* p1, Player* p2, Player* p3, Player* p4){
+    std::vector<Player*> players;
+    players.push_back(p1);
+    players.push_back(p2);
+    players.push_back(p3);
+    players.push_back(p4);
 
+    for(int j=0;j<players.size();j++){
+        std::cout<<"Il giocatore "<<players[j]->get_ID()<<" ha "<<players[j]->get_money()<<" fiorini \n";
+    }
+}
 void tabellone::list_property(Player* p1, Player* p2, Player* p3, Player* p4){
     std::vector<Player*> players;
     players.push_back(p1);
@@ -258,7 +268,7 @@ void tabellone::list_property(Player* p1, Player* p2, Player* p3, Player* p4){
     for(int j=0;j<players.size();j++){
         for(int i=0;i<tabs.size();i++){
             if(auto sideCell=std::dynamic_pointer_cast<SideCell>(tabs[i])){
-                if(sideCell->get_owner()==players[j]){
+                if(sideCell->has_owner() && sideCell->get_owner()==players[j]){ // il problema sta qua !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     std::cout<<"Giocatore "<<players[j]->get_ID()<<" nella casella "<<get_cellname(i);
                     if(sideCell->get_property()==0){
                         std::cout<<" con una proprietà \n";
@@ -279,15 +289,15 @@ void tabellone::list_property(Player* p1, Player* p2, Player* p3, Player* p4){
     // proprietà dove non sono i giocatori
     for(int i=0;i<tabs.size();i++){
         if(auto sideCell=std::dynamic_pointer_cast<SideCell>(tabs[i])){
-            if(!sideCell->has_owner()){
+            if(!sideCell->has_owner() && (sideCell->has_house() || sideCell->has_hotel )){ // qua manca la condizione che dice se c'è una proprietà
                 if(sideCell->get_property()==0){
-                    std::cout<<"Casella "<<get_cellname(i)<<"con proprietà \n";
+                    std::cout<<"Casella "<<get_cellname(i)<<" con proprietà \n";
                 }
                 else if(sideCell->get_property()=='*'){
-                    std::cout<<"Casella "<<get_cellname(i)<<"con casa \n";
+                    std::cout<<"Casella "<<get_cellname(i)<<" con casa \n";
                 }
                 else if(sideCell->get_property()=='^'){
-                    std::cout<<"Casella "<<get_cellname(i)<<"con albergo \n";
+                    std::cout<<"Casella "<<get_cellname(i)<<" con albergo \n";
                 }
             }
         }
