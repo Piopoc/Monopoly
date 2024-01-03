@@ -4,7 +4,7 @@
 #include <exception>
 #include "../include/Cell.h"
 
-//Type
+/*Type*/
 Type::Type(int a, int b, int c, int d, int e, char i)
     : purchase_land{a}, upgrade_to_house{b}, upgrade_to_hotel{c}, house_stay{d}, hotel_stay{e}, identifier{i}
 {}
@@ -13,24 +13,31 @@ Type::Type(const Type& t)
     : purchase_land{t.purchase_land}, upgrade_to_house{t.upgrade_to_house}, upgrade_to_hotel{t.upgrade_to_hotel}, house_stay{t.house_stay}, hotel_stay{t.hotel_stay}, identifier{t.identifier}
 {}
 
-//Types
+
+
+/*Types*/
+//Definisce il tipo "economica"
 Type types::economic()
 {
     return Type{6, 3, 3, 2, 4, 'E'};
 }
 
+//Definisce il tipo "standard"
 Type types::standard()
 {
     return Type{10, 5, 5, 4, 8, 'S'};
 }
 
+//Definisce il tipo "lusso"
 Type types::luxury()
 {
     return Type{20, 10, 10, 7, 14, 'L'};
 }
 
-//Cell
-//Aggiunge alla lista dei giocatori che occupano la casella
+
+
+/*Cell*/
+//Aggiunge p al vettore dei giocatori che occupano la casella, lancia eccezione se già presente
 void Cell::add_occupant(Player* p)
 {
     for(int i = 0; i < number_of_occupants; i++)
@@ -44,7 +51,7 @@ void Cell::add_occupant(Player* p)
     occupying[number_of_occupants++] = p;
 }
 
-//Rimuove dalla lista dei giocatori che occupano la casella
+//Rimuove p dal vettore dei giocatori che occupano la casella, lancia eccezione se non presente
 void Cell::remove_occupant(Player* p)
 {
     for(int i = 0; i < number_of_occupants; i++)
@@ -69,11 +76,14 @@ std::ostream& operator<<(std::ostream& o, const Cell& c)
     return o << c.to_string();
 }
 
-//SideCell
+
+
+/*SideCell*/
 SideCell::SideCell(const Type& t)
     : type{t}
 {}
 
+//Aggiunge il proprietario, lancia eccezione se già presente
 void SideCell::add_owner(Player* p)
 {
     if(owner)
@@ -84,6 +94,7 @@ void SideCell::add_owner(Player* p)
     owner = p;
 }  
 
+//Rimuove il proprietario, lancia eccezione se non presente
 void SideCell::remove_owner()
 {
     if(!owner)
@@ -95,6 +106,7 @@ void SideCell::remove_owner()
     property = 0;
 }
 
+//Migliora la proprietà, lancia eccezione se non è presente un proprietario o se è già presente un hotel
 void SideCell::upgrade_property()
 {
     if(!owner)
@@ -110,9 +122,13 @@ void SideCell::upgrade_property()
         case '*':
             property = '^';
         break;
+        case '^':
+            throw std::logic_error{"La proprietà non può essere migliorata perché è già presente un hotel"};
+        break;
     }
 }
 
+//Restituisce il proprietario, lancia eccezione se non presente
 Player* SideCell::get_owner() const
 {
     if(!owner)
@@ -123,15 +139,20 @@ Player* SideCell::get_owner() const
     return owner;
 }
 
+//Restituisce una stringa di 13 caratteri che descrive la casella: di questa ne stampa il tipo,
+//l'eventuale casa/hotel installata e la lista dei giocatori che la occupano
 std::string SideCell::to_string() const
 {
     std::string s = "| ";
+    //tipo
     s += type.identifier;
+    //proprietà
     if(property)
     {
         s += property;
     }
 
+    //lista dei giocatori che occupano la casella
     if(number_of_occupants)
     {   
         for(int i = 0; i < number_of_occupants; i++)
@@ -148,6 +169,7 @@ std::string SideCell::to_string() const
 
     s += "|";
 
+    //aggiunge spazi all'inizio e alla fine per far sì che la stringa sia di 13 caratteri
     int diff = 13 - s.size();
 
     if(diff)
@@ -166,11 +188,15 @@ std::string SideCell::to_string() const
     return s;
 }
 
-//EdgeCell
+
+
+/*EdgeCell*/
 EdgeCell::EdgeCell(bool s)
     : is_start_cell{s}
 {}
 
+//Restituisce una stringa di 13 caratteri che descrive la casella: stampa P se è la cella di partenza e stampa
+//la lista dei giocatori che la occupano
 std::string EdgeCell::to_string() const
 {
     std::string s = "| ";
@@ -180,11 +206,13 @@ std::string EdgeCell::to_string() const
             s += ((number_of_occupants) ? "" : " ");
         break;
         
+        //se è partenza
         case 1:
             s += "P";
         break;
     }
     
+    //lista dei giocatori che occupano la casella
     if(number_of_occupants)
     {
         for(int i = 0; i < number_of_occupants; i++)
@@ -201,6 +229,7 @@ std::string EdgeCell::to_string() const
 
     s += "|";
 
+    //aggiunge spazi all'inizio e alla fine per far sì che la stringa sia di 13 caratteri
     int diff = 13 - s.size();
 
     if(diff)
