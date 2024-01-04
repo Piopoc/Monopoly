@@ -40,6 +40,11 @@ Type types::luxury()
 //Aggiunge p al vettore dei giocatori che occupano la casella, lancia eccezione se già presente
 void Cell::add_occupant(Player* p)
 {
+    if(!p)
+    {
+        throw std::logic_error{"Il puntatore è nullptr"};
+    }
+    
     for(int i = 0; i < number_of_occupants; i++)
     {
         if(occupying[i]->get_ID() == p->get_ID())
@@ -54,6 +59,11 @@ void Cell::add_occupant(Player* p)
 //Rimuove p dal vettore dei giocatori che occupano la casella, lancia eccezione se non presente
 void Cell::remove_occupant(Player* p)
 {
+    if(!p)
+    {
+        throw std::logic_error{"Il puntatore è nullptr"};
+    }
+    
     for(int i = 0; i < number_of_occupants; i++)
     {
         if(occupying[i]->get_ID() == p->get_ID())
@@ -86,6 +96,11 @@ SideCell::SideCell(const Type& t)
 //Aggiunge il proprietario, lancia eccezione se già presente
 void SideCell::add_owner(Player* p)
 {
+    if(!p)
+    {
+        throw std::logic_error{"Il puntatore è nullptr"};
+    }
+    
     if(owner)
     {  
         throw std::logic_error{"La casella ha già un proprietario"};
