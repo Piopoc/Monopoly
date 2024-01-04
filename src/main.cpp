@@ -4,14 +4,14 @@
 #include <queue>
 #include <fstream>
 #include <memory>
-#include "../include/tabellone.h"
+#include "../include/Table.h"
 #include "../include/Player.h"
 #include "../include/Cell.h"
 
 using namespace std;
 
-void pc_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs);
-bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs);
+void pc_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs);
+bool human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs);
 
 int main(int argc, char* argv[]){
     if (argc != 2) {
@@ -23,8 +23,8 @@ int main(int argc, char* argv[]){
         cout << "Modalità non valida. Utilizzo: " << argv[0] << " <computer/human>" << endl;
         return 1;
     }   
-    //creazione tabellone di gioco
-    tabellone t;
+    //creazione Table di gioco
+    Table t;
     //creazione giocatori con 100 fiorini di budget
     Player p1 (1);
     Player p2 (2);
@@ -159,7 +159,7 @@ int main(int argc, char* argv[]){
                     else if(input=="show"){
                         // è possibile utilizzare direttamente anche la funzione show che fa' tutto assieme
                         string what;
-                        cout<<"\n[t] visualizzare il tabellone\n[p] lista possedimenti\n[c] conti bancari\nelse back to menu"<<endl;
+                        cout<<"\n[t] visualizzare il Table\n[p] lista possedimenti\n[c] conti bancari\nelse back to menu"<<endl;
                         getline(cin,what);
                         if(what=="t"){
                             t.print_matrix();
@@ -200,35 +200,35 @@ int main(int argc, char* argv[]){
 //
 //
 //
-bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs){
+bool human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs){
     string in;
     //casella angolare
     if(dynamic_pointer_cast<EdgeCell> (currGenericCell)){
         pList.push(pt);
-        cout<<"si trova in una cella angolare"<<endl;
+        cout<<"Si trova in una cella angolare"<<endl;
         return true;
     }
     shared_ptr<SideCell> currCell = dynamic_pointer_cast<SideCell>(currGenericCell);
     //arrivo su una casella non ancora venduta (chiede all’utente se desidera comprarla);
     if(!currCell->has_owner()){
         int price = currCell->get_type().purchase_land;
-        cout<<"si trova in un terreno libero, desidera acquistare?\n[y]\n[n]\nelse back to menu\n: ";
+        cout<<"Si trova in un terreno libero, desidera acquistare? Il prezzo è di "<<price<<" fiorini e ha a disposizione "<<pt->get_money()<<" fiorini\n[y]\n[n]\nelse back to menu\n: ";
         std::getline(cin,in);
         if(in=="y" && pt->has_this_money(price)){
             pt->withdraw(price);
             currCell->add_owner(pt);
             ofs<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<t.get_cellname(pt->get_currpos())<<endl;
-            cout<<"terreno acquistato"<<endl;
+            cout<<"Terreno acquistato"<<endl;
             pList.push(pt);
             return true;
         }   
         else if(in=="y"){
-            cout<<"non possiede abbastanza denaro"<<endl;
+            cout<<"Non possiede abbastanza denaro"<<endl;
             pList.push(pt);
             return true;
         }
         else if(in=="n"){
-            cout<<"terreno non acquistato"<<endl;
+            cout<<"Terreno non acquistato"<<endl;
             pList.push(pt);
             return true;
         }
@@ -241,23 +241,23 @@ bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGe
         //arrivo su una casella di proprietà senza una casa (chiede all’utente se desidera costruire una casa);
         if(!currCell->has_house()){
             int price = currCell->get_type().upgrade_to_house;
-            cout<<"si trova in un suo terreno, desidera acquistare una casa?\n[y]\n[n]\nelse back to menu:\n ";
+            cout<<"Si trova in un suo terreno, desidera acquistare una casa? Il prezzo è di "<<price<<" fiorini e ha a disposizione "<<pt->get_money()<<" fiorini\n[y]\n[n]\nelse back to menu\n: ";
             getline(cin,in);
             if(in=="y" && pt->has_this_money(price)){
                 pt->withdraw(price);
                 currCell->upgrade_property();
                 ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<t.get_cellname(pt->get_currpos())<<endl;
-                cout<<"casa acquistata"<<endl;
+                cout<<"Casa acquistata"<<endl;
                 pList.push(pt);
             return true;
             }   
             else if(in=="y"){
-                cout<<"non possiede abbastanza denaro"<<endl;
+                cout<<"Non possiede abbastanza denaro"<<endl;
                 pList.push(pt);
                 return true;
             }
             else if(in=="n"){
-                cout<<"casa non acquistata"<<endl;
+                cout<<"Casa non acquistata"<<endl;
                 pList.push(pt);
                 return true;
             }
@@ -268,23 +268,23 @@ bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGe
         //arrivo su una casella di proprietà con una casa (chiede all’utente se desidera migliorare la casa in albergo).
         if(currCell->has_house() && !currCell->has_hotel()){
             int price = currCell->get_type().upgrade_to_hotel;
-            cout<<"si trova in un suo terreno con casa, desidera acquistare un albergo?\n[y]\n[n]\nelse back to menu\n: ";
+            cout<<"Si trova in un suo terreno con casa, desidera acquistare un albergo al prezzo di "<<price<<" fiorini?\n Ha a disposizione "<<pt->get_money()<<" fiorini\n[y]\n[n]\nelse back to menu\n: ";
             getline(cin,in);
             if(in=="y" && pt->has_this_money(price)){
                 pt->withdraw(price);
                 currCell->upgrade_property();
                 ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<t.get_cellname(pt->get_currpos())<<endl; //stampa info terreno?
-                cout<<"hotel acquistato"<<endl;
+                cout<<"Hotel acquistato"<<endl;
                 pList.push(pt);
             return true;
             }   
             else if(in=="y"){
-                cout<<"non possiede abbastanza denaro"<<endl;
+                cout<<"Non possiede abbastanza denaro"<<endl;
                 pList.push(pt);
                 return true;
             }
             else if(in=="n"){
-                cout<<"hotel non acquistato"<<endl;
+                cout<<"Hotel non acquistato"<<endl;
                 pList.push(pt);
                 return true;
             }
@@ -293,7 +293,7 @@ bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGe
             }
         }
         //proprietà con albergo non può fare niente
-        cout<<"si trova in una sua proprietà con albergo"<<endl;
+        cout<<"Si trova in una sua proprietà con albergo"<<endl;
         pList.push(pt);
         return true;
     }
@@ -308,7 +308,7 @@ bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGe
         }
         //paga
         if(pt->has_this_money(tax)){
-            cout<<"si trova in un terreno altrui, paga: "<<tax<<endl;
+            cout<<"Si trova in un terreno altrui, paga: "<<tax<<endl;
             pt->withdraw(tax);
             currCell->get_owner()->deposit(tax);
             ofs<<"Giocatore "<<playerID<<" ha pagato "<<tax<<" fiorini a giocatore "<<currCell->get_owner()->get_ID()<<" per pernottamento nella casella "<<t.get_cellname(pt->get_currpos())<<endl; //info su cell
@@ -317,7 +317,7 @@ bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGe
         }
         //non ha abbastanza soldi
         else{
-            cout<<"si trova in un terreno altrui, ma non possiede abbastanza denaro per pagare la tassa, viene eliminato"<<endl;
+            cout<<"Si trova in un terreno altrui, ma non possiede abbastanza denaro per pagare la tassa, viene eliminato"<<endl;
             t.elimination(pt);
             ofs<<"Giocatore "<<playerID<<" è stato eliminato"<<endl;
             //NON ESEGUO IL PUSH, eliminato giocatore
@@ -330,7 +330,7 @@ bool human_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGe
 //
 //
 //
-void pc_plays(tabellone& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs){
+void pc_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs){
     //casella angolare
     if(dynamic_pointer_cast<EdgeCell> (currGenericCell)){
         pList.push(pt);
