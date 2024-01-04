@@ -8,5 +8,5 @@ N.B.
 -Si consiglia di usare il terminale a schermo intero per una migliore visualizzazione del programma
 
 - cose da mettere nel main per renderele un po' più funzionale lato utente:
-    1.ogni volta che che viene posto all'utente se comprare o fare upgrade stampare il prezzo dell'operazione e i fiorini a sua disposizione
-    2.dare la possibilità di uscire dal gioco
+    (1.)ogni volta che che viene posto all'utente se comprare o fare upgrade stampare il prezzo dell'operazione e i fiorini a sua disposizione
+    (2.)dare la possibilità di uscire dal gioco
