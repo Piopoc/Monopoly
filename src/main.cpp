@@ -238,8 +238,8 @@ bool human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGeneri
     }
     //pt è proprietario
     else if (currCell->get_owner()==pt){
-        //arrivo su una casella di proprietà senza una casa (chiede all’utente se desidera costruire una casa);
-        if(!currCell->has_house()){
+        //arrivo su una casella di proprietà senza una casa né hotel (chiede all’utente se desidera costruire una casa);
+        if(!currCell->has_house() && !currCell->has_hotel()){
             int price = currCell->get_type().upgrade_to_house;
             cout<<"Si trova in un suo terreno, desidera acquistare una casa? Il prezzo è di "<<price<<" fiorini e ha a disposizione "<<pt->get_money()<<" fiorini\n[y]\n[n]\nelse back to menu\n: ";
             getline(cin,in);
@@ -350,12 +350,12 @@ void pc_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCe
     //pt è proprietario
     else if (currCell->get_owner()==pt){
         //proprietà senza casa, comprare casa?
-        if(!currCell->has_house()){
+        if(!currCell->has_house() && !currCell->has_hotel()){
             int price = currCell->get_type().upgrade_to_house;
             if(pt->pc_buys(price)){
                 pt->withdraw(price);
                 currCell->upgrade_property();
-                ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<t.get_cellname(pt->get_currpos())<<endl;
+                ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno "<<t.get_cellname(pt->get_currpos())<<endl;
             }
         }
         //proprietà con casa, migliorare in hotel?
@@ -364,7 +364,7 @@ void pc_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCe
             if(pt->pc_buys(price)){
                 pt->withdraw(price);
                 currCell->upgrade_property();
-                ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<t.get_cellname(pt->get_currpos())<<endl; //stampa info terreno?
+                ofs<<"Giocatore "<<playerID<<" ha migliorato una casa in albergo sul terreno "<<t.get_cellname(pt->get_currpos())<<endl; //stampa info terreno?
             }
         }
         //proprietà con albergo non può fare niente
