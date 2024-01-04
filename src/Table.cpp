@@ -190,7 +190,9 @@ void Table::elimination(Player* p){
     for(int i=0; i < tabs.size(); i++){
         std::shared_ptr<SideCell> sideCell = std::dynamic_pointer_cast<SideCell>(tabs[i]);
         if(sideCell && sideCell->has_owner()){
-            sideCell->remove_owner();
+            if(p == sideCell->get_owner()){
+                sideCell->remove_owner();
+            }
         }
     }
 }
