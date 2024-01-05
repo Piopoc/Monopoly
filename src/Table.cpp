@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <memory>
+#include <algorithm>
 #include "../include/Table.h"
 #include "../include/Cell.h"
 
@@ -232,7 +233,8 @@ void Table::list_property(std::queue<Player*>& pList){
                 }
             }
         }
+        temp.push_back(*it);
         std::cout << std::endl;
     }
+    pList = temp; 
 }
-*/
