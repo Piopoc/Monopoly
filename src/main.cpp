@@ -25,6 +25,8 @@ int main(int argc, char* argv[]){
     }   
     //creazione Table di gioco
     Table t;
+    //tassa di passaggio da ritirare varcando il via
+    constexpr int PASSTAX = 5;
     //creazione giocatori con 100 fiorini di budget
     Player p1 (1);
     Player p2 (2);
@@ -98,9 +100,8 @@ int main(int argc, char* argv[]){
             shared_ptr<Cell> currGenericCell = t.get_cell(pt->get_currpos());
             //situazioni possibili
             if(t.beyond_start(pt,initialPosition)){
-                int passtax = 5;
-                pt->deposit(passtax);
-                ofs<<"Giocatore "<<playerID<<" è passato dal via e ha ritirato "<<passtax<<" fiorini"<<endl;
+                pt->deposit(PASSTAX);
+                ofs<<"Giocatore "<<playerID<<" è passato dal via e ha ritirato "<<PASSTAX<<" fiorini"<<endl;
             }
             ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<t.get_cellname(pt->get_currpos())<<endl;
             pc_plays(t,pt,playerID,currGenericCell,pList,cout,ofs);
@@ -131,9 +132,8 @@ int main(int argc, char* argv[]){
             shared_ptr<Cell> currGenericCell = t.get_cell(pt->get_currpos());
             //situazioni possibili
             if(t.beyond_start(pt,initialPosition)){
-                int passtax = 5;
-                pt->deposit(passtax);
-                ofs<<"Giocatore "<<playerID<<" è passato dal via e ha ritirato "<<passtax<<" fiorini"<<endl;
+                pt->deposit(PASSTAX);
+                ofs<<"Giocatore "<<playerID<<" è passato dal via e ha ritirato "<<PASSTAX<<" fiorini"<<endl;
             }
             ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<t.get_cellname(pt->get_currpos())<<endl;
             if(pt->get_ID()==humanID){

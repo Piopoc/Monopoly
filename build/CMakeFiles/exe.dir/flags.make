@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I"/mnt/c/Users/pierf/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/../include"
+CXX_INCLUDES = -I/mnt/c/Users/leval/Documents/Monopoly/../include
 
 CXX_FLAGS =  -O2 -std=gnu++11
 

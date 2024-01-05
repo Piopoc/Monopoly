@@ -8,10 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/c/Users/pierf/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/src/Cell.cpp" "CMakeFiles/exe.dir/src/Cell.cpp.o" "gcc" "CMakeFiles/exe.dir/src/Cell.cpp.o.d"
-  "/mnt/c/Users/pierf/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/src/Player.cpp" "CMakeFiles/exe.dir/src/Player.cpp.o" "gcc" "CMakeFiles/exe.dir/src/Player.cpp.o.d"
-  "/mnt/c/Users/pierf/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/src/Table.cpp" "CMakeFiles/exe.dir/src/Table.cpp.o" "gcc" "CMakeFiles/exe.dir/src/Table.cpp.o.d"
-  "/mnt/c/Users/pierf/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/src/main.cpp" "CMakeFiles/exe.dir/src/main.cpp.o" "gcc" "CMakeFiles/exe.dir/src/main.cpp.o.d"
+  "/mnt/c/Users/leval/Documents/Monopoly/src/Cell.cpp" "CMakeFiles/exe.dir/src/Cell.cpp.o" "gcc" "CMakeFiles/exe.dir/src/Cell.cpp.o.d"
+  "/mnt/c/Users/leval/Documents/Monopoly/src/Player.cpp" "CMakeFiles/exe.dir/src/Player.cpp.o" "gcc" "CMakeFiles/exe.dir/src/Player.cpp.o.d"
+  "/mnt/c/Users/leval/Documents/Monopoly/src/Table.cpp" "CMakeFiles/exe.dir/src/Table.cpp.o" "gcc" "CMakeFiles/exe.dir/src/Table.cpp.o.d"
+  "/mnt/c/Users/leval/Documents/Monopoly/src/main.cpp" "CMakeFiles/exe.dir/src/main.cpp.o" "gcc" "CMakeFiles/exe.dir/src/main.cpp.o.d"
   )
 
 # Targets to which this target links.
