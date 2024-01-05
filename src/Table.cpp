@@ -231,6 +231,10 @@ void Table::start_game(Player* p1, Player* p2, Player* p3, Player* p4){
         }
     }
 } */
+
+
+//fix--------------------------------------------------------------------------------------------------------------
+/*
 void Table::bank_account(Player* p1, Player* p2, Player* p3, Player* p4){
     std::vector<Player*> players;
     players.push_back(p1);
@@ -260,3 +264,4 @@ void Table::list_property(Player* p1, Player* p2, Player* p3, Player* p4){
         std::cout << std::endl;
     }
 }
+*/
