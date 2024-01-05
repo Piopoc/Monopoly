@@ -301,8 +301,8 @@ void human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGeneri
             pList.push(pt);
             done = true;
         }
-        return;
     }
+    return;
 }
 //
 void pc_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs){
