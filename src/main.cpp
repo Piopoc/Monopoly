@@ -12,6 +12,7 @@ using namespace std;
 
 void pc_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs);
 bool human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs);
+void game_over(queue<Player*>& pList, ofstream& ofs);
 
 int main(int argc, char* argv[]){
     if (argc != 2) {
@@ -27,6 +28,12 @@ int main(int argc, char* argv[]){
     Table t;
     //tassa di passaggio da ritirare varcando il via
     constexpr int PASSTAX = 5;
+    //numero massimo di turni per partita con giocatore umano
+    constexpr int MAX_ROUND_HUMAN = 500;
+    //numero massimo di turni per partita con soli giocatori computer
+    constexpr int MAX_ROUND_COMPUTER = 1000;
+    //numero di turni
+    int round = 0;
     //creazione giocatori con 100 fiorini di budget
     Player p1 (1);
     Player p2 (2);
@@ -86,8 +93,12 @@ int main(int argc, char* argv[]){
         if(!ofs.good()) throw std::exception();
         cout<<ordine;
         ofs<<ordine;
+        //numero di giocatori che hanno giocato in questo round
+        int havePlayed = 0;
+        //numero di giocatori in gara all'inizio di ogni round
+        int numberOfPlayers = pList.size();
         //inizia la partita
-        while(pList.size()!=1){
+        while(pList.size()!=1 && round<MAX_ROUND_COMPUTER){
             //player del turno
             Player* pt = pList.front();
             pList.pop();
@@ -108,12 +119,17 @@ int main(int argc, char* argv[]){
             ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<t.get_cellname(pt->get_currpos())<<endl;
             cout<<"Giocatore "<<playerID<<" è arrivato alla casella "<<t.get_cellname(pt->get_currpos())<<endl;
             pc_plays(t,pt,playerID,currGenericCell,pList,cout,ofs);
+            //aumenta il numero di giocatori che hanno giocato per questo round
+            havePlayed++;
+            //se è uguale al numero di giocatori in gara, passa al round successivo 
+            if(havePlayed == pList.size()){
+                havePlayed = 0;
+                numberOfPlayers = pList.size();
+                round++;
+            }
         }
         //termina la partita
-        Player* winner = pList.front();
-        ofs<<"Giocatore "<<winner->get_ID()<<" ha vinto la partita"<<endl;
-        cout<<"Giocatore "<<winner->get_ID()<<" ha vinto la partita"<<endl;
-        ofs.close();
+        game_over(pList, ofs);
     }
     else{ //(modalitaGioco == "human") //--------------------------------------------------------------------------------------------------------------------------------------------------------------
         //apertura file log in scrittura
@@ -121,9 +137,13 @@ int main(int argc, char* argv[]){
         if(!ofs.good()) throw std::exception();
         cout<<ordine;
         ofs<<ordine;
+        //numero di giocatori che hanno giocato in questo round
+        int havePlayed = 0;
+        //numero di giocatori in gara all'inizio di ogni round
+        int numberOfPlayers = pList.size();
         int humanID = pList.front()->get_ID();
         //inizia la partita
-        while(pList.size()!=1){
+        while(pList.size()!=1 && round<MAX_ROUND_HUMAN){
             //player del turno
             Player* pt = pList.front();
             pList.pop();
@@ -188,12 +208,17 @@ int main(int argc, char* argv[]){
             else{
                 pc_plays(t,pt,playerID,currGenericCell,pList,cout,ofs);
             }
+            //aumenta il numero di giocatori che hanno giocato per questo round
+            havePlayed++;
+            //se è uguale al numero di giocatori in gara, passa al round successivo 
+            if(havePlayed == pList.size()){
+                havePlayed = 0;
+                numberOfPlayers = pList.size();
+                round++;
+            }
         }
         //termina la partita
-        Player* winner = pList.front();
-        ofs<<"Giocatore "<<winner->get_ID()<<" ha vinto la partita"<<endl;
-        cout<<"Giocatore "<<winner->get_ID()<<" ha vinto la partita"<<endl;
-        ofs.close();
+        game_over(pList, ofs);
     }
     return 0;
 }
@@ -401,5 +426,49 @@ void pc_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCe
             cout<<"Giocatore "<<playerID<<" è stato eliminato"<<endl;
             //NON ESEGUO IL PUSH, eliminato giocatore
         }
+    }
+}
+//
+//
+//
+//
+//
+void game_over(queue<Player*>& pList, ofstream& ofs)
+{
+    if(pList.size()==1){
+        Player* winner = pList.front();
+        ofs<<"Giocatore "<<winner->get_ID()<<" ha vinto la partita"<<endl;
+        cout<<"Giocatore "<<winner->get_ID()<<" ha vinto la partita"<<endl;
+    }
+    else{
+        //determina qual è il numero più alto di fiorini
+        int max = 0;
+        for(int i = 0; i < pList.size(); i++){
+            Player *p = pList.front();
+            pList.pop();
+            if(p->get_money()>max){
+                max = p->get_money();
+            }
+            pList.push(p);
+        }
+        //determina quali sono i giocatori aventi numero di fiorini pari a max
+        vector<Player*> winners;
+        for(int i = 0; i < pList.size(); i++){
+            Player *p = pList.front();
+            pList.pop();
+            if(p->get_money()==max){
+                winners.push_back(p);
+            }
+            pList.push(p);
+        }
+        //stampa messaggio
+        cout<<"Giocator"<<((winners.size() == 1) ? "e " : "i ");
+        ofs<<"Giocator"<<((winners.size() == 1) ? "e " : "i ");
+        for(int i = 0; i < winners.size(); i++){
+            cout<<winners[i]->get_ID()<<" ";
+            ofs<<winners[i]->get_ID()<<" ";
+        }
+        cout<<((winners.size() == 1) ? "ha " : "hanno ")<<"vinto la partita per aver avuto il numero più alto numero di fiorini"<<endl;
+        ofs<<((winners.size() == 1) ? "ha " : "hanno ")<<"vinto la partita per aver avuto il numero più alto numero di fiorini"<<endl;
     }
 }
