@@ -122,7 +122,7 @@ int main(int argc, char* argv[]){
             //aumenta il numero di giocatori che hanno giocato per questo round
             havePlayed++;
             //se è uguale al numero di giocatori in gara, passa al round successivo 
-            if(havePlayed == pList.size()){
+            if(havePlayed == numberOfPlayers){
                 havePlayed = 0;
                 numberOfPlayers = pList.size();
                 round++;
@@ -211,7 +211,7 @@ int main(int argc, char* argv[]){
             //aumenta il numero di giocatori che hanno giocato per questo round
             havePlayed++;
             //se è uguale al numero di giocatori in gara, passa al round successivo 
-            if(havePlayed == pList.size()){
+            if(havePlayed == numberOfPlayers){
                 havePlayed = 0;
                 numberOfPlayers = pList.size();
                 round++;
