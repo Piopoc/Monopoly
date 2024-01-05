@@ -205,34 +205,6 @@ void Table::start_game(Player* p1, Player* p2, Player* p3, Player* p4){
     start->add_occupant(p4);
 }
 
-/* void Table::show(Player* p1, Player* p2, Player* p3, Player* p4){
-    print_matrix();
-    std::vector<Player*> players;
-    players.push_back(p1);
-    players.push_back(p2);
-    players.push_back(p3);
-    players.push_back(p4);
-    for(int j=0;j<players.size();j++){
-        std::cout<<"Il giocatore "<<players[j]->get_ID()<<" ha "<<players[j]->get_money()<<" fiorini e possiede: \n";
-        for(int i=0;i<tabs.size();i++){
-            if(auto sideCell=std::dynamic_pointer_cast<SideCell>(tabs[i])){
-                if(sideCell->get_owner()==players[j]){
-                    if(sideCell->get_property()==0){
-                        std::cout<<"- la proprietà "<<get_cell(i)<<" in "<<get_cellname(i)<<std::endl;
-                    }
-                    else if(sideCell->get_property()=='*'){
-                        std::cout<<"- la casa "<<get_cell(i)<<" in "<<get_cellname(i)<<std::endl;
-                    }
-                    else{
-                        std::cout<<"- l'albergo "<<get_cell(i)<<" in "<<get_cellname(i)<<std::endl;
-                    }
-                }
-            }
-        }
-    }
-} */
-
-
 //fix--------------------------------------------------------------------------------------------------------------
 /*
 void Table::bank_account(std::queue<Player*>& pList){
