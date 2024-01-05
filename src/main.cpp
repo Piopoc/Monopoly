@@ -96,19 +96,23 @@ int main(int argc, char* argv[]){
             //sposto il giocatore
             int lancio = dice();
             ofs<<"Giocatore "<<playerID<<" ha tirato i dadi ottenendo un valore di "<<lancio<<endl;
+            cout<<"Giocatore "<<playerID<<" ha tirato i dadi ottenendo un valore di "<<lancio<<endl;
             t.move(pt,lancio);
             shared_ptr<Cell> currGenericCell = t.get_cell(pt->get_currpos());
             //situazioni possibili
             if(t.beyond_start(pt,initialPosition)){
                 pt->deposit(PASSTAX);
                 ofs<<"Giocatore "<<playerID<<" è passato dal via e ha ritirato "<<PASSTAX<<" fiorini"<<endl;
+                cout<<"Giocatore "<<playerID<<" è passato dal via e ha ritirato "<<PASSTAX<<" fiorini"<<endl;
             }
             ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<t.get_cellname(pt->get_currpos())<<endl;
+            cout<<"Giocatore "<<playerID<<" è arrivato alla casella "<<t.get_cellname(pt->get_currpos())<<endl;
             pc_plays(t,pt,playerID,currGenericCell,pList,cout,ofs);
         }
         //termina la partita
         Player* winner = pList.front();
         ofs<<"Giocatore "<<winner->get_ID()<<" ha vinto la partita"<<endl;
+        cout<<"Giocatore "<<winner->get_ID()<<" ha vinto la partita"<<endl;
         ofs.close();
     }
     else{ //(modalitaGioco == "human") //--------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -128,14 +132,17 @@ int main(int argc, char* argv[]){
             //sposto il giocatore
             int lancio = dice();
             ofs<<"Giocatore "<<playerID<<" ha tirato i dadi ottenendo un valore di "<<lancio<<endl;
+            cout<<"Giocatore "<<playerID<<" ha tirato i dadi ottenendo un valore di "<<lancio<<endl;
             t.move(pt,lancio);
             shared_ptr<Cell> currGenericCell = t.get_cell(pt->get_currpos());
             //situazioni possibili
             if(t.beyond_start(pt,initialPosition)){
                 pt->deposit(PASSTAX);
                 ofs<<"Giocatore "<<playerID<<" è passato dal via e ha ritirato "<<PASSTAX<<" fiorini"<<endl;
+                cout<<"Giocatore "<<playerID<<" è passato dal via e ha ritirato "<<PASSTAX<<" fiorini"<<endl;
             }
             ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<t.get_cellname(pt->get_currpos())<<endl;
+            cout<<"Giocatore "<<playerID<<" è arrivato alla casella "<<t.get_cellname(pt->get_currpos())<<endl;
             if(pt->get_ID()==humanID){
                 string input;
                 bool done = false;
@@ -157,19 +164,13 @@ int main(int argc, char* argv[]){
                         cout<<"azioni già svolte, usi [end] per terminare"<<endl;
                     }
                     else if(input=="show"){
-                        // è possibile utilizzare direttamente anche la funzione show che fa' tutto assieme
-                        string what;
-                        cout<<"\n[t] visualizzare il Table\n[p] lista possedimenti\n[c] conti bancari\nelse back to menu"<<endl;
-                        getline(cin,what);
-                        if(what=="t"){
-                            t.print_matrix();
-                        }
-                        else if(what=="p"){
-                            t.list_property(&p1,&p2,&p3,&p4);
-                        }
-                        else if(what=="c"){
-                            t.bank_account(&p1,&p2,&p3,&p4);
-                        }
+                        cout<<endl<<"tabellone:"<<endl;
+                        t.print_matrix();
+                        cout<<endl<<"lista proprietà:"<<endl;
+                        t.list_property(&p1,&p2,&p3,&p4);
+                        cout<<endl<<"lista conti bancari:"<<endl;
+                        t.bank_account(&p1,&p2,&p3,&p4);
+                        cout<<endl;
                     }
                     else if(input=="end" && done==false){
                         cout<<"devi prima completare il tuo turno con [do]"<<endl;
@@ -191,6 +192,7 @@ int main(int argc, char* argv[]){
         //termina la partita
         Player* winner = pList.front();
         ofs<<"Giocatore "<<winner->get_ID()<<" ha vinto la partita"<<endl;
+        cout<<"Giocatore "<<winner->get_ID()<<" ha vinto la partita"<<endl;
         ofs.close();
     }
     return 0;
@@ -218,7 +220,7 @@ bool human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGeneri
             pt->withdraw(price);
             currCell->add_owner(pt);
             ofs<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<t.get_cellname(pt->get_currpos())<<endl;
-            cout<<"Terreno acquistato"<<endl;
+            cout<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<t.get_cellname(pt->get_currpos())<<endl;
             pList.push(pt);
             return true;
         }   
@@ -247,7 +249,7 @@ bool human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGeneri
                 pt->withdraw(price);
                 currCell->upgrade_property();
                 ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<t.get_cellname(pt->get_currpos())<<endl;
-                cout<<"Casa acquistata"<<endl;
+                cout<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<t.get_cellname(pt->get_currpos())<<endl;
                 pList.push(pt);
             return true;
             }   
@@ -273,8 +275,8 @@ bool human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGeneri
             if(in=="y" && pt->has_this_money(price)){
                 pt->withdraw(price);
                 currCell->upgrade_property();
-                ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<t.get_cellname(pt->get_currpos())<<endl; //stampa info terreno?
-                cout<<"Hotel acquistato"<<endl;
+                ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<t.get_cellname(pt->get_currpos())<<endl;
+                cout<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<t.get_cellname(pt->get_currpos())<<endl;
                 pList.push(pt);
             return true;
             }   
@@ -311,7 +313,8 @@ bool human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGeneri
             cout<<"Si trova in un terreno altrui, paga: "<<tax<<endl;
             pt->withdraw(tax);
             currCell->get_owner()->deposit(tax);
-            ofs<<"Giocatore "<<playerID<<" ha pagato "<<tax<<" fiorini a giocatore "<<currCell->get_owner()->get_ID()<<" per pernottamento nella casella "<<t.get_cellname(pt->get_currpos())<<endl; //info su cell
+            ofs<<"Giocatore "<<playerID<<" ha pagato "<<tax<<" fiorini a giocatore "<<currCell->get_owner()->get_ID()<<" per pernottamento nella casella "<<t.get_cellname(pt->get_currpos())<<endl;
+            cout<<"Giocatore "<<playerID<<" ha pagato "<<tax<<" fiorini a giocatore "<<currCell->get_owner()->get_ID()<<" per pernottamento nella casella "<<t.get_cellname(pt->get_currpos())<<endl;
             pList.push(pt);
             return true;
         }
@@ -320,6 +323,7 @@ bool human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGeneri
             cout<<"Si trova in un terreno altrui, ma non possiede abbastanza denaro per pagare la tassa, viene eliminato"<<endl;
             t.elimination(pt);
             ofs<<"Giocatore "<<playerID<<" è stato eliminato"<<endl;
+            cout<<"Giocatore "<<playerID<<" è stato eliminato"<<endl;
             //NON ESEGUO IL PUSH, eliminato giocatore
             return true;
         }
@@ -343,7 +347,8 @@ void pc_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCe
         if(pt->pc_buys(price)){
             pt->withdraw(price);
             currCell->add_owner(pt);
-            ofs<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<t.get_cellname(pt->get_currpos())<<endl; //-...........
+            ofs<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<t.get_cellname(pt->get_currpos())<<endl;
+            cout<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<t.get_cellname(pt->get_currpos())<<endl;
         }
         pList.push(pt);      
     }
@@ -356,6 +361,7 @@ void pc_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCe
                 pt->withdraw(price);
                 currCell->upgrade_property();
                 ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno "<<t.get_cellname(pt->get_currpos())<<endl;
+                cout<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno "<<t.get_cellname(pt->get_currpos())<<endl;
             }
         }
         //proprietà con casa, migliorare in hotel?
@@ -364,7 +370,8 @@ void pc_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCe
             if(pt->pc_buys(price)){
                 pt->withdraw(price);
                 currCell->upgrade_property();
-                ofs<<"Giocatore "<<playerID<<" ha migliorato una casa in albergo sul terreno "<<t.get_cellname(pt->get_currpos())<<endl; //stampa info terreno?
+                ofs<<"Giocatore "<<playerID<<" ha migliorato una casa in albergo sul terreno "<<t.get_cellname(pt->get_currpos())<<endl;
+                cout<<"Giocatore "<<playerID<<" ha migliorato una casa in albergo sul terreno "<<t.get_cellname(pt->get_currpos())<<endl;
             }
         }
         //proprietà con albergo non può fare niente
@@ -383,13 +390,15 @@ void pc_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCe
         if(pt->has_this_money(tax)){
             pt->withdraw(tax);
             currCell->get_owner()->deposit(tax);
-            ofs<<"Giocatore "<<playerID<<" ha pagato "<<tax<<" fiorini a giocatore "<<currCell->get_owner()->get_ID()<<" per pernottamento nella casella "<<t.get_cellname(pt->get_currpos())<<endl; //info su cell
+            ofs<<"Giocatore "<<playerID<<" ha pagato "<<tax<<" fiorini a giocatore "<<currCell->get_owner()->get_ID()<<" per pernottamento nella casella "<<t.get_cellname(pt->get_currpos())<<endl;
+            cout<<"Giocatore "<<playerID<<" ha pagato "<<tax<<" fiorini a giocatore "<<currCell->get_owner()->get_ID()<<" per pernottamento nella casella "<<t.get_cellname(pt->get_currpos())<<endl;
             pList.push(pt);
         }
         //non ha abbastanza soldi
         else{
             t.elimination(pt);
             ofs<<"Giocatore "<<playerID<<" è stato eliminato"<<endl;
+            cout<<"Giocatore "<<playerID<<" è stato eliminato"<<endl;
             //NON ESEGUO IL PUSH, eliminato giocatore
         }
     }
