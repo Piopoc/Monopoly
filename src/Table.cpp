@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <memory>
+#include <algorithm>
 #include "../include/Table.h"
 #include "../include/Cell.h"
 
@@ -205,63 +206,28 @@ void Table::start_game(Player* p1, Player* p2, Player* p3, Player* p4){
     start->add_occupant(p4);
 }
 
-/* void Table::show(Player* p1, Player* p2, Player* p3, Player* p4){
-    print_matrix();
-    std::vector<Player*> players;
-    players.push_back(p1);
-    players.push_back(p2);
-    players.push_back(p3);
-    players.push_back(p4);
-    for(int j=0;j<players.size();j++){
-        std::cout<<"Il giocatore "<<players[j]->get_ID()<<" ha "<<players[j]->get_money()<<" fiorini e possiede: \n";
-        for(int i=0;i<tabs.size();i++){
-            if(auto sideCell=std::dynamic_pointer_cast<SideCell>(tabs[i])){
-                if(sideCell->get_owner()==players[j]){
-                    if(sideCell->get_property()==0){
-                        std::cout<<"- la proprietà "<<get_cell(i)<<" in "<<get_cellname(i)<<std::endl;
-                    }
-                    else if(sideCell->get_property()=='*'){
-                        std::cout<<"- la casa "<<get_cell(i)<<" in "<<get_cellname(i)<<std::endl;
-                    }
-                    else{
-                        std::cout<<"- l'albergo "<<get_cell(i)<<" in "<<get_cellname(i)<<std::endl;
-                    }
-                }
-            }
-        }
+void Table::bank_account(std::deque<Player*>& pList){
+    std::deque<Player*> temp;
+    for (auto it = pList.begin(); it != pList.end(); ++it) {
+        std::cout << "Il giocatore " << (*it)->get_ID() << " ha " << (*it)->get_money() << " fiorini \n";
+        temp.push_back(*it);
     }
-} */
-
-
-//fix--------------------------------------------------------------------------------------------------------------
-/*
-void Table::bank_account(std::queue<Player*>& pList){
-    std::vector<Player*> players;
-    players.push_back(p1);
-    players.push_back(p2);
-    players.push_back(p3);
-    players.push_back(p4);
-
-    for(int j=0;j<players.size();j++){
-        std::cout<<"Il giocatore "<<players[j]->get_ID()<<" ha "<<players[j]->get_money()<<" fiorini \n";
-    }
+    pList = temp;
 }
-void Table::list_property(std::queue<Player*>& pList){
-    std::vector<Player*> players;
-    players.push_back(p1);
-    players.push_back(p2);
-    players.push_back(p3);
-    players.push_back(p4);
-    for(int j=0;j<players.size();j++){
-        std::cout << "Giocatore " << players[j]->get_ID() << ": ";
-        for(int i=0;i<tabs.size();i++){
-            if(std::shared_ptr<SideCell> sideCell=std::dynamic_pointer_cast<SideCell>(tabs[i])){
-                if(sideCell->has_owner() && sideCell->get_owner() == players[j]){
-                    std::cout << get_cellname(i) << " ";
+
+void Table::list_property(std::deque<Player*>& pList){
+    std::deque<Player*> temp;
+    for (auto it = pList.begin(); it != pList.end(); ++it) {
+        std::cout << "Giocatore " << (*it)->get_ID() << ": ";
+        for (const auto& cell : tabs) {
+            if (std::shared_ptr<SideCell> sideCell = std::dynamic_pointer_cast<SideCell>(cell)) {
+                if (sideCell->has_owner() && sideCell->get_owner() == *it) {
+                    std::cout << get_cellname(std::distance(tabs.begin(), std::find(tabs.begin(), tabs.end(), cell))) << " ";
                 }
             }
         }
+        temp.push_back(*it);
         std::cout << std::endl;
     }
+    pList = temp; 
 }
-*/
