@@ -415,6 +415,13 @@ void pc_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCe
 //
 //
 //
+
+
+
+
+
+
+///////
 void game_over(queue<Player*>& pList, ofstream& ofs)
 {
     if(pList.size()==1){
