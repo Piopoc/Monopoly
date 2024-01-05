@@ -154,9 +154,10 @@ CMakeFiles/exe.dir/src/Table.cpp.o: \
  /home/piopo/Documenti/C++/monopoly/src/../include/Table.h \
  /usr/include/c++/13.2.1/vector /usr/include/c++/13.2.1/bits/stl_vector.h \
  /usr/include/c++/13.2.1/bits/stl_bvector.h \
- /usr/include/c++/13.2.1/bits/vector.tcc /usr/include/c++/13.2.1/deque \
- /usr/include/c++/13.2.1/bits/stl_deque.h \
+ /usr/include/c++/13.2.1/bits/vector.tcc /usr/include/c++/13.2.1/queue \
+ /usr/include/c++/13.2.1/deque /usr/include/c++/13.2.1/bits/stl_deque.h \
  /usr/include/c++/13.2.1/bits/deque.tcc \
+ /usr/include/c++/13.2.1/bits/stl_queue.h \
  /home/piopo/Documenti/C++/monopoly/src/../include/../include/Cell.h \
  /home/piopo/Documenti/C++/monopoly/src/../include/../include/../include/Player.h \
  /home/piopo/Documenti/C++/monopoly/src/../include/Cell.h

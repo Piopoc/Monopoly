@@ -238,3 +238,4 @@ void Table::list_property(std::queue<Player*>& pList){
     }
     pList = temp; 
 }
+*/

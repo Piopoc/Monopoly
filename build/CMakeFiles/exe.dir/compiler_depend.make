@@ -517,6 +517,7 @@ CMakeFiles/exe.dir/src/Table.cpp.o: /home/piopo/Documenti/C++/monopoly/src/Table
   /usr/include/c++/13.2.1/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/13.2.1/bits/stl_iterator_base_types.h \
   /usr/include/c++/13.2.1/bits/stl_pair.h \
+  /usr/include/c++/13.2.1/bits/stl_queue.h \
   /usr/include/c++/13.2.1/bits/stl_raw_storage_iter.h \
   /usr/include/c++/13.2.1/bits/stl_tempbuf.h \
   /usr/include/c++/13.2.1/bits/stl_uninitialized.h \
@@ -556,6 +557,7 @@ CMakeFiles/exe.dir/src/Table.cpp.o: /home/piopo/Documenti/C++/monopoly/src/Table
   /usr/include/c++/13.2.1/memory \
   /usr/include/c++/13.2.1/new \
   /usr/include/c++/13.2.1/ostream \
+  /usr/include/c++/13.2.1/queue \
   /usr/include/c++/13.2.1/stdexcept \
   /usr/include/c++/13.2.1/streambuf \
   /usr/include/c++/13.2.1/string \
@@ -730,10 +732,12 @@ CMakeFiles/exe.dir/src/main.cpp.o: /home/piopo/Documenti/C++/monopoly/src/main.c
   /usr/include/c++/13.2.1/bits/stl_construct.h \
   /usr/include/c++/13.2.1/bits/stl_deque.h \
   /usr/include/c++/13.2.1/bits/stl_function.h \
+  /usr/include/c++/13.2.1/bits/stl_heap.h \
   /usr/include/c++/13.2.1/bits/stl_iterator.h \
   /usr/include/c++/13.2.1/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/13.2.1/bits/stl_iterator_base_types.h \
   /usr/include/c++/13.2.1/bits/stl_pair.h \
+  /usr/include/c++/13.2.1/bits/stl_queue.h \
   /usr/include/c++/13.2.1/bits/stl_raw_storage_iter.h \
   /usr/include/c++/13.2.1/bits/stl_tempbuf.h \
   /usr/include/c++/13.2.1/bits/stl_uninitialized.h \
@@ -772,6 +776,7 @@ CMakeFiles/exe.dir/src/main.cpp.o: /home/piopo/Documenti/C++/monopoly/src/main.c
   /usr/include/c++/13.2.1/memory \
   /usr/include/c++/13.2.1/new \
   /usr/include/c++/13.2.1/ostream \
+  /usr/include/c++/13.2.1/queue \
   /usr/include/c++/13.2.1/stdexcept \
   /usr/include/c++/13.2.1/streambuf \
   /usr/include/c++/13.2.1/string \
