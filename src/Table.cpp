@@ -235,7 +235,7 @@ void Table::start_game(Player* p1, Player* p2, Player* p3, Player* p4){
 
 //fix--------------------------------------------------------------------------------------------------------------
 /*
-void Table::bank_account(Player* p1, Player* p2, Player* p3, Player* p4){
+void Table::bank_account(std::queue<Player*>& pList){
     std::vector<Player*> players;
     players.push_back(p1);
     players.push_back(p2);
@@ -246,7 +246,7 @@ void Table::bank_account(Player* p1, Player* p2, Player* p3, Player* p4){
         std::cout<<"Il giocatore "<<players[j]->get_ID()<<" ha "<<players[j]->get_money()<<" fiorini \n";
     }
 }
-void Table::list_property(Player* p1, Player* p2, Player* p3, Player* p4){
+void Table::list_property(std::queue<Player*>& pList){
     std::vector<Player*> players;
     players.push_back(p1);
     players.push_back(p2);
