@@ -120,6 +120,8 @@ int main(int argc, char* argv[]){
             ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<t.get_cellname(pt->get_currpos())<<endl;
             cout<<"Giocatore "<<playerID<<" è arrivato alla casella "<<t.get_cellname(pt->get_currpos())<<endl;
             pc_plays(t,pt,playerID,currGenericCell,pList,cout,ofs);
+            ofs<<"Giocatore "<<playerID<<" ha finito il turno"<<endl;
+            cout<<"Giocatore "<<playerID<<" ha finito il turno"<<endl;
             //aumenta il numero di giocatori che hanno giocato per questo round
             havePlayed++;
             //se è uguale al numero di giocatori in gara, passa al round successivo 
@@ -166,10 +168,14 @@ int main(int argc, char* argv[]){
             cout<<"Giocatore "<<playerID<<" è arrivato alla casella "<<t.get_cellname(pt->get_currpos())<<endl;
             if(pt->get_ID()==humanID){
                 human_plays(t,pt,playerID,currGenericCell,pList,cout,ofs);
+                ofs<<"Giocatore "<<playerID<<" ha finito il turno"<<endl;
+                cout<<"Giocatore "<<playerID<<" ha finito il turno"<<endl;
             }
             //giocatore computer
             else{
                 pc_plays(t,pt,playerID,currGenericCell,pList,cout,ofs);
+                ofs<<"Giocatore "<<playerID<<" ha finito il turno"<<endl;
+                cout<<"Giocatore "<<playerID<<" ha finito il turno"<<endl;
             }
             //aumenta il numero di giocatori che hanno giocato per questo round
             havePlayed++;
