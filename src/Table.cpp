@@ -238,4 +238,30 @@ void Table::list_property(std::queue<Player*>& pList){
     }
     pList = temp; 
 }
+
+void Table::bank_account(std::deque<Player*>& pList){
+    std::deque<Player*> temp;
+    for (auto it = pList.begin(); it != pList.end(); ++it) {
+        std::cout << "Il giocatore " << (*it)->get_ID() << " ha " << (*it)->get_money() << " fiorini \n";
+        temp.push_back(*it);
+    }
+    pList = temp;
+}
+
+void Table::list_property(std::deque<Player*>& pList){
+    std::deque<Player*> temp;
+    for (auto it = pList.begin(); it != pList.end(); ++it) {
+        std::cout << "Giocatore " << (*it)->get_ID() << ": ";
+        for (const auto& cell : tabs) {
+            if (std::shared_ptr<SideCell> sideCell = std::dynamic_pointer_cast<SideCell>(cell)) {
+                if (sideCell->has_owner() && sideCell->get_owner() == *it) {
+                    std::cout << get_cellname(std::distance(tabs.begin(), std::find(tabs.begin(), tabs.end(), cell))) << " ";
+                }
+            }
+        }
+        temp.push_back(*it);
+        std::cout << std::endl;
+    }
+    pList = temp; 
+}
 */
