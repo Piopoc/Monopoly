@@ -248,42 +248,15 @@ void Table::list_property(Player* p1, Player* p2, Player* p3, Player* p4){
     players.push_back(p2);
     players.push_back(p3);
     players.push_back(p4);
-    // proprietà dove sono i giocatori
     for(int j=0;j<players.size();j++){
+        std::cout << "Giocatore " << players[j]->get_ID() << ": ";
         for(int i=0;i<tabs.size();i++){
             if(std::shared_ptr<SideCell> sideCell=std::dynamic_pointer_cast<SideCell>(tabs[i])){
-                if(sideCell->has_owner() && i==players[j]->get_currpos()){
-                    std::cout<<"Giocatore "<<players[j]->get_ID()<<" nella casella "<<get_cellname(i);
-                    if(sideCell->get_property()==0){
-                        std::cout<<" con una proprietà \n";
-                    }
-                    else if(sideCell->get_property()=='*'){
-                        std::cout<<" con una casa \n";
-                    }
-                    else if(sideCell->get_property()=='^'){
-                        std::cout<<" con un albergo \n";
-                    }
-                    else{
-                        std::cout<<"\n";
-                    }
+                if(sideCell->has_owner() && sideCell->get_owner() == players[j]){
+                    std::cout << get_cellname(i) << " ";
                 }
             }
         }
-    }
-    // proprietà dove non sono i giocatori
-    for(int i=0;i<tabs.size();i++){
-        if(std::shared_ptr<SideCell> sideCell=std::dynamic_pointer_cast<SideCell>(tabs[i])){
-            if((i!=players[0]->get_currpos() && i!=players[1]->get_currpos() && i!=players[2]->get_currpos() && i!=players[3]->get_currpos()) && (sideCell->has_owner())){
-                if(sideCell->get_property()==0){
-                    std::cout<<"Casella "<<get_cellname(i)<<" con proprietà \n";
-                }
-                else if(sideCell->get_property()=='*'){
-                    std::cout<<"Casella "<<get_cellname(i)<<" con casa \n";
-                }
-                else if(sideCell->get_property()=='^'){
-                    std::cout<<"Casella "<<get_cellname(i)<<" con albergo \n";
-                }
-            }
-        }
+        std::cout << std::endl;
     }
 }

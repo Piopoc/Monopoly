@@ -153,7 +153,7 @@ int main(int argc, char* argv[]){
                         done = human_plays(t,pt,playerID,currGenericCell,pList,cout,ofs); 
                         cout<<endl;                    
                     }
-                    else if(input=="do" && done==false){
+                    else if(input=="do" && done==true){
                         cout<<"azioni già svolte, usi [end] per terminare"<<endl;
                     }
                     else if(input=="show"){
@@ -268,7 +268,7 @@ bool human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGeneri
         //arrivo su una casella di proprietà con una casa (chiede all’utente se desidera migliorare la casa in albergo).
         if(currCell->has_house() && !currCell->has_hotel()){
             int price = currCell->get_type().upgrade_to_hotel;
-            cout<<"Si trova in un suo terreno con casa, desidera acquistare un albergo al prezzo di "<<price<<" fiorini?\n Ha a disposizione "<<pt->get_money()<<" fiorini\n[y]\n[n]\nelse back to menu\n: ";
+            cout<<"Si trova in un suo terreno con casa, desidera acquistare un albergo? Il prezzo è di "<<price<<" fiorini e ha a disposizione "<<pt->get_money()<<" fiorini\n[y]\n[n]\nelse back to menu\n: ";
             getline(cin,in);
             if(in=="y" && pt->has_this_money(price)){
                 pt->withdraw(price);
