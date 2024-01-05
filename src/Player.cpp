@@ -59,37 +59,3 @@ int dice()
     rand ();
     return (rand() % 6 + 1)+(rand() % 6 + 1);
 }
-bool repeated_max(std::vector<int> a){
-        int max = 0;
-        bool done = false;
-        for(int i = 0; i<4; i++){
-            if(a[i]>max){
-                max = a[i];
-            }
-            if(max!=0 && a[i]==max){
-                if(done){
-                    std::cout<<"doppione di"<<a[i]<<std::endl;
-                    return true;
-                }
-                //done = true;
-            }
-        }
-        return done;
-    }
-int get_posmax(std::vector<int> a){
-    int max = 0;
-    for(int i = 1; i<4; i++){
-        if(a[i]>a[max]){
-            max = i;
-        }
-    }
-    return max;
-}
-void throw_again(std::vector<int> a){
-    int max = a[get_posmax(a)];
-    for(int i = 0; i<4; i++){
-        if(max!=0 && a[i]==max){
-            a[i] = dice();
-        }
-    }
-}

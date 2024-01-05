@@ -13,7 +13,13 @@ using namespace std;
 void pc_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs);
 void human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs);
 void game_over(queue<Player*>& pList, ofstream& ofs);
+
 void show(Table& t, queue<Player*>& pList);
+
+string put_in_order(queue<Player*> pList); //mette in ordine con il criterio dei dadi
+bool repeated_max(vector<int> a); //controlla se il lancio più alto ha un pareggio
+int get_posmax(vector<int> a); //ottiene posizione del giocatore con punteggio massimo all'interno dell'array
+void throw_again(vector<int> a); //rilancia i dadi massimi in pareggio
 
 int main(int argc, char* argv[]){
     if (argc != 2) {
@@ -35,48 +41,14 @@ int main(int argc, char* argv[]){
     constexpr int MAX_ROUND_COMPUTER = 1000;
     //numero di turni
     int round = 0;
-    //creazione giocatori con 100 fiorini di budget
+    //creazione giocatori con 100 fiorini di budget e id numerici
     Player p1 (1);
     Player p2 (2);
     Player p3 (3);
     Player p4 (4);
     //coda di gioco
     queue<Player*> pList;
-    //vettore con lanci di dadi e corrispettivi giocatori
-    vector<int> lanciDadi;
-    vector<Player*> corrispettivi;
-    lanciDadi.push_back(dice());
-    corrispettivi.push_back(&p1);
-    lanciDadi.push_back(dice());
-    corrispettivi.push_back(&p2);
-    lanciDadi.push_back(dice());
-    corrispettivi.push_back(&p3);
-    lanciDadi.push_back(dice());
-    corrispettivi.push_back(&p4);
-    cout<<lanciDadi[0]<<endl<<lanciDadi[1]<<endl<<lanciDadi[2]<<endl<<lanciDadi[3]<<endl;
-    //gestione ordine di partenza
-    int full = 0;
-    while(full!=4){
-        if(!repeated_max(lanciDadi)){
-            int posmax = get_posmax(lanciDadi);
-            lanciDadi[posmax] = 0;
-            pList.push(corrispettivi[posmax]);
-            full++;
-        }
-        else{
-            throw_again(lanciDadi);
-        }
-    }
-    string ordine = "ordine di gioco:";
-    for(int i =0; i<4; i++){
-        Player* p = pList.front();
-        int id = p->get_ID();
-        pList.pop();
-        pList.push(p);
-        ordine += " p";
-        ordine += to_string(id);
-    }
-    ordine += "\n";
+    string order = put_in_order(pList);
     //inserisci i giocatori nella cella del via 
     t.start_game(&p1,&p2,&p3,&p4);
     cout<<" ___ ___   ___   ____    ___   ____    ___   _      ____      ____   __ __      _       ____  ___ ___  ____   ___     ____ "<<endl;
@@ -92,8 +64,8 @@ int main(int argc, char* argv[]){
         //apertura file log in scrittura
         ofstream ofs("../../monopoly/computer.log",ofstream::out);
         if(!ofs.good()) throw std::exception();
-        cout<<ordine;
-        ofs<<ordine;
+        cout<<order;
+        ofs<<order;
         //numero di giocatori che hanno giocato in questo round
         int havePlayed = 0;
         //numero di giocatori in gara all'inizio di ogni round
@@ -134,12 +106,12 @@ int main(int argc, char* argv[]){
         //termina la partita
         game_over(pList, ofs);
     }
-    else{ //(modalitaGioco == "human") //--------------------------------------------------------------------------------------------------------------------------------------------------------------
+    else{ //(modalitaGioco == "human")
         //apertura file log in scrittura
         ofstream ofs("../../monopoly/human.log",ofstream::out);
         if(!ofs.good()) throw std::exception();
-        cout<<ordine;
-        ofs<<ordine;
+        cout<<order;
+        ofs<<order;
         //numero di giocatori che hanno giocato in questo round
         int havePlayed = 0;
         //numero di giocatori in gara all'inizio di ogni round
@@ -190,11 +162,7 @@ int main(int argc, char* argv[]){
         game_over(pList, ofs);
     }
     return 0;
-}
-//
-//
-//
-//
+} //------------------------------------------------------------------------------------------------------------------------------------------------
 //
 void human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs){
     string in;
@@ -337,10 +305,6 @@ void human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGeneri
     }
 }
 //
-//
-//
-//
-//
 void pc_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs){
     //casella angolare
     if(dynamic_pointer_cast<EdgeCell> (currGenericCell)){
@@ -411,17 +375,6 @@ void pc_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCe
     }
 }
 //
-//
-//
-//
-//
-
-
-
-
-
-
-///////
 void game_over(queue<Player*>& pList, ofstream& ofs)
 {
     if(pList.size()==1){
@@ -462,7 +415,6 @@ void game_over(queue<Player*>& pList, ofstream& ofs)
     }
 }
 //
-//
 void show(Table& t, queue<Player*>& pList){
     cout<<endl<<"tabellone:"<<endl;
     t.print_matrix();
@@ -471,4 +423,71 @@ void show(Table& t, queue<Player*>& pList){
     cout<<endl<<"lista conti bancari:"<<endl;
     t.bank_account(pList);
     cout<<endl;
+}
+
+string put_in_order(queue<Player*> pList){
+    vector<int> lanciDadi;
+    vector<Player*> corrispettivi;
+    for(int i = 0; i<4; i++){
+            lanciDadi.push_back(dice());
+            Player* p = pList.front();
+            corrispettivi.push_back(p);
+            pList.pop();
+            pList.push(p);
+    }
+    string order = "ordine di gioco:";
+    int full = 0;
+    while(full!=4){
+        if(!repeated_max(lanciDadi)){
+            int posmax = get_posmax(lanciDadi);
+            lanciDadi[posmax] = 0;
+            pList.push(corrispettivi[posmax]);
+            full++;
+        }
+        else{
+            throw_again(lanciDadi);
+        }
+    }
+    
+    for(int i =0; i<4; i++){
+        Player* p = pList.front();
+        int id = p->get_ID();
+        pList.pop();
+        pList.push(p);
+        order += " p";
+        order += to_string(id);
+    }
+    order += "\n";
+    return order;
+}
+
+bool repeated_max(vector<int> a){
+    int max = a[get_posmax(a)];
+    bool done = false;
+    for(int i = 0; i<4; i++){
+        if(max!=0 && a[i]==max){
+            if(done){
+                return true;
+            }
+            done = true;
+        }
+    }
+    return done;
+}
+int get_posmax(vector<int> a){
+    int max = 0;
+    for(int i = 1; i<4; i++){
+        if(a[i]>a[max]){
+            max = i;
+        }
+    }
+    return max;
+}
+void throw_again(vector<int> a){
+    int max = a[get_posmax(a)];
+    for(int i = 0; i<4; i++){
+        if(max!=0 && a[i]==max){
+            a[i] = dice();
+        }
+    }
 }
