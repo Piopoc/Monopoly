@@ -2,7 +2,6 @@
 
 #ifndef PLAYER_H
 #define PLAYER_H
-#include <vector>
 
 class Player{
     public:
@@ -22,8 +21,5 @@ class Player{
         int currentPos; //cella in cui si trova
 };
 int dice(); //tira 2 dadi
-bool repeated_max(std::vector<int> a); //controlla se il lancio più alto ha un pareggio
-int get_posmax(std::vector<int> a); //ottiene posizione del giocatore con punteggio massimo all'interno dell'array
-void throw_again(std::vector<int> a); //rilancia i dadi massimi in pareggio
 
 #endif
