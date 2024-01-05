@@ -205,7 +205,6 @@ void Table::start_game(Player* p1, Player* p2, Player* p3, Player* p4){
     start->add_occupant(p4);
 }
 
-//fix--------------------------------------------------------------------------------------------------------------
 /*
 void Table::bank_account(std::queue<Player*>& pList){
     std::vector<Player*> players;
