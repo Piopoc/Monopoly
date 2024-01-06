@@ -30,7 +30,7 @@ int main(int argc, char* argv[]){
     if(modalitaGioco != "computer" && modalitaGioco != "human"){
         cout << "Modalità non valida. Utilizzo: " << argv[0] << " <computer/human>" << endl;
         return 1;
-    }   
+    }
     //creazione Table di gioco
     Table t;
     //tassa di passaggio da ritirare varcando il via
@@ -48,6 +48,10 @@ int main(int argc, char* argv[]){
     Player p4 (4);
     //coda di gioco
     queue<Player*> pList;
+    pList.push(&p1);
+    pList.push(&p2);
+    pList.push(&p3);
+    pList.push(&p4);
     string order = put_in_order(pList);
     //inserisci i giocatori nella cella del via 
     t.start_game(&p1,&p2,&p3,&p4);
@@ -431,12 +435,14 @@ string put_in_order(queue<Player*> pList){
     string order;
     for(int i = 0; i<4; i++){
         lanciDadi.push_back(dice());
-        order = order + "p" + to_string(i) + "lancia i dadi e ottiene: " + to_string(lanciDadi[i]) + "\n";
+        order += "p" + to_string(i) + "lancia i dadi e ottiene: " + to_string(lanciDadi[i]) + "\n";
         Player* p = pList.front();
         corrispettivi.push_back(p);
         pList.pop();
         pList.push(p);
     }
+
+    cout<<"1";
     order += "ordine di gioco:\n";
     int full = 0;
     while(full!=4){
@@ -445,7 +451,7 @@ string put_in_order(queue<Player*> pList){
             lanciDadi[posmax] = 0;
             pList.push(corrispettivi[posmax]);
             full++;
-            order = order + "turno " + to_string(full) + " p" + to_string(corrispettivi[posmax]->get_ID()) + "\n";
+            order += "turno " + to_string(full) + " p" + to_string(corrispettivi[posmax]->get_ID()) + "\n";
         }
         else{
             throw_again(lanciDadi,order);
@@ -457,8 +463,7 @@ string put_in_order(queue<Player*> pList){
         int id = p->get_ID();
         pList.pop();
         pList.push(p);
-        order += " p";
-        order += to_string(id);
+        order += " p" + to_string(id);
     }
     order += "\n";
     return order;
@@ -491,7 +496,7 @@ void throw_again(vector<int> a, string order){
     for(int i = 0; i<4; i++){
         if(max!=0 && a[i]==max){
             a[i] = dice();
-            order = order + "p" + to_string(i) + "rilancia i dadi e ottiene: " + to_string(a[i]) + "\n";
+            order += "p" + to_string(i) + "rilancia i dadi e ottiene: " + to_string(a[i]) + "\n";
         }
     }
 }
