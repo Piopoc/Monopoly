@@ -439,7 +439,6 @@ string put_in_order(queue<Player*> pList){
         Player* p = pList.front();
         corrispettivi.push_back(p);
         pList.pop();
-        pList.push(p);
     }
 
     cout<<"1";
