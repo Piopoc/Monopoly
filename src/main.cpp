@@ -16,10 +16,10 @@ void game_over(queue<Player*>& pList, ofstream& ofs);
 
 void show(Table& t, queue<Player*>& pList);
 
-string put_in_order(queue<Player*> pList); //mette in ordine con il criterio dei dadi
-bool repeated_max(vector<int> a); //controlla se il lancio più alto ha un pareggio
-int get_posmax(vector<int> a); //ottiene posizione del giocatore con punteggio massimo all'interno dell'array
-void throw_again(vector<int> a, string order); //rilancia i dadi massimi in pareggio
+string put_in_order(queue<Player*>& pList); //mette in ordine con il criterio dei dadi
+bool repeated_max(vector<int>& a); //controlla se il lancio più alto ha un pareggio
+int get_posmax(vector<int>& a); //ottiene posizione del giocatore con punteggio massimo all'interno dell'array
+void throw_again(vector<int>& a, string& order); //rilancia i dadi massimi in pareggio
 
 int main(int argc, char* argv[]){
     if (argc != 2) {
@@ -414,8 +414,8 @@ void game_over(queue<Player*>& pList, ofstream& ofs)
             cout<<winners[i]->get_ID()<<" ";
             ofs<<winners[i]->get_ID()<<" ";
         }
-        cout<<((winners.size() == 1) ? "ha " : "hanno ")<<"vinto la partita per aver avuto il numero più alto numero di fiorini"<<endl;
-        ofs<<((winners.size() == 1) ? "ha " : "hanno ")<<"vinto la partita per aver avuto il numero più alto numero di fiorini"<<endl;
+        cout<<((winners.size() == 1) ? "ha " : "hanno ")<<"vinto la partita per aver avuto il numero più alto di fiorini"<<endl;
+        ofs<<((winners.size() == 1) ? "ha " : "hanno ")<<"vinto la partita per aver avuto il numero più alto di fiorini"<<endl;
     }
 }
 //
@@ -429,19 +429,18 @@ void show(Table& t, queue<Player*>& pList){
     cout<<endl;
 }
 
-string put_in_order(queue<Player*> pList){
+string put_in_order(queue<Player*>& pList){
     vector<int> lanciDadi;
     vector<Player*> corrispettivi;
     string order;
     for(int i = 0; i<4; i++){
         lanciDadi.push_back(dice());
-        order += "p" + to_string(i) + "lancia i dadi e ottiene: " + to_string(lanciDadi[i]) + "\n";
+        order += "p" + to_string(i + 1) + " lancia i dadi e ottiene: " + to_string(lanciDadi[i]) + "\n";
         Player* p = pList.front();
         corrispettivi.push_back(p);
         pList.pop();
     }
 
-    cout<<"1";
     order += "ordine di gioco:\n";
     int full = 0;
     while(full!=4){
@@ -456,7 +455,7 @@ string put_in_order(queue<Player*> pList){
             throw_again(lanciDadi,order);
         }
     }
-    
+
     for(int i =0; i<4; i++){
         Player* p = pList.front();
         int id = p->get_ID();
@@ -468,7 +467,7 @@ string put_in_order(queue<Player*> pList){
     return order;
 }
 
-bool repeated_max(vector<int> a){
+bool repeated_max(vector<int>& a){
     int max = a[get_posmax(a)];
     bool done = false;
     for(int i = 0; i<4; i++){
@@ -479,9 +478,9 @@ bool repeated_max(vector<int> a){
             done = true;
         }
     }
-    return done;
+    return false;
 }
-int get_posmax(vector<int> a){
+int get_posmax(vector<int>& a){
     int max = 0;
     for(int i = 1; i<4; i++){
         if(a[i]>a[max]){
@@ -490,12 +489,12 @@ int get_posmax(vector<int> a){
     }
     return max;
 }
-void throw_again(vector<int> a, string order){
+void throw_again(vector<int>& a, string& order){
     int max = a[get_posmax(a)];
     for(int i = 0; i<4; i++){
         if(max!=0 && a[i]==max){
             a[i] = dice();
-            order += "p" + to_string(i) + "rilancia i dadi e ottiene: " + to_string(a[i]) + "\n";
+            order += "p" + to_string(i + 1) + " rilancia i dadi e ottiene: " + to_string(a[i]) + "\n";
         }
     }
 }
