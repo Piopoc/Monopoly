@@ -19,7 +19,7 @@ void show(Table& t, queue<Player*>& pList);
 string put_in_order(queue<Player*> pList); //mette in ordine con il criterio dei dadi
 bool repeated_max(vector<int> a); //controlla se il lancio più alto ha un pareggio
 int get_posmax(vector<int> a); //ottiene posizione del giocatore con punteggio massimo all'interno dell'array
-void throw_again(vector<int> a); //rilancia i dadi massimi in pareggio
+void throw_again(vector<int> a, string order); //rilancia i dadi massimi in pareggio
 
 int main(int argc, char* argv[]){
     if (argc != 2) {
@@ -428,14 +428,16 @@ void show(Table& t, queue<Player*>& pList){
 string put_in_order(queue<Player*> pList){
     vector<int> lanciDadi;
     vector<Player*> corrispettivi;
+    string order;
     for(int i = 0; i<4; i++){
-            lanciDadi.push_back(dice());
-            Player* p = pList.front();
-            corrispettivi.push_back(p);
-            pList.pop();
-            pList.push(p);
+        lanciDadi.push_back(dice());
+        order = order + "p" + to_string(i) + "lancia i dadi e ottiene: " + to_string(lanciDadi[i]) + "\n";
+        Player* p = pList.front();
+        corrispettivi.push_back(p);
+        pList.pop();
+        pList.push(p);
     }
-    string order = "ordine di gioco:";
+    order += "ordine di gioco:\n";
     int full = 0;
     while(full!=4){
         if(!repeated_max(lanciDadi)){
@@ -443,9 +445,10 @@ string put_in_order(queue<Player*> pList){
             lanciDadi[posmax] = 0;
             pList.push(corrispettivi[posmax]);
             full++;
+            order = order + "turno " + to_string(full) + " p" + to_string(corrispettivi[posmax]->get_ID()) + "\n";
         }
         else{
-            throw_again(lanciDadi);
+            throw_again(lanciDadi,order);
         }
     }
     
@@ -483,11 +486,12 @@ int get_posmax(vector<int> a){
     }
     return max;
 }
-void throw_again(vector<int> a){
+void throw_again(vector<int> a, string order){
     int max = a[get_posmax(a)];
     for(int i = 0; i<4; i++){
         if(max!=0 && a[i]==max){
             a[i] = dice();
+            order = order + "p" + to_string(i) + "rilancia i dadi e ottiene: " + to_string(a[i]) + "\n";
         }
     }
 }
