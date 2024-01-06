@@ -8,11 +8,17 @@
 //Si usa per le celle laterali e ne definisce il tipo: contiene i vari prezzi associati al tipo di terreno
 struct Type
 {
+    //Il prezzo per l'acquisto del terreno
     const int purchase_land;
+    //Il prezzo per l'acquisto di una casa
     const int upgrade_to_house;
+    //Il prezzo per il miglioramento in hotel
     const int upgrade_to_hotel;
+    //Il prezzo per il pernottamento in una casa
     const int house_stay;
+    //Il prezzo per il pernottamento in un hotel
     const int hotel_stay;
+    //Il carattere che identifica il tipo
     const char identifier;
 
     Type(int a, int b, int c, int d, int e, char i);
