@@ -1,0 +1,31 @@
+p1 lancia i dadi e ottiene: 7
+p2 lancia i dadi e ottiene: 5
+p3 lancia i dadi e ottiene: 4
+p4 lancia i dadi e ottiene: 7
+ordine di gioco:
+p1 rilancia i dadi e ottiene: 11
+p4 rilancia i dadi e ottiene: 5
+turno 1 p1
+p2 rilancia i dadi e ottiene: 7
+p4 rilancia i dadi e ottiene: 7
+p2 rilancia i dadi e ottiene: 6
+p4 rilancia i dadi e ottiene: 7
+turno 2 p4
+turno 3 p2
+turno 4 p3
+ p1 p4 p2 p3
+Giocatore 1 ha tirato i dadi ottenendo un valore di 6
+Giocatore 1 è arrivato alla casella A7
+Giocatore 1 ha acquistato il terreno A7
+Giocatore 1 ha finito il turno
+Giocatore 4 ha tirato i dadi ottenendo un valore di 8
+Giocatore 4 è arrivato alla casella B8
+Giocatore 4 ha finito il turno
+Giocatore 2 ha tirato i dadi ottenendo un valore di 10
+Giocatore 2 è arrivato alla casella D8
+Giocatore 2 ha finito il turno
+Giocatore 3 ha tirato i dadi ottenendo un valore di 10
+Giocatore 3 è arrivato alla casella D8
+Giocatore 3 ha finito il turno
+Giocatore 1 ha tirato i dadi ottenendo un valore di 10
+Giocatore 1 è arrivato alla casella H6

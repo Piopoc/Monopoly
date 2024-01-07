@@ -240,7 +240,7 @@ void human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGeneri
             }
         }
         //arrivo su una casella di proprietà senza una casa né hotel (chiede all’utente se desidera costruire una casa);
-        if(!currCell->has_house() && !currCell->has_hotel()){
+        else if(!currCell->has_house() && !currCell->has_hotel()){
             int price = currCell->get_type().upgrade_to_house;
             cout<<"Si trova in un suo terreno, desidera acquistare una casa? Il prezzo è di "<<price<<" fiorini e ha a disposizione "<<pt->get_money()<<" fiorini\n[S]\n[N]\n[show]\n: ";
             getline(cin,in);
@@ -270,11 +270,11 @@ void human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGeneri
             }
         }
         //arrivo su una casella di proprietà con una casa (chiede all’utente se desidera migliorare la casa in albergo).
-        if(currCell->has_house() && !currCell->has_hotel()){
+        else if(currCell->has_house() && !currCell->has_hotel()){
             int price = currCell->get_type().upgrade_to_hotel;
             cout<<"Si trova in un suo terreno con casa, desidera acquistare un albergo? Il prezzo è di "<<price<<" fiorini e ha a disposizione "<<pt->get_money()<<" fiorini\n[y]\n[n]\n[show]\n: ";
             getline(cin,in);
-            if(in=="y" && pt->has_this_money(price)){
+            if(in=="S" && pt->has_this_money(price)){
                 pt->withdraw(price);
                 currCell->upgrade_property();
                 ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<t.get_cellname(pt->get_currpos())<<endl;
@@ -282,12 +282,12 @@ void human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGeneri
                 pList.push(pt);
                 done = true;
             }   
-            else if(in=="y"){
+            else if(in=="S"){
                 cout<<"Non possiede abbastanza denaro"<<endl;
                 pList.push(pt);
                 done = true;
             }
-            else if(in=="n"){
+            else if(in=="N"){
                 cout<<"Hotel non acquistato"<<endl;
                 pList.push(pt);
                 done = true;
@@ -300,7 +300,7 @@ void human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGeneri
             }
         }
         //proprietà con albergo non può fare niente
-        if(currCell->has_hotel()){
+        else if(currCell->has_hotel()){
             cout<<"Si trova in una sua proprietà con albergo"<<endl;
             pList.push(pt);
             done = true;
