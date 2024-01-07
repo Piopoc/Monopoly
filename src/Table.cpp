@@ -240,7 +240,8 @@ void Table::list_property(std::queue<Player*>& pList){
 }
 */
 void Table::bank_account(std::queue<Player*>& pList){
-    for(int j=0;j<pList.size();j++){
+    int size = pList.size();
+    for(int j=0;j<size;j++){
         Player* temp=pList.front();
         std::cout << "Il giocatore " << temp->get_ID() << " ha " << temp->get_money() << " fiorini \n";
         pList.pop();
@@ -249,7 +250,8 @@ void Table::bank_account(std::queue<Player*>& pList){
 }
 
 void Table::list_property(std::queue<Player*>& pList){
-    for(int j=0;j<pList.size();j++){
+    int size = pList.size();
+    for(int j=0;j<size;j++){
         Player* temp=pList.front();
         std::cout << "Giocatore " << temp->get_ID() << ": ";
         for(const auto& cell : tabs){
