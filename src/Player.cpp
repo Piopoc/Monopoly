@@ -1,9 +1,9 @@
 // @author Alberto Levorato, matricola: 2066600
 
 #include <iostream>
-#include <queue>
 #include "../include/Player.h"
 
+//costruttore
 Player::Player(int ID)
     : cash{100}, playerID{ID}, currentPos(0)
 {
@@ -11,6 +11,7 @@ Player::Player(int ID)
         throw std::logic_error{"ID compresi tra 1 e 4"};
     }
 }
+//funzioni membro
 int Player::get_money()
 {
     return cash;
@@ -51,7 +52,7 @@ void Player::set_currpos(int pos){
     }
     currentPos = pos;
 }
-
+//helper function
 int dice()
 {
     rand ();
