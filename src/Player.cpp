@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <queue>
-#include "../include/Cell.h"
 #include "../include/Player.h"
 
 Player::Player(int ID)
@@ -11,12 +10,6 @@ Player::Player(int ID)
     if(ID<1 || ID>4){
         throw std::logic_error{"ID compresi tra 1 e 4"};
     }
-}
-Player& Player::operator=(Player& p)
-{
-    cash = p.cash;
-    playerID = p.playerID;
-    return *this;
 }
 int Player::get_money()
 {
@@ -28,7 +21,9 @@ void Player::deposit(int x)
 }
 void Player::withdraw(int x)
 {
-    if(cash-x<0) throw std::exception();
+    if(cash-x<0){
+        throw std::logic_error{"Denaro insufficiente per prelevare"};
+    }
     cash -= x;
 }
 int Player::get_ID() const
@@ -51,6 +46,9 @@ int Player::get_currpos() const{
     return currentPos;
 }
 void Player::set_currpos(int pos){
+    if(pos<0){
+        throw std::logic_error{"ID compresi tra 1 e 4"};
+    }
     currentPos = pos;
 }
 
