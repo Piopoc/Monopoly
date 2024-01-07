@@ -244,7 +244,7 @@ void human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGeneri
             int price = currCell->get_type().upgrade_to_house;
             cout<<"Si trova in un suo terreno, desidera acquistare una casa? Il prezzo è di "<<price<<" fiorini e ha a disposizione "<<pt->get_money()<<" fiorini\n[S]\n[N]\n[show]\n: ";
             getline(cin,in);
-            if(in=="y" && pt->has_this_money(price)){
+            if(in=="S" && pt->has_this_money(price)){
                 pt->withdraw(price);
                 currCell->upgrade_property();
                 ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<t.get_cellname(pt->get_currpos())<<endl;
