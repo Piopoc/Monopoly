@@ -8,7 +8,7 @@
 #include "../include/Table.h"
 #include "../include/Cell.h"
 
-
+// costruttore
 Table::Table(){
     srand(time(NULL));
 
@@ -52,7 +52,6 @@ Table::Table(){
                     tabs.push_back(pointer);
                     l--;
                 } else {
-                    // Trova la proprietà ancora disponibile
                     if (e > 0) {
                         pointer.reset(new SideCell{types::economic()});
                         tabs.push_back(pointer);
@@ -72,6 +71,7 @@ Table::Table(){
     }
 }
 
+// stampa il tabellone tramite il caricamento degli elementi in una "matrice"
 void Table::print_matrix(){
     static const int dim=10;
     std::string matrix[dim][dim];
@@ -99,7 +99,6 @@ void Table::print_matrix(){
         }
     }
 
-    // stampa della matrice
     for(int i=0;i<dim-1;i++){
         for(int j=0;j<dim;j++){
             std::cout<<matrix[i][j];
@@ -152,10 +151,12 @@ int Table::parametrizzazione_bordo_y(int t)
     
 }
 
+// verifica se player passa per casella con P
 bool Table::beyond_start(Player* p, int from){
     return p->get_currpos()<from;
 }
 
+// spostamento del player da posizione attuale a posizione indicata da lancio dei dadi
 void Table::move(Player* p, int spostamenti){
     int from=p->get_currpos();
     tabs[from]->remove_occupant(p);
@@ -164,6 +165,7 @@ void Table::move(Player* p, int spostamenti){
     tabs[to]->add_occupant(p);
 }
 
+// restituisce la ref alla cell dell'indice array
 std::shared_ptr<Cell> Table::get_cell(int pos){
     if(pos>=0 && pos<tabs.size()){
         return tabs[pos];
@@ -173,6 +175,7 @@ std::shared_ptr<Cell> Table::get_cell(int pos){
     }
 }
 
+// ritorna casella stile scacchiera o campo di battaglia navale
 std::string Table::get_cellname(int pos){
     if(pos < 0 || pos >= tabs.size())
     {
@@ -187,6 +190,7 @@ std::string Table::get_cellname(int pos){
     return s;
 }
 
+// elimina tutte le proprietà
 void Table::elimination(Player* p){
     for(int i=0; i < tabs.size(); i++){
         std::shared_ptr<SideCell> sideCell = std::dynamic_pointer_cast<SideCell>(tabs[i]);
@@ -198,6 +202,7 @@ void Table::elimination(Player* p){
     }
 }
 
+// giocatori sulla casella di partenza
 void Table::start_game(Player* p1, Player* p2, Player* p3, Player* p4){
     std::shared_ptr<Cell> start = get_cell(0);
     start->add_occupant(p1);
@@ -206,6 +211,7 @@ void Table::start_game(Player* p1, Player* p2, Player* p3, Player* p4){
     start->add_occupant(p4);
 }
 
+// mostra quanti fiorini possiedono i giocatori che non sono stati eliminati
 void Table::bank_account(std::queue<Player*>& pList, Player* pt){
     int size = pList.size();
     for(int j=0;j<size;j++){
@@ -217,6 +223,7 @@ void Table::bank_account(std::queue<Player*>& pList, Player* pt){
     std::cout << "Il giocatore " << pt->get_ID() << " ha " << pt->get_money() << " fiorini \n";
 }
 
+// mostra le proprietà di ogni giocatore ancora in gioco
 void Table::list_property(std::queue<Player*>& pList, Player* pt){
     int size = pList.size();
     for(int j=0;j<size;j++){

@@ -9,7 +9,8 @@ N.B.
 
 - Per terminare programma usare Ctrl+z
 
-# Da togliere non appena sarà stato sviluppato
-- cose da mettere nel main per renderele un po' più funzionale lato utente:
-    (1.)ogni volta che che viene posto all'utente se comprare o fare upgrade stampare il prezzo dell'operazione e i fiorini a sua disposizione
-    (2.)dare la possibilità di uscire dal gioco
+# Scelte di progettazione
+- Classe Table:
+Abbiamo scelto di utilizzare un vector di shared pointer di Cell dove le varie celle che hanno una posizione diversa ogni volta che viene fatta una esecuzione ad eccezione della casella di partenza che è fissa in posizione (0,0) e poi viene usato per caricare una matrice funzionale alla corretta visualizzazione del tabellone. 
+-> spiegare scelta del tipo di vector
+
