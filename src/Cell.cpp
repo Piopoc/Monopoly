@@ -37,7 +37,7 @@ Type types::luxury()
 
 
 /*Cell*/
-//Aggiunge p al vettore dei giocatori che occupano la casella, lancia eccezione se già presente
+//Aggiunge p al vettore dei giocatori che occupano la casella, lancia eccezione se già presente o se nullptr
 void Cell::add_occupant(Player* p)
 {
     if(!p)
@@ -56,7 +56,7 @@ void Cell::add_occupant(Player* p)
     occupying[number_of_occupants++] = p;
 }
 
-//Rimuove p dal vettore dei giocatori che occupano la casella, lancia eccezione se non presente
+//Rimuove p dal vettore dei giocatori che occupano la casella, lancia eccezione se non presente o se è nullptr
 void Cell::remove_occupant(Player* p)
 {
     if(!p)
@@ -93,7 +93,7 @@ SideCell::SideCell(const Type& t)
     : type{t}
 {}
 
-//Aggiunge il proprietario, lancia eccezione se già presente
+//Aggiunge il proprietario, lancia eccezione se già presente o se nullptr
 void SideCell::add_owner(Player* p)
 {
     if(!p)
@@ -152,17 +152,6 @@ Player* SideCell::get_owner() const
     }
 
     return owner;
-}
-
-//Restituisce la proprietà installata nella casella, lancia eccezione se senza proprietario
-char SideCell::get_property() const
-{
-    if(!owner)
-    {
-        throw std::logic_error("La casella non ha un proprietario");
-    }
-
-    return property;
 }
 
 //Restituisce una stringa di 13 caratteri che descrive la casella: di questa ne stampa il tipo,
