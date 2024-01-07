@@ -206,40 +206,7 @@ void Table::start_game(Player* p1, Player* p2, Player* p3, Player* p4){
     start->add_occupant(p4);
 }
 
-/*
-void Table::bank_account(std::queue<Player*>& pList){
-    std::vector<Player*> players;
-    players.push_back(p1);
-    players.push_back(p2);
-    players.push_back(p3);
-    players.push_back(p4);
-
-    for(int j=0;j<players.size();j++){
-        std::cout<<"Il giocatore "<<players[j]->get_ID()<<" ha "<<players[j]->get_money()<<" fiorini \n";
-    }
-}
-void Table::list_property(std::queue<Player*>& pList){
-    std::vector<Player*> players;
-    players.push_back(p1);
-    players.push_back(p2);
-    players.push_back(p3);
-    players.push_back(p4);
-    for(int j=0;j<players.size();j++){
-        std::cout << "Giocatore " << players[j]->get_ID() << ": ";
-        for(int i=0;i<tabs.size();i++){
-            if(std::shared_ptr<SideCell> sideCell=std::dynamic_pointer_cast<SideCell>(tabs[i])){
-                if(sideCell->has_owner() && sideCell->get_owner() == players[j]){
-                    std::cout << get_cellname(i) << " ";
-                }
-            }
-        }
-        temp.push_back(*it);
-        std::cout << std::endl;
-    }
-    pList = temp; 
-}
-*/
-void Table::bank_account(std::queue<Player*>& pList){
+void Table::bank_account(std::queue<Player*>& pList, Player* pt){
     int size = pList.size();
     for(int j=0;j<size;j++){
         Player* temp=pList.front();
@@ -247,9 +214,10 @@ void Table::bank_account(std::queue<Player*>& pList){
         pList.pop();
         pList.push(temp);
     }
+    std::cout << "Il giocatore " << pt->get_ID() << " ha " << pt->get_money() << " fiorini \n";
 }
 
-void Table::list_property(std::queue<Player*>& pList){
+void Table::list_property(std::queue<Player*>& pList, Player* pt){
     int size = pList.size();
     for(int j=0;j<size;j++){
         Player* temp=pList.front();
@@ -265,4 +233,13 @@ void Table::list_property(std::queue<Player*>& pList){
         pList.pop();
         pList.push(temp);
     }
+    std::cout << "Giocatore " << pt->get_ID() << ": ";
+    for(const auto& cell : tabs){
+        if(std::shared_ptr<SideCell> sideCell = std::dynamic_pointer_cast<SideCell>(cell)){
+            if(sideCell->has_owner() && sideCell->get_owner()==pt){
+                std::cout << get_cellname(std::distance(tabs.begin(), std::find(tabs.begin(), tabs.end(), cell))) << " ";
+            }
+        }
+    }
+    std::cout << std::endl;
 }

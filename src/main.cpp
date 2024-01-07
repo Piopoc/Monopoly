@@ -14,7 +14,7 @@ void pc_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCe
 void human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs);
 void game_over(queue<Player*>& pList, ofstream& ofs);
 
-void show(Table& t, queue<Player*>& pList);
+void show(Table& t, queue<Player*>& pList, Player* pt);
 
 string put_in_order(queue<Player*>& pList); //mette in ordine con il criterio dei dadi
 bool repeated_max(vector<int>& a); //controlla se il lancio più alto ha un pareggio
@@ -233,7 +233,7 @@ void human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGeneri
                 done = true;
             }
             else if(in=="show"){
-                show(t,pList);
+                show(t,pList,pt);
             }
             else{
                 cout<<"Comando non trovato"<<endl;
@@ -263,7 +263,7 @@ void human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGeneri
                 done = true;
             }
             else if(in=="show"){
-                show(t,pList);
+                show(t,pList,pt);
             }
             else{
                 cout<<"Comando non trovato"<<endl;
@@ -293,7 +293,7 @@ void human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGeneri
                 done = true;
             }
             else if(in=="show"){
-                show(t,pList);
+                show(t,pList,pt);
             }
             else{
                 cout<<"Comando non trovato"<<endl;
@@ -419,13 +419,13 @@ void game_over(queue<Player*>& pList, ofstream& ofs)
     }
 }
 //
-void show(Table& t, queue<Player*>& pList){
+void show(Table& t, queue<Player*>& pList, Player* pt){
     cout<<endl<<"tabellone:"<<endl;
     t.print_matrix();
     cout<<endl<<"lista proprietà:"<<endl;
-    t.list_property(pList);
+    t.list_property(pList,pt);
     cout<<endl<<"lista conti bancari:"<<endl;
-    t.bank_account(pList);
+    t.bank_account(pList,pt);
     cout<<endl;
 }
 

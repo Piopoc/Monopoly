@@ -18,8 +18,8 @@ class Table{
         std::string get_cellname(int pos); //ritorna ad es A1
         void elimination(Player* p); // elimina tutte le proprietà
         //void show(Player* p1, Player* p2, Player* p3, Player* p4);
-        void list_property(std::queue<Player*>& pList);
-        void bank_account(std::queue<Player*>& pList);
+        void list_property(std::queue<Player*>& pList, Player* pt);
+        void bank_account(std::queue<Player*>& pList, Player* pt);
         ~Table(){};
     private:
         std::vector<std::shared_ptr<Cell>> tabs;
