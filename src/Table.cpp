@@ -4,7 +4,6 @@
 #include <cstdlib>
 #include <ctime>
 #include <memory>
-#include <algorithm>
 #include "../include/Table.h"
 #include "../include/Cell.h"
 
@@ -72,7 +71,7 @@ Table::Table(){
 }
 
 // stampa il tabellone tramite il caricamento degli elementi in una "matrice"
-void Table::print_matrix(){
+void Table::print_matrix() const{
     static const int dim=10;
     std::string matrix[dim][dim];
     int fraw=1;
@@ -108,17 +107,21 @@ void Table::print_matrix(){
     std::cout<<std::endl;
 }
 
-int Table::parametrizzazione_bordo_x(int t) {
+// la componente x della curva che parametrizza il bordo
+int Table::parametrizzazione_bordo_x(int t) const{
     if (!tabs.empty()) {
         t %= tabs.size();
-
+        
         if (t <= 6) {
             return (1 + t);
-        } else if (t <= 13) {
+        }
+        else if (t <= 13) {
             return 8;
-        } else if (t <= 20) {
+        }
+        else if (t <= 20) {
             return (22 - t);
-        } else {
+        }
+        else {
             return 1;
         }
     } else {
@@ -126,12 +129,11 @@ int Table::parametrizzazione_bordo_x(int t) {
     }
 }
 
-
-int Table::parametrizzazione_bordo_y(int t)
-{
+// la componente y della curva che parametrizza il bordo
+int Table::parametrizzazione_bordo_y(int t) const{
     if(!tabs.empty()){
         t %= tabs.size();
-
+        
         if(t <= 6){
             return 1;
         }
@@ -152,7 +154,7 @@ int Table::parametrizzazione_bordo_y(int t)
 }
 
 // verifica se player passa per casella con P
-bool Table::beyond_start(Player* p, int from){
+bool Table::beyond_start(Player* p, int from) const{
     return p->get_currpos()<from;
 }
 
@@ -176,7 +178,7 @@ std::shared_ptr<Cell> Table::get_cell(int pos){
 }
 
 // ritorna casella stile scacchiera o campo di battaglia navale
-std::string Table::get_cellname(int pos){
+std::string Table::get_cellname(int pos) const{
     if(pos < 0 || pos >= tabs.size())
     {
         throw std::logic_error("Casella non trovata");
@@ -213,6 +215,7 @@ void Table::start_game(Player* p1, Player* p2, Player* p3, Player* p4){
 
 // mostra quanti fiorini possiedono i giocatori che non sono stati eliminati
 void Table::bank_account(std::queue<Player*>& pList, Player* pt){
+    std::cout << "Il giocatore " << pt->get_ID() << " ha " << pt->get_money() << " fiorini \n";
     int size = pList.size();
     for(int j=0;j<size;j++){
         Player* temp=pList.front();
@@ -220,19 +223,27 @@ void Table::bank_account(std::queue<Player*>& pList, Player* pt){
         pList.pop();
         pList.push(temp);
     }
-    std::cout << "Il giocatore " << pt->get_ID() << " ha " << pt->get_money() << " fiorini \n";
 }
 
 // mostra le proprietà di ogni giocatore ancora in gioco
 void Table::list_property(std::queue<Player*>& pList, Player* pt){
+    std::cout << "Giocatore " << pt->get_ID() << ": ";
+    for(int i = 0; i < tabs.size(); i++){
+        if(std::shared_ptr<SideCell> sideCell = std::dynamic_pointer_cast<SideCell>(tabs[i])){
+            if(sideCell->has_owner() && sideCell->get_owner()==pt){
+                std::cout << get_cellname(i) << " ";
+            }
+        }
+    }
+    std::cout << std::endl;
     int size = pList.size();
     for(int j=0;j<size;j++){
         Player* temp=pList.front();
         std::cout << "Giocatore " << temp->get_ID() << ": ";
-        for(const auto& cell : tabs){
-            if(std::shared_ptr<SideCell> sideCell = std::dynamic_pointer_cast<SideCell>(cell)){
+        for(int i = 0; i < tabs.size(); i++){
+            if(std::shared_ptr<SideCell> sideCell = std::dynamic_pointer_cast<SideCell>(tabs[i])){
                 if(sideCell->has_owner() && sideCell->get_owner()==temp){
-                    std::cout << get_cellname(std::distance(tabs.begin(), std::find(tabs.begin(), tabs.end(), cell))) << " ";
+                    std::cout << get_cellname(i) << " ";
                 }
             }
         }
@@ -240,13 +251,4 @@ void Table::list_property(std::queue<Player*>& pList, Player* pt){
         pList.pop();
         pList.push(temp);
     }
-    std::cout << "Giocatore " << pt->get_ID() << ": ";
-    for(const auto& cell : tabs){
-        if(std::shared_ptr<SideCell> sideCell = std::dynamic_pointer_cast<SideCell>(cell)){
-            if(sideCell->has_owner() && sideCell->get_owner()==pt){
-                std::cout << get_cellname(std::distance(tabs.begin(), std::find(tabs.begin(), tabs.end(), cell))) << " ";
-            }
-        }
-    }
-    std::cout << std::endl;
 }

@@ -17,20 +17,17 @@ Type::Type(const Type& t)
 
 /*Types*/
 //Definisce il tipo "economica"
-Type types::economic()
-{
+Type types::economic() {
     return Type{6, 3, 3, 2, 4, 'E'};
 }
 
 //Definisce il tipo "standard"
-Type types::standard()
-{
+Type types::standard() {
     return Type{10, 5, 5, 4, 8, 'S'};
 }
 
 //Definisce il tipo "lusso"
-Type types::luxury()
-{
+Type types::luxury() {
     return Type{20, 10, 10, 7, 14, 'L'};
 }
 
@@ -38,17 +35,13 @@ Type types::luxury()
 
 /*Cell*/
 //Aggiunge p al vettore dei giocatori che occupano la casella, lancia eccezione se già presente o se nullptr
-void Cell::add_occupant(Player* p)
-{
-    if(!p)
-    {
+void Cell::add_occupant(Player* p) {
+    if(!p) {
         throw std::logic_error{"Il puntatore è nullptr"};
     }
     
-    for(int i = 0; i < number_of_occupants; i++)
-    {
-        if(occupying[i]->get_ID() == p->get_ID())
-        {
+    for(int i = 0; i < number_of_occupants; i++) {
+        if(occupying[i]->get_ID() == p->get_ID()) {
             throw std::logic_error{"Giocatore già presente"};
         }
     }
@@ -57,19 +50,14 @@ void Cell::add_occupant(Player* p)
 }
 
 //Rimuove p dal vettore dei giocatori che occupano la casella, lancia eccezione se non presente o se è nullptr
-void Cell::remove_occupant(Player* p)
-{
-    if(!p)
-    {
+void Cell::remove_occupant(Player* p) {
+    if(!p) {
         throw std::logic_error{"Il puntatore è nullptr"};
     }
     
-    for(int i = 0; i < number_of_occupants; i++)
-    {
-        if(occupying[i]->get_ID() == p->get_ID())
-        {
-            for(int j = i; j < number_of_occupants - 1; j++)
-            {
+    for(int i = 0; i < number_of_occupants; i++) {
+        if(occupying[i]->get_ID() == p->get_ID()) {
+            for(int j = i; j < number_of_occupants - 1; j++) {
                 occupying[j] = occupying[j + 1];
             }
 
@@ -81,8 +69,7 @@ void Cell::remove_occupant(Player* p)
     throw std::logic_error{"Giocatore non presente nella casella"};
 }
 
-std::ostream& operator<<(std::ostream& o, const Cell& c)
-{
+std::ostream& operator<<(std::ostream& o, const Cell& c) {
     return o << c.to_string();
 }
 
@@ -94,15 +81,12 @@ SideCell::SideCell(const Type& t)
 {}
 
 //Aggiunge il proprietario, lancia eccezione se già presente o se nullptr
-void SideCell::add_owner(Player* p)
-{
-    if(!p)
-    {
+void SideCell::add_owner(Player* p) {
+    if(!p) {
         throw std::logic_error{"Il puntatore è nullptr"};
     }
     
-    if(owner)
-    {  
+    if(owner) {  
         throw std::logic_error{"La casella ha già un proprietario"};
     }
 
@@ -110,10 +94,8 @@ void SideCell::add_owner(Player* p)
 }  
 
 //Rimuove il proprietario, lancia eccezione se non presente
-void SideCell::remove_owner()
-{
-    if(!owner)
-    {
+void SideCell::remove_owner() {
+    if(!owner) {
         throw std::logic_error{"La casella non ha un proprietario"};
     }
     
@@ -122,15 +104,12 @@ void SideCell::remove_owner()
 }
 
 //Migliora la proprietà, lancia eccezione se non è presente un proprietario o se è già presente un hotel
-void SideCell::upgrade_property()
-{
-    if(!owner)
-    {
+void SideCell::upgrade_property() {
+    if(!owner) {
         throw std::logic_error{"La casella non ha un proprietario"};    
     }
 
-    switch(property)
-    {
+    switch(property) {
         case 0:
             property = '*';
         break;
@@ -144,10 +123,8 @@ void SideCell::upgrade_property()
 }
 
 //Restituisce il proprietario, lancia eccezione se non presente
-Player* SideCell::get_owner() const
-{
-    if(!owner)
-    {
+Player* SideCell::get_owner() const {
+    if(!owner) {
         throw std::logic_error{"La casella non ha un proprietario"};
     }
 
@@ -156,29 +133,24 @@ Player* SideCell::get_owner() const
 
 //Restituisce una stringa di 13 caratteri che descrive la casella: di questa ne stampa il tipo,
 //l'eventuale casa/hotel installata e la lista dei giocatori che la occupano
-std::string SideCell::to_string() const
-{
+std::string SideCell::to_string() const {
     std::string s = "| ";
     //tipo
     s += type.identifier;
     //proprietà
-    if(property)
-    {
+    if(property) {
         s += property;
     }
 
     //lista dei giocatori che occupano la casella
-    if(number_of_occupants)
-    {   
-        for(int i = 0; i < number_of_occupants; i++)
-        {
+    if(number_of_occupants) {   
+        for(int i = 0; i < number_of_occupants; i++) {
             s += (occupying[i]->get_ID() + 48);  //Conversione da int a char
             s += " ";
         }
     }
 
-    else
-    {
+    else {
         s += " ";
     }
 
@@ -187,15 +159,12 @@ std::string SideCell::to_string() const
     //aggiunge spazi all'inizio e alla fine per far sì che la stringa sia di 13 caratteri
     int diff = 13 - s.size();
 
-    if(diff)
-    {
-        for(int a = 0; a < diff / 2; a++)
-        {
+    if(diff) {
+        for(int a = 0; a < diff / 2; a++) {
             s = " " + s;
         }
 
-        for(int b = 0; b < diff - (diff / 2); b++)
-        {
+        for(int b = 0; b < diff - (diff / 2); b++) {
             s += " ";
         }
     }
@@ -215,8 +184,7 @@ EdgeCell::EdgeCell(bool s)
 std::string EdgeCell::to_string() const
 {
     std::string s = "| ";
-    switch(is_start_cell)
-    {
+    switch(is_start_cell) {
         case 0:
             s += ((number_of_occupants) ? "" : " ");
         break;
@@ -228,17 +196,14 @@ std::string EdgeCell::to_string() const
     }
     
     //lista dei giocatori che occupano la casella
-    if(number_of_occupants)
-    {
-        for(int i = 0; i < number_of_occupants; i++)
-        {
+    if(number_of_occupants) {
+        for(int i = 0; i < number_of_occupants; i++) {
             s += (occupying[i]->get_ID() + 48);
             s += " ";
         }
     }
 
-    else
-    {
+    else {
         s += " ";
     }
 
@@ -247,15 +212,12 @@ std::string EdgeCell::to_string() const
     //aggiunge spazi all'inizio e alla fine per far sì che la stringa sia di 13 caratteri
     int diff = 13 - s.size();
 
-    if(diff)
-    {
-        for(int a = 0; a < diff / 2; a++)
-        {
+    if(diff) {
+        for(int a = 0; a < diff / 2; a++) {
             s = " " + s;
         }
 
-        for(int b = 0; b < diff - (diff / 2); b++)
-        {
+        for(int b = 0; b < diff - (diff / 2); b++) {
             s += " ";
         }
     }
