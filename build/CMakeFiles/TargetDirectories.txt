@@ -1,3 +1,0 @@
-/mnt/c/Users/pierf/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/build/CMakeFiles/exe.dir
-/mnt/c/Users/pierf/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/build/CMakeFiles/edit_cache.dir
-/mnt/c/Users/pierf/C++/ESERCIZI C++/PROGETTO FINALE/Monopoly/build/CMakeFiles/rebuild_cache.dir
