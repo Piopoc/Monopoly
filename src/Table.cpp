@@ -109,7 +109,10 @@ void Table::print_matrix() const{
 
 // la componente x della curva che parametrizza il bordo
 int Table::parametrizzazione_bordo_x(int t) const{
-    if (!tabs.empty()) {
+    if (tabs.size() == 28) {
+        while(t < 0) {
+            t += tabs.size();
+        }
         t %= tabs.size();
         
         if (t <= 6) {
@@ -125,15 +128,18 @@ int Table::parametrizzazione_bordo_x(int t) const{
             return 1;
         }
     } else {
-        return -1;
+        throw std::runtime_error("Non sono presenti tutte le caselle");
     }
 }
 
 // la componente y della curva che parametrizza il bordo
 int Table::parametrizzazione_bordo_y(int t) const{
-    if(!tabs.empty()){
+    if(tabs.size() == 28){
+        while(t < 0) {
+            t += tabs.size();
+        }
         t %= tabs.size();
-        
+
         if(t <= 6){
             return 1;
         }
@@ -148,7 +154,7 @@ int Table::parametrizzazione_bordo_y(int t) const{
         }
     }
     else{
-        return -1;
+        throw std::runtime_error("Non sono presenti tutte le caselle");
     }
     
 }

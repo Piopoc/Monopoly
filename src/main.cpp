@@ -10,9 +10,9 @@
 
 using namespace std;
 
-void pc_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs);
-void human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs);
-void game_over(queue<Player*>& pList, ofstream& ofs);
+void pc_plays(Table& t, Player* pt, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs);
+void human_plays(Table& t, Player* pt, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs);
+void game_over(queue<Player*>& pList, ofstream& ofs); //Determina i vincitori e stampa il messaggio di vittoria
 
 void show(Table& t, queue<Player*>& pList, Player* pt);
 
@@ -21,7 +21,7 @@ bool repeated_max(vector<int>& a); //controlla se il lancio più alto ha un pare
 int get_posmax(vector<int>& a); //ottiene posizione del giocatore con punteggio massimo all'interno dell'array
 void throw_again(vector<int>& a, string& order); //rilancia i dadi massimi in pareggio
 
-int main(int argc, char* argv[]){
+int main(int argc, char* argv[]){    
     if (argc != 2) {
         cout << "Utilizzo: " << argv[0] << " <computer/human>" << endl;
         return -1; // restituisco 1 per indicare un errore
@@ -95,7 +95,7 @@ int main(int argc, char* argv[]){
             }
             ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<t.get_cellname(pt->get_currpos())<<endl;
             cout<<"Giocatore "<<playerID<<" è arrivato alla casella "<<t.get_cellname(pt->get_currpos())<<endl;
-            pc_plays(t,pt,playerID,currGenericCell,pList,cout,ofs);
+            pc_plays(t,pt,currGenericCell,pList,cout,ofs);
             ofs<<"Giocatore "<<playerID<<" ha finito il turno"<<endl;
             cout<<"Giocatore "<<playerID<<" ha finito il turno"<<endl;
             //aumenta il numero di giocatori che hanno giocato per questo round
@@ -143,13 +143,13 @@ int main(int argc, char* argv[]){
             ofs<<"Giocatore "<<playerID<<" è arrivato alla casella "<<t.get_cellname(pt->get_currpos())<<endl;
             cout<<"Giocatore "<<playerID<<" è arrivato alla casella "<<t.get_cellname(pt->get_currpos())<<endl;
             if(pt->get_ID()==humanID){
-                human_plays(t,pt,playerID,currGenericCell,pList,cout,ofs);
+                human_plays(t,pt,currGenericCell,pList,cout,ofs);
                 ofs<<"Giocatore "<<playerID<<" ha finito il turno"<<endl;
                 cout<<"Giocatore "<<playerID<<" ha finito il turno"<<endl;
             }
             //giocatore computer
             else{
-                pc_plays(t,pt,playerID,currGenericCell,pList,cout,ofs);
+                pc_plays(t,pt,currGenericCell,pList,cout,ofs);
                 ofs<<"Giocatore "<<playerID<<" ha finito il turno"<<endl;
                 cout<<"Giocatore "<<playerID<<" ha finito il turno"<<endl;
             }
@@ -168,8 +168,9 @@ int main(int argc, char* argv[]){
     return 0;
 } //------------------------------------------------------------------------------------------------------------------------------------------------
 //
-void human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs){
+void human_plays(Table& t, Player* pt, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs){
     string in;
+    int playerID = pt->get_ID();
     //casella angolare
     if(dynamic_pointer_cast<EdgeCell> (currGenericCell)){
         pList.push(pt);
@@ -309,7 +310,8 @@ void human_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGeneri
     return;
 }
 //
-void pc_plays(Table& t, Player* pt, int playerID, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs){
+void pc_plays(Table& t, Player* pt, shared_ptr<Cell> currGenericCell, queue<Player*>& pList, ostream& cout, ofstream& ofs){
+    int playerID = pt->get_ID();
     //casella angolare
     if(dynamic_pointer_cast<EdgeCell> (currGenericCell)){
         pList.push(pt);
