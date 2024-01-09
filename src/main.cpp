@@ -4,6 +4,7 @@
 #include <queue>
 #include <fstream>
 #include <memory>
+
 #include "../include/Table.h"
 #include "../include/Player.h"
 #include "../include/Cell.h"

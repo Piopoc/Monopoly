@@ -11,7 +11,6 @@ elseif (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /O2")
 endif()
 
-	# target_include_directories(${PROJECT_NAME} PRIVATE ../include)
 include_directories(../include)
 
 add_executable(${PROJECT_NAME} 

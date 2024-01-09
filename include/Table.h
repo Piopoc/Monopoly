@@ -5,6 +5,7 @@
 #include <vector>
 #include <queue>
 #include <memory>
+
 #include "../include/Cell.h"
 
 class Table{
