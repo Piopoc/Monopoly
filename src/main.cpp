@@ -201,6 +201,8 @@ void human_plays(Table& t, Player* pt, shared_ptr<Cell> currGenericCell, queue<P
         //non ha abbastanza soldi
         else{
             cout<<"Si trova in un terreno altrui, ma non possiede abbastanza denaro per pagare la tassa, viene eliminato"<<endl;
+            currCell->get_owner()->deposit(pt->get_money());
+            pt->withdraw(pt->get_money());
             t.elimination(pt);
             ofs<<"Giocatore "<<playerID<<" è stato eliminato"<<endl;
             cout<<"Giocatore "<<playerID<<" è stato eliminato"<<endl;
@@ -374,6 +376,8 @@ void pc_plays(Table& t, Player* pt, shared_ptr<Cell> currGenericCell, queue<Play
         }
         //non ha abbastanza soldi
         else{
+            currCell->get_owner()->deposit(pt->get_money());
+            pt->withdraw(pt->get_money());
             t.elimination(pt);
             ofs<<"Giocatore "<<playerID<<" è stato eliminato"<<endl;
             cout<<"Giocatore "<<playerID<<" è stato eliminato"<<endl;
