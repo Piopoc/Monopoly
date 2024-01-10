@@ -11,6 +11,7 @@ N.B.
 
 # Scelte di progettazione
 - Classe Table:
-Abbiamo scelto di utilizzare un vector di shared pointer di Cell dove le varie celle che hanno una posizione diversa ogni volta che viene fatta una esecuzione ad eccezione della casella di partenza che è fissa in posizione (0,0) e poi viene usato per caricare una matrice funzionale alla corretta visualizzazione del tabellone. 
+Abbiamo scelto di utilizzare un vector di shared pointer di Cell dove le varie celle hanno un tipo diverso a ogni esecuzione, a eccezione della casella di partenza che è fissa in posizione (0,0). Tale vector viene poi usato per caricare una matrice funzionale alla corretta visualizzazione del tabellone.
+Non è stato implementato il distruttore perché il memory leak è già impedito dal distruttore di shared_ptr 
 -> spiegare scelta del tipo di vector
 

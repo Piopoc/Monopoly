@@ -22,7 +22,7 @@ bool repeated_max(vector<int>& a); //controlla se il lancio più alto ha un pare
 int get_posmax(vector<int>& a); //ottiene posizione del giocatore con punteggio massimo all'interno dell'array
 void throw_again(vector<int>& a, string& order); //rilancia i dadi massimi in pareggio
 
-int main(int argc, char* argv[]){    
+int main(int argc, char* argv[]){
     if (argc != 2) {
         cout << "Utilizzo: " << argv[0] << " <computer/human>" << endl;
         return -1; // restituisco 1 per indicare un errore

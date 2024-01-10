@@ -40,13 +40,13 @@ void Cell::add_occupant(Player* p) {
         throw std::logic_error{"Il puntatore è nullptr"};
     }
     
-    for(int i = 0; i < number_of_occupants; i++) {
+    for(int i = 0; i < numberOfOccupants; i++) {
         if(occupying[i]->get_ID() == p->get_ID()) {
             throw std::logic_error{"Giocatore già presente"};
         }
     }
 
-    occupying[number_of_occupants++] = p;
+    occupying[numberOfOccupants++] = p;
 }
 
 //Rimuove p dal vettore dei giocatori che occupano la casella, lancia eccezione se non presente o se è nullptr
@@ -55,13 +55,13 @@ void Cell::remove_occupant(Player* p) {
         throw std::logic_error{"Il puntatore è nullptr"};
     }
     
-    for(int i = 0; i < number_of_occupants; i++) {
+    for(int i = 0; i < numberOfOccupants; i++) {
         if(occupying[i]->get_ID() == p->get_ID()) {
-            for(int j = i; j < number_of_occupants - 1; j++) {
+            for(int j = i; j < numberOfOccupants - 1; j++) {
                 occupying[j] = occupying[j + 1];
             }
 
-            number_of_occupants--;
+            numberOfOccupants--;
             return;
         }
     }
@@ -143,8 +143,8 @@ std::string SideCell::to_string() const {
     }
 
     //lista dei giocatori che occupano la casella
-    if(number_of_occupants) {   
-        for(int i = 0; i < number_of_occupants; i++) {
+    if(numberOfOccupants) {   
+        for(int i = 0; i < numberOfOccupants; i++) {
             s += (occupying[i]->get_ID() + 48);  //Conversione da int a char
             s += " ";
         }
@@ -176,7 +176,7 @@ std::string SideCell::to_string() const {
 
 /*EdgeCell*/
 EdgeCell::EdgeCell(bool s)
-    : is_start_cell{s}
+    : isStartCell{s}
 {}
 
 //Restituisce una stringa di 13 caratteri che descrive la casella: stampa P se è la cella di partenza e stampa
@@ -184,9 +184,9 @@ EdgeCell::EdgeCell(bool s)
 std::string EdgeCell::to_string() const
 {
     std::string s = "| ";
-    switch(is_start_cell) {
+    switch(isStartCell) {
         case 0:
-            s += ((number_of_occupants) ? "" : " ");
+            s += ((numberOfOccupants) ? "" : " ");
         break;
         
         //se è partenza
@@ -196,8 +196,8 @@ std::string EdgeCell::to_string() const
     }
     
     //lista dei giocatori che occupano la casella
-    if(number_of_occupants) {
-        for(int i = 0; i < number_of_occupants; i++) {
+    if(numberOfOccupants) {
+        for(int i = 0; i < numberOfOccupants; i++) {
             s += (occupying[i]->get_ID() + 48);
             s += " ";
         }

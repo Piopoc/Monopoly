@@ -20,7 +20,6 @@ class Table{
         void elimination(Player* p); // elimina tutte le proprietà
         void list_property(std::queue<Player*>& pList, Player* pt); // mostra le proprietà di ogni giocatore ancora in gioco
         void bank_account(std::queue<Player*>& pList, Player* pt); // mostra quanti fiorini possiedono i giocatori che non sono stati eliminati
-        ~Table(){}; // distruttore
     private:
         std::vector<std::shared_ptr<Cell>> tabs;
         int parametrizzazione_bordo_x(int t) const; // la componente x della curva che parametrizza il bordo

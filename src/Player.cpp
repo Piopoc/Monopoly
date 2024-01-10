@@ -48,8 +48,8 @@ int Player::get_currpos() const{
     return currentPos;
 }
 void Player::set_currpos(int pos){
-    if(pos<0){
-        throw std::logic_error{"ID compresi tra 1 e 4"};
+    if(pos<0 || pos>27){
+        throw std::logic_error{"Posizione non valida"};
     }
     currentPos = pos;
 }

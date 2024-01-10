@@ -129,7 +129,7 @@ int Table::parametrizzazione_bordo_x(int t) const{
             return 1;
         }
     } else {
-        throw std::runtime_error("Non sono presenti tutte le caselle");
+        throw std::runtime_error("Errore nel riempimento del vettore");
     }
 }
 
@@ -155,7 +155,7 @@ int Table::parametrizzazione_bordo_y(int t) const{
         }
     }
     else{
-        throw std::runtime_error("Non sono presenti tutte le caselle");
+        throw std::runtime_error("Errore nel riempimento del vettore");
     }
     
 }

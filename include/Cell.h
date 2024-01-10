@@ -37,10 +37,9 @@ class Cell
         Cell(const Cell&) = delete;
         Cell& operator=(const Cell&) = delete;
         virtual std::string to_string() const = 0;    //Restituisce una stringa di 13 caratteri che descrive la cella
-        virtual ~Cell() = default;
     protected:
         std::vector<Player*> occupying{4};    //Vettore che contiene i giocatori che occupano la cella
-        int number_of_occupants = 0;    //Il numero di giocatori che occupano la cella
+        int numberOfOccupants = 0;    //Il numero di giocatori che occupano la cella
         Cell() {};    
 }; 
 
@@ -71,9 +70,9 @@ class EdgeCell : public Cell
 {
     public:
         explicit EdgeCell(bool s);
-        bool is_start() const {return is_start_cell;};    //Se è la cella di partenza
+        bool is_start() const {return isStartCell;};    //Se è la cella di partenza
         std::string to_string() const override;
     private:
-        bool is_start_cell;    //Indica se è la partenza o meno
+        bool isStartCell;    //Indica se è la partenza o meno
 };
 #endif
