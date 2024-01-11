@@ -1,3 +1,0 @@
-/home/piopo/Documenti/C++/monopoly/build/CMakeFiles/exe.dir
-/home/piopo/Documenti/C++/monopoly/build/CMakeFiles/edit_cache.dir
-/home/piopo/Documenti/C++/monopoly/build/CMakeFiles/rebuild_cache.dir
