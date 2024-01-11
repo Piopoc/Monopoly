@@ -18,5 +18,5 @@ add_executable(${PROJECT_NAME}
     ../src/Table.cpp
     ../src/Player.cpp
     ../src/Cell.cpp
-    ../src/util.cpp
+    ../src/Util.cpp
 )
