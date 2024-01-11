@@ -11,7 +11,7 @@
 #include "../include/Table.h"
 #include "../include/Player.h"
 #include "../include/Cell.h"
-#include "../include/Util.h"
+
 namespace util {
     void pc_plays(Table& t, Player* pt, std::shared_ptr<Cell> currGenericCell, std::queue<Player*>& pList, std::ofstream& ofs); //gestisce le azioni che il giocatore computer può fare all'interno della casella in cui si trova
     void human_plays(Table& t, Player* pt, std::shared_ptr<Cell> currGenericCell, std::queue<Player*>& pList, std::ofstream& ofs); //gestisce le azioni che il giocatore umano può fare all'interno della casella in cui si trova

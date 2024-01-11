@@ -32,13 +32,13 @@ int Player::get_ID() const
 {
     return playerID;
 }
-bool Player::has_this_money(int valore)
+bool Player::has_this_money(int value)
 {
-    return (cash - valore) > 0;
+    return (cash - value) > 0;
 }
-bool Player::pc_buys(int valore)
+bool Player::pc_buys(int value)
 {
-    if(has_this_money(valore)){
+    if(has_this_money(value)){
         srand (time(NULL));
         return (rand() % 4 + 1)==1;
     }

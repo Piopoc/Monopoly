@@ -91,8 +91,8 @@ void util::human_plays(Table& t, Player* pt, std::shared_ptr<Cell> currGenericCe
             if(in=="S" && pt->has_this_money(price)){
                 pt->withdraw(price);
                 currCell->upgrade_property();
-                ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<t.get_cellname(pt->get_currpos())<<std::endl;
-                std::cout<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno"<<t.get_cellname(pt->get_currpos())<<std::endl;
+                ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno "<<t.get_cellname(pt->get_currpos())<<std::endl;
+                std::cout<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno "<<t.get_cellname(pt->get_currpos())<<std::endl;
                 pList.push(pt);
                 done = true;
             }   
@@ -121,8 +121,8 @@ void util::human_plays(Table& t, Player* pt, std::shared_ptr<Cell> currGenericCe
             if(in=="S" && pt->has_this_money(price)){
                 pt->withdraw(price);
                 currCell->upgrade_property();
-                ofs<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<t.get_cellname(pt->get_currpos())<<std::endl;
-                std::cout<<"Giocatore "<<playerID<<"  ha migliorato una casa in albergo sul terreno"<<t.get_cellname(pt->get_currpos())<<std::endl;
+                ofs<<"Giocatore "<<playerID<<" ha migliorato una casa in albergo sul terreno "<<t.get_cellname(pt->get_currpos())<<std::endl;
+                std::cout<<"Giocatore "<<playerID<<" ha migliorato una casa in albergo sul terreno "<<t.get_cellname(pt->get_currpos())<<std::endl;
                 pList.push(pt);
                 done = true;
             }   
