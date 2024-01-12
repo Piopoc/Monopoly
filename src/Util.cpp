@@ -78,6 +78,10 @@ void util::human_plays(Table& t, Player* pt, std::shared_ptr<Cell> currGenericCe
                 std::cout<<"Comando non trovato"<<std::endl;
             }
         }
+        if(pt->has_this_money(tax)){
+            pList.push(pt);
+        }
+        return;
     }
     //pt è proprietario
     bool done = false;
