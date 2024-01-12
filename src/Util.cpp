@@ -15,23 +15,8 @@ void util::human_plays(Table& t, Player* pt, std::shared_ptr<Cell> currGenericCe
     int playerID = pt->get_ID();
     //casella angolare
     if(std::dynamic_pointer_cast<EdgeCell> (currGenericCell)){
-    // comando per review
-        bool done=false;
-        while(!done){
-            std::cout<<"Si trova in una cella angolare"<<std::endl;
-            std::cout<<"C per continuare oppure show \n[C]\n[show]\n: ";
-            std::getline(std::cin,in);
-            if(in=="C"){
-                done=true;
-            }
-            else if(in=="show"){
-                show(t,pList,pt);
-            }
-            else{
-                std::cout<<"Comando non trovato"<<std::endl;
-            }
-        }
-        pList.push(pt);
+        std::cout<<"Si trova in una cella angolare"<<std::endl;
+        end_turn(t, pList, pt, true);
         return;
     }
     std::shared_ptr<SideCell> currCell = std::dynamic_pointer_cast<SideCell>(currGenericCell);
@@ -51,6 +36,7 @@ void util::human_plays(Table& t, Player* pt, std::shared_ptr<Cell> currGenericCe
             currCell->get_owner()->deposit(tax);
             ofs<<"Giocatore "<<playerID<<" ha pagato "<<tax<<" fiorini a giocatore "<<currCell->get_owner()->get_ID()<<" per pernottamento nella casella "<<t.get_cellname(pt->get_currpos())<<std::endl;
             std::cout<<"Giocatore "<<playerID<<" ha pagato "<<tax<<" fiorini a giocatore "<<currCell->get_owner()->get_ID()<<" per pernottamento nella casella "<<t.get_cellname(pt->get_currpos())<<std::endl;
+            end_turn(t, pList, pt, true);
         }
         //non ha abbastanza soldi
         else{
@@ -61,25 +47,7 @@ void util::human_plays(Table& t, Player* pt, std::shared_ptr<Cell> currGenericCe
             ofs<<"Giocatore "<<playerID<<" è stato eliminato"<<std::endl;
             std::cout<<"Giocatore "<<playerID<<" è stato eliminato"<<std::endl;
             //NON ESEGUO IL PUSH, eliminato giocatore
-        }
-        // comando per review
-        bool done=false;
-        while(!done){
-            std::cout<<"Si trova in un terreno altrui"<<std::endl;
-            std::cout<<"C per continuare oppure show \n[C]\n[show]\n: ";
-            std::getline(std::cin,in);
-            if(in=="C"){
-                done=true;
-            }
-            else if(in=="show"){
-                show(t,pList,pt);
-            }
-            else{
-                std::cout<<"Comando non trovato"<<std::endl;
-            }
-        }
-        if(pt->has_this_money(tax)){
-            pList.push(pt);
+            end_turn(t, pList, pt, false);
         }
         return;
     }
@@ -96,17 +64,14 @@ void util::human_plays(Table& t, Player* pt, std::shared_ptr<Cell> currGenericCe
                 currCell->add_owner(pt);
                 ofs<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<t.get_cellname(pt->get_currpos())<<std::endl;
                 std::cout<<"Giocatore "<<playerID<<" ha acquistato il terreno "<<t.get_cellname(pt->get_currpos())<<std::endl;
-                pList.push(pt);
                 done = true;
             }   
-            else if(in=="S"){ // perde il turno
+            else if(in=="S"){
                 std::cout<<"Non possiede abbastanza denaro"<<std::endl;
-                pList.push(pt);
                 done = true;
             }
             else if(in=="N"){
                 std::cout<<"Terreno non acquistato"<<std::endl;
-                pList.push(pt);
                 done = true;
             }
             else if(in=="show"){
@@ -126,17 +91,14 @@ void util::human_plays(Table& t, Player* pt, std::shared_ptr<Cell> currGenericCe
                 currCell->upgrade_property();
                 ofs<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno "<<t.get_cellname(pt->get_currpos())<<std::endl;
                 std::cout<<"Giocatore "<<playerID<<" ha costruito una casa sul terreno "<<t.get_cellname(pt->get_currpos())<<std::endl;
-                pList.push(pt);
                 done = true;
             }   
             else if(in=="S"){
                 std::cout<<"Non possiede abbastanza denaro"<<std::endl;
-                pList.push(pt);
                 done = true;
             }
             else if(in=="N"){
                 std::cout<<"Casa non acquistata"<<std::endl;
-                pList.push(pt);
                 done = true;
             }
             else if(in=="show"){
@@ -156,17 +118,14 @@ void util::human_plays(Table& t, Player* pt, std::shared_ptr<Cell> currGenericCe
                 currCell->upgrade_property();
                 ofs<<"Giocatore "<<playerID<<" ha migliorato una casa in albergo sul terreno "<<t.get_cellname(pt->get_currpos())<<std::endl;
                 std::cout<<"Giocatore "<<playerID<<" ha migliorato una casa in albergo sul terreno "<<t.get_cellname(pt->get_currpos())<<std::endl;
-                pList.push(pt);
                 done = true;
             }   
             else if(in=="S"){
                 std::cout<<"Non possiede abbastanza denaro"<<std::endl;
-                pList.push(pt);
                 done = true;
             }
             else if(in=="N"){
                 std::cout<<"Hotel non acquistato"<<std::endl;
-                pList.push(pt);
                 done = true;
             }
             else if(in=="show"){
@@ -179,10 +138,10 @@ void util::human_plays(Table& t, Player* pt, std::shared_ptr<Cell> currGenericCe
         //proprietà con albergo non può fare niente
         else if(currCell->has_hotel()){
             std::cout<<"Si trova in una sua proprietà con albergo"<<std::endl;
-            pList.push(pt);
             done = true;
         }
     }
+    end_turn(t, pList, pt, true);
     return;
 }
 //
@@ -296,6 +255,29 @@ void util::game_over(std::queue<Player*>& pList, std::ofstream& ofs)
         }
         std::cout<<((winners.size() == 1) ? "ha " : "hanno ")<<"vinto la partita per aver avuto il numero più alto di fiorini"<<std::endl;
         ofs<<((winners.size() == 1) ? "ha " : "hanno ")<<"vinto la partita per aver avuto il numero più alto di fiorini"<<std::endl;
+    }
+}
+//
+void util::end_turn(Table& t, std::queue<Player*>& pList, Player* pt, bool pushPlayer)
+{
+    bool done=false;
+    std::string in;
+    while(!done){
+        std::cout<<"C per continuare oppure show \n[C]\n[show]\n: ";
+        std::getline(std::cin,in);
+        if(in=="C"){
+            done=true;
+        }
+        else if(in=="show"){
+            show(t,pList,pt);
+        }
+        else{
+            std::cout<<"Comando non trovato"<<std::endl;
+        }
+    }
+
+    if(pushPlayer){
+        pList.push(pt);
     }
 }
 //

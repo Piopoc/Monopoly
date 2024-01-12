@@ -16,6 +16,7 @@ namespace util {
     void pc_plays(Table& t, Player* pt, std::shared_ptr<Cell> currGenericCell, std::queue<Player*>& pList, std::ofstream& ofs); //gestisce le azioni che il giocatore computer può fare all'interno della casella in cui si trova
     void human_plays(Table& t, Player* pt, std::shared_ptr<Cell> currGenericCell, std::queue<Player*>& pList, std::ofstream& ofs); //gestisce le azioni che il giocatore umano può fare all'interno della casella in cui si trova
     void game_over(std::queue<Player*>& pList, std::ofstream& ofs); //determina i vincitori e stampa il messaggio di vittoria
+    void end_turn(Table& t, std::queue<Player*>& pList, Player* pt, bool pushPlayer); //gestisce il termine del turno del giocatore umano
 
     void show(Table& t, std::queue<Player*>& pList, Player* pt); //stampa il tabellone, la lista delle proprietà e i fiorini rimanenti a ciascun giocatore
 
