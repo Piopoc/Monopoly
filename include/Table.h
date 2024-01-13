@@ -1,3 +1,4 @@
+// @author Filippo Corradi, matricola: 2066680
 #ifndef TABLE_H
 #define TABLE_H
 

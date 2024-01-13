@@ -80,21 +80,19 @@ void Table::print_matrix() const{
 
     matrix[0][0] = " ";
 
-    for(int i = 1; i < dim- 1; i++)
-    {
+    for(int i = 1; i < dim- 1; i++){
         matrix[i][0]=std::string(1, static_cast<char>(fcolomn++));
         matrix[0][i]="      "+std::to_string(fraw++)+"      ";
     }
 
-    for(int t = 0; t <tabs.size(); t++)
-    {
+    //Dispone le caselle sul bordo
+    for(int t = 0; t <tabs.size(); t++){
         matrix[parametrizzazione_bordo_y(t)][parametrizzazione_bordo_x(t)] = tabs[t] -> to_string();
     }
 
-    for(int y = 2; y < dim-2; y++)
-    {
-        for(int x = 2; x < dim-2; x++)
-        {
+    //Riempie il riquadro interno
+    for(int y = 2; y < dim-2; y++){
+        for(int x = 2; x < dim-2; x++){
             matrix[y][x] = "             ";
         }
     }

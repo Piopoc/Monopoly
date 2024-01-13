@@ -34,7 +34,7 @@ int Player::get_ID() const
 }
 bool Player::has_this_money(int value)
 {
-    return (cash - value) > 0;
+    return (cash - value) >= 0;
 }
 bool Player::pc_buys(int value)
 {

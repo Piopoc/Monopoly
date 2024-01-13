@@ -25,7 +25,7 @@ int main(int argc, char* argv[]){
     //creazione Table di gioco
     Table t;
     //tassa di passaggio da ritirare varcando il via
-    constexpr int PASSTAX = 5;
+    constexpr int PASSTAX = 20;
     //numero massimo di turni per partita con giocatore umano
     constexpr int MAX_ROUND_HUMAN = 500;
     //numero massimo di turni per partita con soli giocatori computer
